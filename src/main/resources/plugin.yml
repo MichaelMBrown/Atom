@@ -1,0 +1,13 @@
+name: Core
+version: ${project.version}
+main: net.excentrix.core.Core
+api-version: 1.13
+softdepend: [ChatControl]
+authors: [qr0]
+description: Core
+website: excentrix.net
+commands:
+  sc:
+      description: Staffchat
+      usage: /<command>
+      permission: excentrix.chat.staffchat
