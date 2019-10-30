@@ -1,5 +1,7 @@
 package net.excentrix.core;
 
+import net.excentrix.core.Commands.kick;
+import net.excentrix.core.utils.staff_utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -9,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -19,7 +20,7 @@ public final class Core extends JavaPlugin implements Listener {
     public void onEnable() {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(this, this);
-        //getCommand("global").setExecutor(new global()); Deprecated
+        getCommand("kick").setExecutor(new kick());
         //("staff").setExecutor(new staff()); Deprecated
         getConfig().options().copyDefaults();
         saveDefaultConfig();
@@ -45,7 +46,8 @@ public final class Core extends JavaPlugin implements Listener {
                     if (args.length > 0) {
                         for (final Player p : Bukkit.getOnlinePlayers()) {
                             if (p.hasPermission("excentrix.chat.staffchat")) {
-                                p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.AQUA + sender.getName() + ChatColor.GRAY + ":" + ChatColor.AQUA + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                                //p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.AQUA + sender.getName() + ChatColor.GRAY + ":" + ChatColor.AQUA + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                                staff_utils.sendSC(((Player) sender).getDisplayName(), p, args);
                             }
                         }
                     } else {
@@ -58,7 +60,7 @@ public final class Core extends JavaPlugin implements Listener {
                 if(args.length > 0){
                     for (final Player p : Bukkit.getOnlinePlayers()) {
                         if (p.hasPermission("excentrix.chat.staffchat")) {
-                            p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.RED + ChatColor.BOLD + "Console" + ChatColor.GRAY + ":" + ChatColor.AQUA + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                            staff_utils.sendSC_console(p, args);
                         }
                     }
                 }else sender.sendMessage(ChatColor.RED + "Usage: /sc <message>");

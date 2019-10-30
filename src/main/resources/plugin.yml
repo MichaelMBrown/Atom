@@ -11,3 +11,7 @@ commands:
       description: Staffchat
       usage: /<command>
       permission: excentrix.chat.staffchat
+  kick:
+    description: Kick
+    usage: /<command>
+    permission: excentrix.command.kick
