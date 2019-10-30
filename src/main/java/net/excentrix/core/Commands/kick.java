@@ -48,7 +48,7 @@ public class kick implements CommandExecutor {
                             sender.sendMessage(ChatColor.RED + "There is no player by that name connected to this server!");
                     } else sender.sendMessage((ChatColor.RED + "Usage: /kick <user> [reason]"));
                 }
-            } else sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
+            }
         } else if (sender instanceof ConsoleCommandSender) {
             if (command.getName().equalsIgnoreCase("kick")) {
                 if (args.length > 0) {
