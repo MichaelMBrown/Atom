@@ -17,5 +17,5 @@ commands:
     permission: excentrix.command.kick
   report:
     description: Report a player
+    default: true
     usage: /<command>
-    permission: none
