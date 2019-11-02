@@ -12,7 +12,6 @@ public class report implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if ((sender instanceof Player)) {
             if (command.getName().equalsIgnoreCase("report")) {
-                if (sender.hasPermission("excentrix.core.default")) {
                     if ((args.length == 2)) {
                         Player target = Bukkit.getPlayerExact(args[0]);
                         if (target != null) {
@@ -49,7 +48,6 @@ public class report implements CommandExecutor {
                     }
                 }
             }
-        }
         return true;
     }
 
