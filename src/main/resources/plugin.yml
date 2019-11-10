@@ -19,3 +19,7 @@ commands:
     description: Report a player
     default: true
     usage: /<command>
+  helpop:
+    description: Notify's Staff
+    default: true
+    usage: /<command>

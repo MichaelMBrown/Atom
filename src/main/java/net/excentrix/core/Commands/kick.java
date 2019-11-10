@@ -29,8 +29,8 @@ public class kick implements CommandExecutor {
                                 }
                                 for (final Player p : Bukkit.getOnlinePlayers()) {
                                     if (p.hasPermission("excentrix.chat.staffchat")) {
-                                        //p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.GRAY + sender.getName() + ChatColor.GRAY + ":" + ChatColor.AQUA + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
-                                        staff_utils.scNotif(((Player) sender).getDisplayName(), p, "kicked player " + ChatColor.GRAY + Array.get(args, 0) + ChatColor.AQUA + " with reason: " + reason);
+                                        //p.sendMessage(ChatColor.WHITE+ "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.GRAY + sender.getName() + ChatColor.GRAY + ":" + ChatColor.WHITE+ " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                                        staff_utils.scNotif(ChatColor.YELLOW + ((Player) sender).getDisplayName(), p, "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
                                     }
                                 }
                                 target.kickPlayer(reason);
@@ -38,8 +38,8 @@ public class kick implements CommandExecutor {
                                 reason = "You have been kicked by " + ((Player) sender).getDisplayName();
                                 for (final Player p : Bukkit.getOnlinePlayers()) {
                                     if (p.hasPermission("excentrix.chat.staffchat")) {
-                                        //p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.AQUA + sender.getName() + ChatColor.GRAY + ":" + ChatColor.AQUA + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
-                                        staff_utils.scNotif(((Player) sender).getDisplayName(), p, "kicked player " + ChatColor.GRAY + Array.get(args, 0) + ChatColor.AQUA + " with reason: " + reason);
+                                        //p.sendMessage(ChatColor.WHITE+ "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.WHITE+ sender.getName() + ChatColor.GRAY + ":" + ChatColor.WHITE+ " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                                        staff_utils.scNotif(ChatColor.YELLOW + ((Player) sender).getDisplayName(), p, "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
                                     }
                                 }
                                 target.kickPlayer(reason);
@@ -60,8 +60,8 @@ public class kick implements CommandExecutor {
                             }
                             for (final Player p : Bukkit.getOnlinePlayers()) {
                                 if (p.hasPermission("excentrix.chat.staffchat")) {
-                                    //p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.AQUA + sender.getName() + ChatColor.GRAY + ":" + ChatColor.AQUA + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
-                                    staff_utils.scNotif(ChatColor.RED + "Console", p, "kicked player " + ChatColor.GRAY + Array.get(args, 0) + ChatColor.AQUA + " with reason: " + reason);
+                                    //p.sendMessage(ChatColor.WHITE+ "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.WHITE+ sender.getName() + ChatColor.GRAY + ":" + ChatColor.WHITE+ " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                                    staff_utils.scNotif(ChatColor.RED + "Console", p, "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
                                 }
                             }
                             target.kickPlayer(reason);
@@ -70,8 +70,8 @@ public class kick implements CommandExecutor {
                             reason = "You have been kicked by " + ChatColor.RED + "Console";
                             for (final Player p : Bukkit.getOnlinePlayers()) {
                                 if (p.hasPermission("excentrix.chat.staffchat")) {
-                                    //p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.AQUA + sender.getName() + ChatColor.GRAY + ":" + ChatColor.AQUA + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
-                                    staff_utils.scNotif("Console", p, "kicked player " + ChatColor.GRAY + Array.get(args, 0) + ChatColor.AQUA + " with reason: " + reason);
+                                    //p.sendMessage(ChatColor.WHITE+ "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.WHITE+ sender.getName() + ChatColor.GRAY + ":" + ChatColor.WHITE+ " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                                    staff_utils.scNotif("Console", p, "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
                                 }
                             }
                             target.kickPlayer(reason);

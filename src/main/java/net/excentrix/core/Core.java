@@ -1,5 +1,6 @@
 package net.excentrix.core;
 
+import net.excentrix.core.Commands.helpop;
 import net.excentrix.core.Commands.kick;
 import net.excentrix.core.Commands.report;
 import net.excentrix.core.utils.staff_utils;
@@ -23,6 +24,7 @@ public final class Core extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
         getCommand("kick").setExecutor(new kick());
         getCommand("report").setExecutor(new report());
+        getCommand("helpop").setExecutor(new helpop());
         //("staff").setExecutor(new staff()); Deprecated
         getConfig().options().copyDefaults();
         saveDefaultConfig();
@@ -48,7 +50,6 @@ public final class Core extends JavaPlugin implements Listener {
                     if (args.length > 0) {
                         for (final Player p : Bukkit.getOnlinePlayers()) {
                             if (p.hasPermission("excentrix.chat.staffchat")) {
-                                //p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + getConfig().getString("server-name") + "] " + ChatColor.AQUA + sender.getName() + ChatColor.GRAY + ":" + ChatColor.AQUA + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
                                 staff_utils.sendSC(((Player) sender).getDisplayName(), p, args);
                             }
                         }

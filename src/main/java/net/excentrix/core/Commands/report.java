@@ -40,7 +40,6 @@ public class report implements CommandExecutor {
                                 sender.sendMessage(ChatColor.GREEN + "Thanks for reporting " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + " for " + ChatColor.YELLOW + "Chat Violations" + ChatColor.GREEN + "!");
                                 notifyStaff(((Player) sender).getDisplayName(), target.getDisplayName(), args);
                             } else {
-                                sender.sendMessage(ChatColor.GREEN + "Sorry, I couldn't verify what you're reporting.");
                                 sender.sendMessage(ChatColor.RED + "Valid Hacks: (KILLAURA, AIMBOT, FLIGHT, ANTIKNOCKBACK, CRITICALS, BHOP, SPEED, SPAM)");
                             }
                         } else {
@@ -58,9 +57,9 @@ public class report implements CommandExecutor {
         for (final Player staff : Bukkit.getOnlinePlayers()) {
             if (staff.hasPermission("excentrix.chat.staffchat")) {
                 if (args[1].equalsIgnoreCase("KA")) {
-                    staff_utils.scNotif("Console", staff, ChatColor.GRAY + sender + ChatColor.AQUA + " has reported " + ChatColor.YELLOW + target + ChatColor.AQUA + " for " + ChatColor.RED + "KillAura");
+                    staff_utils.scNotif("Console", staff, ChatColor.YELLOW + sender + ChatColor.WHITE + " has reported " + ChatColor.RED + target + ChatColor.WHITE + " for " + ChatColor.RED + "KillAura");
                 } else
-                    staff_utils.scNotif("Console", staff, ChatColor.GRAY + sender + ChatColor.AQUA + " has reported " + ChatColor.YELLOW + target + ChatColor.AQUA + " for " + ChatColor.RED + args[1].toUpperCase());
+                    staff_utils.scNotif("Console", staff, ChatColor.YELLOW + sender + ChatColor.WHITE + " has reported " + ChatColor.RED + target + ChatColor.WHITE + " for " + ChatColor.RED + args[1].toUpperCase() + ChatColor.AQUA + ".");
             }
         }
     }
