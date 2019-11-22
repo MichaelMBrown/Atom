@@ -12,7 +12,7 @@ public class flight implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
-            if (sender.hasPermission("excentrix.command.fly")) {
+            if (sender.hasPermission("clarke.command.fly")) {
                 if (command.getName().equalsIgnoreCase("fly")) {
                     if (args.length > 0 && args.length != 1) {
                         Player target = Bukkit.getPlayerExact(args[0]);

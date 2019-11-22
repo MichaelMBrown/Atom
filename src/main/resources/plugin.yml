@@ -1,20 +1,20 @@
-name: Core
+name: Clarke
 version: ${project.version}
 main: net.excentrix.core.Core
 api-version: 1.13
 softdepend: [ChatControl]
 authors: [qr0]
-description: Core
-website: excentrix.net
+description: Clarke Management System.
+website: clarke.net
 commands:
   sc:
       description: Staffchat
       usage: /<command>
-      permission: excentrix.chat.staffchat
+      permission: clarke.chat.staffchat
   kick:
     description: Kick
     usage: /<command>
-    permission: excentrix.command.kick
+    permission: clarke.command.kick
   report:
     description: Report a player
     default: true
@@ -25,10 +25,13 @@ commands:
     usage: /<command>
   fly:
     description: Fly
-    permission: excentrix.command.fly
+    permission: clarke.command.fly
     usage: /<command>
   setserver:
     description: [Admin Only]
-    permission: excentrix.admin
+    permission: clarke.admin
     usage: /<command>
     aliases: set-server
+  god:
+    description: Set's God Mode
+    permission: clarke.command.god

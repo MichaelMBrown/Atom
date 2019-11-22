@@ -20,7 +20,7 @@ public class helpop implements CommandExecutor {
                         message = message + args[i] + " ";
                     }
                     for (final Player p : Bukkit.getOnlinePlayers()) {
-                        if (p.hasPermission("excentrix.chat.staffchat")) {
+                        if (p.hasPermission("clarke.chat.staffchat")) {
                             staff_utils.scNotif("Console", p, (ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.WHITE + " messaged staff: " + ChatColor.GRAY + "" + ChatColor.ITALIC + message));
                         }
                     }

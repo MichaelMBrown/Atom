@@ -24,7 +24,7 @@ public class kick implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         String reason = "";
         if ((sender instanceof Player)) {
-            if (sender.hasPermission("excentrix.command.kick")) {
+            if (sender.hasPermission("clarke.command.kick")) {
                 if (command.getName().equalsIgnoreCase("kick")) {
                     if (args.length > 0) {
                         Player target = Bukkit.getPlayerExact(args[0]);
@@ -34,7 +34,7 @@ public class kick implements CommandExecutor {
                                     reason = reason + args[i] + " ";
                                 }
                                 for (final Player p : Bukkit.getOnlinePlayers()) {
-                                    if (p.hasPermission("excentrix.chat.staffchat")) {
+                                    if (p.hasPermission("clarke.chat.staffchat")) {
                                         staff_utils.scNotif(((Player) sender).getDisplayName(), p, "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
                                     }
                                 }
@@ -42,7 +42,7 @@ public class kick implements CommandExecutor {
                             } else if (args.length == 1) {
                                 reason = "You have been kicked by " + ((Player) sender).getDisplayName();
                                 for (final Player p : Bukkit.getOnlinePlayers()) {
-                                    if (p.hasPermission("excentrix.chat.staffchat")) {
+                                    if (p.hasPermission("clarke.chat.staffchat")) {
                                         staff_utils.scNotif(((Player) sender).getDisplayName(), p, "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
                                     }
                                 }
@@ -63,7 +63,7 @@ public class kick implements CommandExecutor {
                                 reason = reason + args[i] + " ";
                             }
                             for (final Player p : Bukkit.getOnlinePlayers()) {
-                                if (p.hasPermission("excentrix.chat.staffchat")) {
+                                if (p.hasPermission("clarke.chat.staffchat")) {
                                     staff_utils.scNotif(ChatColor.RED + "Console", p, "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
                                 }
                             }
@@ -72,7 +72,7 @@ public class kick implements CommandExecutor {
                         if (args.length == 1) {
                             reason = "You have been kicked by " + ChatColor.RED + "Console";
                             for (final Player p : Bukkit.getOnlinePlayers()) {
-                                if (p.hasPermission("excentrix.chat.staffchat")) {
+                                if (p.hasPermission("clarke.chat.staffchat")) {
                                     staff_utils.scNotif("Console", p, "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
                                 }
                             }

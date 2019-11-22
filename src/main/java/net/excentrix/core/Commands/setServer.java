@@ -17,7 +17,7 @@ public class setServer implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             if (command.getName().equalsIgnoreCase("setserver") || command.getName().equalsIgnoreCase("set-server")) {
-                if (sender.hasPermission("excentrix.admin")) {
+                if (sender.hasPermission("clarke.admin")) {
                     if (args.length == 1) {
                         sender.sendMessage(ChatColor.DARK_GRAY + "Processing request...");
                         plugin.getConfig().set("server-name", args[0]);
@@ -25,7 +25,7 @@ public class setServer implements CommandExecutor {
                         plugin.saveConfig();
                         plugin.reloadConfig();
                         for (final Player p : Bukkit.getOnlinePlayers()) {
-                            if (p.hasPermission("excentrix.chat.staffchat")) {
+                            if (p.hasPermission("clarke.chat.staffchat")) {
                                 staff_utils.scNotif(((Player) sender).getDisplayName(), p, "Set the server name to " + ChatColor.RED + args[0]);
                             }
                         }
