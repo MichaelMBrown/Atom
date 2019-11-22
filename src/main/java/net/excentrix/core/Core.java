@@ -1,8 +1,6 @@
 package net.excentrix.core;
 
-import net.excentrix.core.Commands.helpop;
-import net.excentrix.core.Commands.kick;
-import net.excentrix.core.Commands.report;
+import net.excentrix.core.Commands.*;
 import net.excentrix.core.utils.staff_utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -25,7 +23,9 @@ public final class Core extends JavaPlugin implements Listener {
         getCommand("kick").setExecutor(new kick());
         getCommand("report").setExecutor(new report());
         getCommand("helpop").setExecutor(new helpop());
-        //("staff").setExecutor(new staff()); Deprecated
+        getCommand("fly").setExecutor(new flight());
+        getCommand("setserver").setExecutor(new setServer());
+        //("staff").setExecutor(new staff());
         getConfig().options().copyDefaults();
         saveDefaultConfig();
     }

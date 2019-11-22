@@ -23,3 +23,12 @@ commands:
     description: Notify's Staff
     default: true
     usage: /<command>
+  fly:
+    description: Fly
+    permission: excentrix.command.fly
+    usage: /<command>
+  setserver:
+    description: [Admin Only]
+    permission: excentrix.admin
+    usage: /<command>
+    aliases: set-server
