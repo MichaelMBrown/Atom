@@ -26,18 +26,18 @@ public class God implements CommandExecutor, Listener {
                             }
                         }
                         if (args[0].equalsIgnoreCase("on")) {
-                            sender.sendMessage(ChatColor.GREEN + "You've turned on your God Mode.");
+                            sender.sendMessage(ChatColor.GREEN + "You turned on your God Mode.");
                             ((Player) sender).setInvulnerable(true);
                         } else if (args[0].equalsIgnoreCase("off")) {
-                            sender.sendMessage(ChatColor.GREEN + "You've turned off your God Mode.");
+                            sender.sendMessage(ChatColor.GREEN + "You turned off your God Mode.");
                             ((Player) sender).setInvulnerable(false);
                         }
                     } else if (args.length == 0) {
                         if (((Player) sender).isInvulnerable()) {
-                            sender.sendMessage(ChatColor.GREEN + "You've turned off your God Mode.");
+                            sender.sendMessage(ChatColor.GREEN + "You turned off your God Mode.");
                             ((Player) sender).setInvulnerable(false);
                         } else {
-                            sender.sendMessage(ChatColor.GREEN + "You've turned on your God Mode.");
+                            sender.sendMessage(ChatColor.GREEN + "You turned on your God Mode.");
                             ((Player) sender).setInvulnerable(true);
                         }
                     } else sender.sendMessage(ChatColor.RED + "Usage /god [player] <mode>");

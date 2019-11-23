@@ -8,11 +8,11 @@ description: Clarke Management System.
 website: clarke.net
 commands:
   sc:
-      description: Staffchat
+    description: Communicate with Staff
       usage: /<command>
       permission: clarke.chat.staffchat
   kick:
-    description: Kick
+    description: Remove a player
     usage: /<command>
     permission: clarke.command.kick
   report:
@@ -20,11 +20,11 @@ commands:
     default: true
     usage: /<command>
   helpop:
-    description: Notify's Staff
+    description: Notify Staff
     default: true
     usage: /<command>
   fly:
-    description: Fly
+    description: Enable Flight
     permission: clarke.command.fly
     usage: /<command>
   setserver:
@@ -33,5 +33,15 @@ commands:
     usage: /<command>
     aliases: set-server
   god:
-    description: Set's God Mode
+    description: Make yourself a God
     permission: clarke.command.god
+    usage: /<command>
+  heal:
+    description: Heals yourself
+    permission: clarke.command.heal
+    usage: /<command>
+  gamemode:
+    description: Changes gamemode
+    permission: clarke.command.gamemode
+    usage: /<command>
+    aliases: gm

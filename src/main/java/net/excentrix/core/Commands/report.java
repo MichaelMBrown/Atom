@@ -54,13 +54,9 @@ public class report implements CommandExecutor {
     }
 
     public void notifyStaff(String sender, String target, String[] args) {
-        for (final Player staff : Bukkit.getOnlinePlayers()) {
-            if (staff.hasPermission("clarke.chat.staffchat")) {
-                if (args[1].equalsIgnoreCase("KA")) {
-                    staff_utils.scNotif("Console", staff, ChatColor.YELLOW + sender + ChatColor.WHITE + " has reported " + ChatColor.RED + target + ChatColor.WHITE + " for " + ChatColor.RED + "KillAura");
-                } else
-                    staff_utils.scNotif("Console", staff, ChatColor.YELLOW + sender + ChatColor.WHITE + " has reported " + ChatColor.RED + target + ChatColor.WHITE + " for " + ChatColor.RED + args[1].toUpperCase() + ChatColor.AQUA + ".");
-            }
-        }
+        if (args[1].equalsIgnoreCase("KA")) {
+            staff_utils.scNotif("Console", ChatColor.YELLOW + sender + ChatColor.WHITE + " has reported " + ChatColor.RED + target + ChatColor.WHITE + " for " + ChatColor.RED + "KillAura");
+        } else
+            staff_utils.scNotif("Console", ChatColor.YELLOW + sender + ChatColor.WHITE + " has reported " + ChatColor.RED + target + ChatColor.WHITE + " for " + ChatColor.RED + args[1].toUpperCase() + ChatColor.AQUA + ".");
     }
 }
