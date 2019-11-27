@@ -5,12 +5,12 @@ api-version: 1.13
 softdepend: [ChatControl]
 authors: [qr0]
 description: Clarke Management System.
-website: clarke.net
+website: excentrix.net
 commands:
   sc:
     description: Communicate with Staff
-      usage: /<command>
-      permission: clarke.chat.staffchat
+    usage: /<command>
+    permission: clarke.chat.staffchat
   kick:
     description: Remove a player
     usage: /<command>
@@ -45,3 +45,16 @@ commands:
     permission: clarke.command.gamemode
     usage: /<command>
     aliases: gm
+  tp:
+    description: Teleports plaers
+    permission: clarke.command.tp
+    usage: /<command>
+    aliases: teleport
+  kill:
+    description: Kills a Player
+    permission: clarke.command.kill
+    usage: /<command>
+  clarke:
+    description: Clarke
+    permission: clarke.command.clarke
+    usage: /<command>

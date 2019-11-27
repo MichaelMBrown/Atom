@@ -22,7 +22,7 @@ public class staffchat implements CommandExecutor {
                             }
                         }
                     } else {
-                        sender.sendMessage(ChatColor.RED + "Usage: /sc <message>");
+                        sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/sc " + ChatColor.WHITE + "<message>");
                     }
                 }
             } else sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
@@ -34,7 +34,8 @@ public class staffchat implements CommandExecutor {
                             staff_utils.sendSC_console(p, args);
                         }
                     }
-                } else sender.sendMessage(ChatColor.RED + "Usage: /sc <message>");
+                } else
+                    sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/sc" + ChatColor.WHITE + "<message>");
             }
         }
         return true;

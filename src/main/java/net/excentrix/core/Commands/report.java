@@ -46,7 +46,7 @@ public class report implements CommandExecutor {
                             sender.sendMessage(ChatColor.RED + "There is no player by that name connected to this server!");
                         }
                     } else {
-                        sender.sendMessage((ChatColor.RED + "Usage: /report <user> <hacks>"));
+                        sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/report " + ChatColor.WHITE + "<hacks>");
                     }
                 }
             }
@@ -55,8 +55,8 @@ public class report implements CommandExecutor {
 
     public void notifyStaff(String sender, String target, String[] args) {
         if (args[1].equalsIgnoreCase("KA")) {
-            staff_utils.scNotif("Console", ChatColor.YELLOW + sender + ChatColor.WHITE + " has reported " + ChatColor.RED + target + ChatColor.WHITE + " for " + ChatColor.RED + "KillAura");
+            staff_utils.scNotif("Console", ChatColor.GOLD + sender + ChatColor.YELLOW + " has reported " + ChatColor.RED + target + ChatColor.YELLOW + " for " + ChatColor.RED + "KillAura" + ChatColor.YELLOW + ".");
         } else
-            staff_utils.scNotif("Console", ChatColor.YELLOW + sender + ChatColor.WHITE + " has reported " + ChatColor.RED + target + ChatColor.WHITE + " for " + ChatColor.RED + args[1].toUpperCase() + ChatColor.AQUA + ".");
+            staff_utils.scNotif("Console", ChatColor.GOLD + sender + ChatColor.YELLOW + " has reported " + ChatColor.RED + target + ChatColor.YELLOW + " for " + ChatColor.RED + args[1].toLowerCase() + ChatColor.YELLOW + ".");
     }
 }

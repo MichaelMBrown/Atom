@@ -53,7 +53,8 @@ public class flight implements CommandExecutor {
                             } else ((Player) sender).setAllowFlight(true);
                             sender.sendMessage(ChatColor.GREEN + "You turned flight on your flight!");
                         }
-                    } else sender.sendMessage(ChatColor.RED + "Usage /fly [player] <mode>");
+                    } else
+                        sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/fly " + ChatColor.WHITE + "[player] <mode> ");
                 }
             } else
                 sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");

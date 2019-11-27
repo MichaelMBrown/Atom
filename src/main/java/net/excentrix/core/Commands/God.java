@@ -1,5 +1,6 @@
 package net.excentrix.core.Commands;
 
+import net.excentrix.core.utils.staff_utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -17,11 +18,13 @@ public class God implements CommandExecutor, Listener {
                     if (args.length > 0 && args.length != 1) {
                         Player target = Bukkit.getPlayerExact(args[0]);
                         if (target != null) {
-                            if (args[1].equalsIgnoreCase("on")) {
+                            if (args[1].equalsIgnoreCase("on") || args[1].equalsIgnoreCase("true")) {
                                 sender.sendMessage(ChatColor.GREEN + "You enabled God Mode for " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + ".");
+                                staff_utils.scNotif(((Player) sender).getDisplayName(), "Enabled God Mode for " + ChatColor.GOLD + target.getDisplayName());
                                 target.setInvulnerable(true);
-                            } else if (args[1].equalsIgnoreCase("off")) {
-                                sender.sendMessage(ChatColor.GREEN + "You disabled God Mode for " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + ".");
+                            } else if (args[1].equalsIgnoreCase("off") || args[1].equalsIgnoreCase("false")) {
+                                sender.sendMessage(ChatColor.GREEN + "You disabled God Mode for " + ChatColor.GOLD + target.getDisplayName() + ChatColor.GREEN + ".");
+                                staff_utils.scNotif(((Player) sender).getDisplayName(), "Disabled God Mode for " + ChatColor.WHITE + target.getDisplayName());
                                 target.setInvulnerable(false);
                             }
                         }
@@ -40,7 +43,8 @@ public class God implements CommandExecutor, Listener {
                             sender.sendMessage(ChatColor.GREEN + "You turned on your God Mode.");
                             ((Player) sender).setInvulnerable(true);
                         }
-                    } else sender.sendMessage(ChatColor.RED + "Usage /god [player] <mode>");
+                    } else
+                        sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/god " + ChatColor.WHITE + "[player] <mode>");
                 }
             } else
                 sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");

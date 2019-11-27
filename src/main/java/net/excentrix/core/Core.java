@@ -20,6 +20,9 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         getCommand("sc").setExecutor(new staffchat());
         getCommand("heal").setExecutor(new heal());
         getCommand("gamemode").setExecutor(new gamemode());
+        getCommand("tp").setExecutor(new teleport());
+        getCommand("kill").setExecutor(new kill());
+        getCommand("clarke").setExecutor(new clarke());
 
         //("staff").setExecutor(new staff());
         getConfig().options().copyDefaults();

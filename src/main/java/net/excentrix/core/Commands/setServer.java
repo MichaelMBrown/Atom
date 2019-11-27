@@ -25,7 +25,7 @@ public class setServer implements CommandExecutor {
                         plugin.reloadConfig();
                         staff_utils.scNotif(((Player) sender).getDisplayName(), "Set the server name to " + ChatColor.RED + args[0]);
                     } else {
-                        sender.sendMessage(ChatColor.RED + "Usage: /setserver [new server name]");
+                        sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/setserver " + ChatColor.WHITE + "<new server name>");
                     }
                 } else sender.sendMessage(ChatColor.RED + "You do not have permission to run this command!");
             }
