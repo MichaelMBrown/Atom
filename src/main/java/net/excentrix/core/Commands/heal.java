@@ -1,5 +1,6 @@
 package net.excentrix.core.Commands;
 
+import net.excentrix.core.utils.staff_utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -18,17 +19,19 @@ public class heal implements CommandExecutor {
                         if (target != null) {
                             sender.sendMessage(ChatColor.GREEN + "You healed " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + ".");
                             target.setHealth(20);
+                            target.setFireTicks(0);
                             target.setFoodLevel(20);
                         } else {
-                            sender.sendMessage(ChatColor.RED + "There is no player by that name connected to this server!");
+                            staff_utils.playerNotFound((Player) sender);
                         }
                     } else {
                         sender.sendMessage(ChatColor.GREEN + "You healed yourself.");
                         ((Player) sender).setHealth(20);
+                        ((Player) sender).setFireTicks(0);
                         ((Player) sender).setFoodLevel(20);
                     }
                 } else {
-                    sender.sendMessage(ChatColor.RED + "You do not have permission to execute this command!");
+                    staff_utils.noPerm((Player) sender);
                 }
             }
         }

@@ -27,7 +27,7 @@ public class God implements CommandExecutor, Listener {
                                 staff_utils.scNotif(((Player) sender).getDisplayName(), "Disabled God Mode for " + ChatColor.WHITE + target.getDisplayName());
                                 target.setInvulnerable(false);
                             }
-                        }
+                        } else staff_utils.playerNotFound((Player) sender);
                         if (args[0].equalsIgnoreCase("on")) {
                             sender.sendMessage(ChatColor.GREEN + "You turned on your God Mode.");
                             ((Player) sender).setInvulnerable(true);
@@ -44,10 +44,10 @@ public class God implements CommandExecutor, Listener {
                             ((Player) sender).setInvulnerable(true);
                         }
                     } else
-                        sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/god " + ChatColor.WHITE + "[player] <mode>");
+                        staff_utils.printUsage((Player) sender, "god", "[player] <mode>");
                 }
             } else
-                sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
+                staff_utils.noPerm((Player) sender);
         } else {
             sender.sendMessage(ChatColor.RED + "You " + ChatColor.UNDERLINE + "MUST" + ChatColor.RESET + "" + ChatColor.RED + " be a player to execute this command!");
         }

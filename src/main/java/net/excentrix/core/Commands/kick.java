@@ -1,5 +1,6 @@
 package net.excentrix.core.Commands;
 
+
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staff_utils;
 import org.bukkit.Bukkit;
@@ -18,10 +19,10 @@ public class kick implements CommandExecutor {
     Plugin plugin = Core.getPlugin(Core.class);
     private CommandSender sender;
     private Command command;
-    private String abel;
     private String[] args;
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        Plugin plugin = Core.getPlugin(Core.class);
         String reason = "";
         if ((sender instanceof Player)) {
             if (sender.hasPermission("clarke.command.kick")) {
@@ -30,22 +31,24 @@ public class kick implements CommandExecutor {
                         Player target = Bukkit.getPlayerExact(args[0]);
                         if (target != null) {
                             if (args.length > 1) {
-                                for (int i = 1; i < args.length; ++i) {
+                                for (int i = 1; i < args.length; i++) {
                                     reason = reason + args[i] + " ";
                                 }
                                 staff_utils.scNotif(((Player) sender).getDisplayName(), "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
-                                target.kickPlayer(reason);
+                                target.kickPlayer(ChatColor.translateAlternateColorCodes('&', reason));
+                                plugin.getLogger().info(ChatColor.GREEN + ((Player) sender).getDisplayName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getDisplayName() + ChatColor.YELLOW + " with reason " + ChatColor.WHITE + reason);
                             } else if (args.length == 1) {
                                 reason = "You have been kicked by " + ((Player) sender).getDisplayName();
                                 staff_utils.scNotif(((Player) sender).getDisplayName(), "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
-                                target.kickPlayer(reason);
+                                target.kickPlayer(ChatColor.translateAlternateColorCodes('&', reason));
+                                plugin.getLogger().info(ChatColor.GREEN + ((Player) sender).getDisplayName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getDisplayName() + ChatColor.YELLOW + " with reason " + reason);
                             }
                         } else
-                            sender.sendMessage(ChatColor.RED + "There is no player by that name connected to this server!");
-                    } else sender.sendMessage((ChatColor.RED + "Usage: /kick <user> [reason]"));
+                            staff_utils.playerNotFound((Player) sender);
+                    } else staff_utils.printUsage((Player) sender, "kick", "[player] <reason>");
                 }
             } else {
-                sender.sendMessage(ChatColor.RED + "You do not have permission to execute this command!");
+                staff_utils.noPerm((Player) sender);
             }
         } else if (sender instanceof ConsoleCommandSender) {
             if (command.getName().equalsIgnoreCase("kick")) {
@@ -56,18 +59,20 @@ public class kick implements CommandExecutor {
                             for (int i = 1; i < args.length; ++i) {
                                 reason = reason + args[i] + " ";
                             }
-                            staff_utils.scNotif(ChatColor.RED + "Console", "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
-                            target.kickPlayer(reason);
+                            staff_utils.scNotif(ChatColor.RED + "Console", "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
+                            target.kickPlayer(ChatColor.translateAlternateColorCodes('&', reason));
+                            plugin.getLogger().info(ChatColor.GREEN + ((Player) sender).getDisplayName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getDisplayName() + ChatColor.YELLOW + " with reason " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
                         }
                         if (args.length == 1) {
                             reason = "You have been kicked by " + ChatColor.RED + "Console";
-                            staff_utils.scNotif("Console", "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
-                            target.kickPlayer(reason);
+                            staff_utils.scNotif("Console", "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
+                            target.kickPlayer(ChatColor.translateAlternateColorCodes('&', reason));
+                            plugin.getLogger().info(ChatColor.GREEN + ((Player) sender).getDisplayName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getDisplayName() + ChatColor.YELLOW + " with reason " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
                         }
                     } else {
-                        sender.sendMessage(ChatColor.RED + "There is no player by that name connected to this server!");
+                        staff_utils.playerNotFound((Player) sender);
                     }
-                } else sender.sendMessage((ChatColor.RED + "Usage: /kick <user> [reason]"));
+                } else staff_utils.printUsage((Player) sender, "kick", "[player] <reason>");
             }
         }
         return true;

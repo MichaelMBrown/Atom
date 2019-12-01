@@ -58,3 +58,7 @@ commands:
     description: Clarke
     permission: clarke.command.clarke
     usage: /<command>
+  weather:
+    description: Changes the weather
+    permission: clarke.command.weather
+    usage: /<command>

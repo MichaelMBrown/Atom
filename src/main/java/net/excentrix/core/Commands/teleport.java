@@ -20,9 +20,10 @@ public class teleport implements CommandExecutor {
                         if (target != null) {
                             Location targetLoc = target.getLocation();
                             ((Player) sender).teleport(targetLoc);
+                            sender.sendMessage(ChatColor.GREEN + "Teleported to " + ChatColor.YELLOW + target.getDisplayName());
                             staff_utils.scNotif(sender.getName(), "Teleported to " + ChatColor.GOLD + target.getDisplayName());
                         } else {
-                            sender.sendMessage(ChatColor.RED + "There is no player by that name connected to this server!");
+                            staff_utils.playerNotFound((Player) sender);
                         }
                     } else if (args.length == 2) {
                         Player target = Bukkit.getPlayerExact(args[0]);
@@ -30,15 +31,16 @@ public class teleport implements CommandExecutor {
                         if (target != null && target2 != null) {
                             Location toTarget = target2.getLocation();
                             target.teleport(toTarget);
+                            sender.sendMessage(ChatColor.GREEN + "Teleported " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + " to " + ChatColor.YELLOW + target2.getDisplayName());
                             staff_utils.scNotif(((Player) sender).getDisplayName(), "Teleported " + ChatColor.GOLD + target.getDisplayName() + ChatColor.YELLOW + " to " + ChatColor.GOLD + target2.getDisplayName());
                         } else {
-                            sender.sendMessage(ChatColor.RED + "There is no player by that name connected to this server!");
+                            staff_utils.playerNotFound((Player) sender);
                         }
                     } else {
-                        sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/tp" + ChatColor.WHITE + "<player> [player]");
+                        staff_utils.printUsage((Player) sender, "tp", "<player> [player]");
                     }
                 } else {
-                    sender.sendMessage(ChatColor.RED + "You do not have permission to execute this command!");
+                    staff_utils.noPerm((Player) sender);
                 }
             }
         }

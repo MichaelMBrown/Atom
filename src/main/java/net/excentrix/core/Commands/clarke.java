@@ -24,6 +24,7 @@ public class clarke implements CommandExecutor {
                         sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/report" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Reports a Player");
                         sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/sc" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Communicate in StaffChat");
                         sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/tp" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Teleport to a Player");
+                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/weather" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Changes the weather");
                         if (args[(int) totalArgs].equalsIgnoreCase("-i")) {
                             sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/setserver" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Sets the server name." + ChatColor.RED + " [Internal]");
                         }

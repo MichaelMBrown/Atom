@@ -23,6 +23,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         getCommand("tp").setExecutor(new teleport());
         getCommand("kill").setExecutor(new kill());
         getCommand("clarke").setExecutor(new clarke());
+        getCommand("weather").setExecutor(new weather());
 
         //("staff").setExecutor(new staff());
         getConfig().options().copyDefaults();

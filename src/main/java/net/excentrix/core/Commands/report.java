@@ -43,10 +43,10 @@ public class report implements CommandExecutor {
                                 sender.sendMessage(ChatColor.RED + "Valid Hacks: (KILLAURA, AIMBOT, FLIGHT, ANTIKNOCKBACK, CRITICALS, BHOP, SPEED, SPAM)");
                             }
                         } else {
-                            sender.sendMessage(ChatColor.RED + "There is no player by that name connected to this server!");
+                            staff_utils.playerNotFound((Player) sender);
                         }
                     } else {
-                        sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/report " + ChatColor.WHITE + "<hacks>");
+                        staff_utils.printUsage((Player) sender, "report", "[player] <hacks>");
                     }
                 }
             }

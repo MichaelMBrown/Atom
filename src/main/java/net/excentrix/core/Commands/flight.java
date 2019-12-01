@@ -1,5 +1,6 @@
 package net.excentrix.core.Commands;
 
+import net.excentrix.core.utils.staff_utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -20,7 +21,7 @@ public class flight implements CommandExecutor {
                             if (args[1].equalsIgnoreCase("on")) {
                                 sender.sendMessage(ChatColor.GREEN + "You turned flight on for " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + "!");
                                 if (!target.isOnGround() || !target.isSwimming()) {
-                                    ((Player) sender).setAllowFlight(true);
+                                    target.setAllowFlight(true);
                                     target.setFlying(true);
                                 } else target.setAllowFlight(true);
                             } else if (args[1].equalsIgnoreCase("off")) {
@@ -28,7 +29,7 @@ public class flight implements CommandExecutor {
                                 target.setFlying(false);
                                 target.setAllowFlight(false);
                             }
-                        }
+                        } else staff_utils.playerNotFound((Player) sender);
                         if (args[0].equalsIgnoreCase("on")) {
                             sender.sendMessage(ChatColor.GREEN + "You turned flight on your flight!");
                             if (!((Player) sender).isOnGround() || !((Player) sender).isSwimming()) {
@@ -54,10 +55,10 @@ public class flight implements CommandExecutor {
                             sender.sendMessage(ChatColor.GREEN + "You turned flight on your flight!");
                         }
                     } else
-                        sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/fly " + ChatColor.WHITE + "[player] <mode> ");
+                        staff_utils.printUsage((Player) sender, "fly", "[player] <mode>");
                 }
             } else
-                sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
+                staff_utils.noPerm((Player) sender);
         } else {
             sender.sendMessage(ChatColor.RED + "You " + ChatColor.UNDERLINE + "MUST" + ChatColor.RESET + "" + ChatColor.RED + " be a player to execute this command!");
         }

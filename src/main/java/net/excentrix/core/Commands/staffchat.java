@@ -2,7 +2,6 @@ package net.excentrix.core.Commands;
 
 import net.excentrix.core.utils.staff_utils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,10 +21,10 @@ public class staffchat implements CommandExecutor {
                             }
                         }
                     } else {
-                        sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/sc " + ChatColor.WHITE + "<message>");
+                        staff_utils.printUsage((Player) sender, "sc", "<message>");
                     }
                 }
-            } else sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
+            } else staff_utils.noPerm((Player) sender);
         } else if ((sender instanceof ConsoleCommandSender)) {
             if (command.getName().equalsIgnoreCase("sc")) {
                 if (args.length > 0) {
@@ -35,7 +34,7 @@ public class staffchat implements CommandExecutor {
                         }
                     }
                 } else
-                    sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/sc" + ChatColor.WHITE + "<message>");
+                    staff_utils.printUsage((Player) sender, "sc", "<message>");
             }
         }
         return true;

@@ -19,12 +19,12 @@ public class kill implements CommandExecutor {
                         target.setHealth(0);
                         sender.sendMessage(ChatColor.GREEN + "Killed player " + ChatColor.YELLOW + target.getDisplayName());
                         staff_utils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getDisplayName());
-                    }
+                    } else staff_utils.playerNotFound((Player) sender);
                 } else {
-                    sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/kill " + ChatColor.WHITE + "<player>");
+                    staff_utils.printUsage((Player) sender, "kill", "[player]");
                 }
             } else {
-                sender.sendMessage(ChatColor.RED + "You do not have permission to execute this command!");
+                staff_utils.noPerm((Player) sender);
             }
         }
         return true;
