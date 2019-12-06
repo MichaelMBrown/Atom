@@ -2,7 +2,7 @@ name: Clarke
 version: ${project.version}
 main: net.excentrix.core.Core
 api-version: 1.13
-softdepend: [ChatControl]
+softdepend: [Nothing]
 authors: [qr0]
 description: Clarke Management System.
 website: excentrix.net
