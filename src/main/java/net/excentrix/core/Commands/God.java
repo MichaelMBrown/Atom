@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
@@ -15,6 +16,7 @@ public class God implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        Player player = (Player) sender;
         if (sender instanceof Player) {
             if (sender.hasPermission("clarke.command.god")) {
                 if (command.getName().equalsIgnoreCase("god")) {
@@ -23,34 +25,35 @@ public class God implements CommandExecutor, Listener {
                         if (target != null) {
                             if (args[1].equalsIgnoreCase("on") || args[1].equalsIgnoreCase("true")) {
                                 sender.sendMessage(ChatColor.GREEN + "You enabled God Mode for " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + ".");
-                                staff_utils.scNotif(((Player) sender).getDisplayName(), "Enabled God Mode for " + ChatColor.GOLD + target.getDisplayName());
-                                //target.setInvulnerable(true);
-                                plugin.godList.add(target);
+                                BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God mode for " + ChatColor.GOLD + target.getDisplayName(), false);
+                                target.setInvulnerable(true);
+                                Core.godList.add(target);
                             } else if (args[1].equalsIgnoreCase("off") || args[1].equalsIgnoreCase("false")) {
                                 sender.sendMessage(ChatColor.GREEN + "You disabled God Mode for " + ChatColor.GOLD + target.getDisplayName() + ChatColor.GREEN + ".");
-                                staff_utils.scNotif(((Player) sender).getDisplayName(), "Disabled God Mode for " + ChatColor.WHITE + target.getDisplayName());
-                                //target.setInvulnerable(false);
-                                plugin.godList.remove(target);
+                                BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God mode for " + ChatColor.GOLD + target.getDisplayName(), false);
+                                target.setInvulnerable(false);
+                                Core.godList.remove(target);
                             }
                         } else staff_utils.playerNotFound((Player) sender);
                         if (args[0].equalsIgnoreCase("on")) {
                             sender.sendMessage(ChatColor.GREEN + "You turned on your God Mode.");
-                            //((Player) sender).setInvulnerable(true);
-                            plugin.godList.add((Player) sender);
+                            ((Player) sender).setInvulnerable(true);
+                            Core.godList.add(player);
                         } else if (args[0].equalsIgnoreCase("off")) {
                             sender.sendMessage(ChatColor.GREEN + "You turned off your God Mode.");
-                            //((Player) sender).setInvulnerable(false);
-                            plugin.godList.add((Player) sender);
+                            ((Player) sender).setInvulnerable(false);
+                            Core.godList.add(player);
                         }
                     } else if (args.length == 0) {
-                        if (((Player) sender).isInvulnerable()) {
+                        if (Core.godList.contains(player)) {
                             sender.sendMessage(ChatColor.GREEN + "You turned off your God Mode.");
-                            //((Player) sender).setInvulnerable(false);
-                            plugin.godList.add((Player) sender);
+                            ((Player) sender).setInvulnerable(false);
+                            Core.godList.remove(player);
                         } else {
                             sender.sendMessage(ChatColor.GREEN + "You turned on your God Mode.");
-                            //((Player) sender).setInvulnerable(true);
-                            plugin.godList.add((Player) sender);
+                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God Mode.", false);
+                            ((Player) sender).setInvulnerable(true);
+                            Core.godList.add(player);
                         }
                     } else
                         staff_utils.printUsage((Player) sender, "god", "[player] <mode>");

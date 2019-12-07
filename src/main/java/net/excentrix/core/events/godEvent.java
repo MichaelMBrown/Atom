@@ -14,7 +14,7 @@ public class godEvent implements Listener {
     public void godCheck(EntityDamageEvent event){
         if (event.getEntity() instanceof Player){
             Player player = (Player) event.getEntity();
-            if (plugin.godList.contains(player)){
+            if (Core.godList.contains(player)) {
                 event.setCancelled(true);
             }
         }

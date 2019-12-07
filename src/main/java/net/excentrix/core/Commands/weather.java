@@ -25,11 +25,11 @@ public class weather implements CommandExecutor {
                             Bukkit.getWorld(currentWorld).setStorm(false);
                             sender.sendMessage(ChatColor.GREEN + "Set the weather in " + ChatColor.YELLOW + currentWorld + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[0].toUpperCase());
                             staff_utils.scNotif(p.getDisplayName(), "Changing the weather in " + ChatColor.GOLD + currentWorld + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
-                        } else if (args[0].equalsIgnoreCase("storm")) {
+                        } else if (args[0].equalsIgnoreCase("storm") || args[0].equalsIgnoreCase("rain")) {
                             sender.sendMessage(ChatColor.GREEN + "Set the weather in " + ChatColor.YELLOW + currentWorld + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[0].toUpperCase());
                             staff_utils.scNotif(p.getDisplayName(), "Changing the weather in " + ChatColor.GOLD + currentWorld + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
                             Bukkit.getWorld(currentWorld).setStorm(true);
-                        }
+                        } else sender.sendMessage(ChatColor.RED + "Unknown weather type: " + args[0]);
                     } else if (args.length == 2) {
                         String targetWorld = args[1];
                         if (Bukkit.getWorld(targetWorld) != null) {
