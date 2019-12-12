@@ -23,7 +23,7 @@ public class setServer implements CommandExecutor {
                         sender.sendMessage(ChatColor.GREEN + "Done! You've set the server-name to " + ChatColor.YELLOW + args[0]);
                         plugin.saveConfig();
                         plugin.reloadConfig();
-                        staff_utils.scNotif(((Player) sender).getDisplayName(), "Set the server name to " + ChatColor.RED + args[0]);
+                        staff_utils.scNotif(sender.getName(), "Set the server name to " + ChatColor.RED + args[0]);
                     } else {
                         staff_utils.printUsage((Player) sender, "setserver", "<new server name>");
                     }

@@ -17,7 +17,7 @@ public class staffchat implements CommandExecutor {
                     if (args.length > 0) {
                         for (final Player p : Bukkit.getOnlinePlayers()) {
                             if (p.hasPermission("clarke.chat.staffchat")) {
-                                staff_utils.sendSC(((Player) sender).getDisplayName(), p, args);
+                                staff_utils.sendSC(sender.getName(), p, args);
                             }
                         }
                     } else {

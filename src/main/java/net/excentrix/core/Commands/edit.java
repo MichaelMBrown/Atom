@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Zombie;
 import org.bukkit.plugin.Plugin;
 
 public class edit implements CommandExecutor {
@@ -22,12 +23,13 @@ public class edit implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("edit")) {
             if (sender.hasPermission("clarke.command.edit")) {
                 if (args.length == 3) {
-                    if (args[0].equalsIgnoreCase("boolean")) {
+                    if (args[0].equalsIgnoreCase("boolean") || args[0].equalsIgnoreCase("bool")) {
                         Boolean newBool = null;
                         if (args[1].equalsIgnoreCase("mobAI")) {
                             if (args[2].equalsIgnoreCase("true")) {
-                                staff_utils.scNotif(theSender.getDisplayName(), "Set the value of " + ChatColor.GOLD + "mobAI" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
-                                plugin.getConfig().set("mobs-disabled", false);
+                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "mobAI" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "mobAI" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
+                                plugin.getConfig().set("mobAI", true);
                                 plugin.saveConfig();
                                 plugin.reloadConfig();
                                 for (World world : Bukkit.getWorlds()) {
@@ -40,8 +42,9 @@ public class edit implements CommandExecutor {
                                     }
                                 }
                             } else if (args[2].equalsIgnoreCase("false")) {
-                                staff_utils.scNotif(theSender.getDisplayName(), "Set the value of " + ChatColor.GOLD + "mobAI" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
-                                plugin.getConfig().set("mobs-disabled", true);
+                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "mobAI" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "mobAI" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
+                                plugin.getConfig().set("mobAI", false);
                                 plugin.saveConfig();
                                 plugin.reloadConfig();
                                 for (World world : Bukkit.getWorlds()) {
@@ -53,6 +56,54 @@ public class edit implements CommandExecutor {
                                         }
                                     }
                                 }
+                            } else
+                                sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
+                        } else if (args[1].equalsIgnoreCase("zombiesDisabled")) {
+                            if (args[2].equalsIgnoreCase("true")) {
+                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "zombiesDisabled" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "zombiesDisabled" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
+                                plugin.getConfig().set("zombies-disabled", true);
+                                plugin.saveConfig();
+                                plugin.reloadConfig();
+                                for (World world : Bukkit.getWorlds()) {
+                                    for (Entity entity : world.getEntities()) {
+                                        if (!(entity instanceof Player)) {
+                                            if (entity instanceof Zombie) {
+                                                entity.remove();
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (args[2].equalsIgnoreCase("false")) {
+                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "zombiesDisabled" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "zombiesDisabled" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
+                                plugin.getConfig().set("zombies-disabled", false);
+                                plugin.saveConfig();
+                                plugin.reloadConfig();
+                            } else
+                                sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
+                        } else if (args[1].equalsIgnoreCase("zombiesWhitelisted")) {
+                            if (args[2].equalsIgnoreCase("true")) {
+                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "zombiesWhitelisted" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "zombiesWhitelisted" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
+                                plugin.getConfig().set("zombies-whitelisted", true);
+                                plugin.saveConfig();
+                                plugin.reloadConfig();
+                                for (World world : Bukkit.getWorlds()) {
+                                    for (Entity entity : world.getEntities()) {
+                                        if (!(entity instanceof Player)) {
+                                            if (!(entity instanceof Zombie)) {
+                                                entity.remove();
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (args[2].equalsIgnoreCase("false")) {
+                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "zombiesWhitelisted" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "zombiesWhitelisted" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
+                                plugin.getConfig().set("zombies-whitelisted", false);
+                                plugin.saveConfig();
+                                plugin.reloadConfig();
                             } else
                                 sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
                         } else sender.sendMessage(ChatColor.RED + "Unknown data value, cannot edit!");

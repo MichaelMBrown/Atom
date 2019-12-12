@@ -19,13 +19,13 @@ public class flight implements CommandExecutor {
                         Player target = Bukkit.getPlayerExact(args[0]);
                         if (target != null) {
                             if (args[1].equalsIgnoreCase("on")) {
-                                sender.sendMessage(ChatColor.GREEN + "You turned flight on for " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + "!");
+                                sender.sendMessage(ChatColor.GREEN + "You turned flight on for " + ChatColor.YELLOW + target.getName() + ChatColor.GREEN + "!");
                                 if (!target.isOnGround() || !target.isSwimming()) {
                                     target.setAllowFlight(true);
                                     target.setFlying(true);
                                 } else target.setAllowFlight(true);
                             } else if (args[1].equalsIgnoreCase("off")) {
-                                sender.sendMessage(ChatColor.GREEN + "You turned flight off for " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + "!");
+                                sender.sendMessage(ChatColor.GREEN + "You turned flight off for " + ChatColor.YELLOW + target.getName() + ChatColor.GREEN + "!");
                                 target.setFlying(false);
                                 target.setAllowFlight(false);
                             }

@@ -18,8 +18,8 @@ public class heal implements CommandExecutor {
                     if (args.length == 1) {
                         Player target = Bukkit.getPlayerExact(args[0]);
                         if (target != null) {
-                            sender.sendMessage(ChatColor.GREEN + "You healed " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + ".");
-                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + target.getDisplayName(), false);
+                            sender.sendMessage(ChatColor.GREEN + "You healed " + ChatColor.YELLOW + target.getName() + ChatColor.GREEN + ".");
+                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + target.getName(), false);
                             target.setHealth(20);
                             target.setFireTicks(0);
                             target.setFoodLevel(20);
@@ -28,7 +28,7 @@ public class heal implements CommandExecutor {
                         }
                     } else {
                         sender.sendMessage(ChatColor.GREEN + "You healed yourself.");
-                        BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + ((Player) sender).getDisplayName(), false);
+                        BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + sender.getName(), false);
                         ((Player) sender).setHealth(20);
                         ((Player) sender).setFireTicks(0);
                         ((Player) sender).setFoodLevel(20);

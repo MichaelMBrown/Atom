@@ -1,6 +1,7 @@
 package net.excentrix.core;
 
 import net.excentrix.core.Commands.*;
+import net.excentrix.core.events.freezeEvent;
 import net.excentrix.core.events.godEvent;
 import net.excentrix.core.events.mobSpawn;
 import org.bukkit.command.TabCompleter;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 
 public final class Core extends JavaPlugin implements Listener, TabCompleter {
     public static ArrayList<Player> godList = new ArrayList<>();
+    public static ArrayList<Player> freezeList = new ArrayList<>();
+
     @SuppressWarnings("ConstantConditions")
     @Override
     public void onEnable() {
@@ -31,8 +34,12 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         getCommand("clarke").setExecutor(new clarke());
         getCommand("weather").setExecutor(new weather());
         getCommand("edit").setExecutor(new edit());
+        getCommand("freeze").setExecutor(new freeze());
+        getCommand("smite").setExecutor(new smite());
         getServer().getPluginManager().registerEvents(new godEvent(), this);
         getServer().getPluginManager().registerEvents(new mobSpawn(), this);
+        getServer().getPluginManager().registerEvents(new freezeEvent(), this);
+
 
         //("staff").setExecutor(new staff());
         getConfig().options().copyDefaults();

@@ -1,6 +1,8 @@
 package net.excentrix.core.events;
 
 import net.excentrix.core.Core;
+import org.bukkit.entity.Drowned;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -11,10 +13,28 @@ public class mobSpawn implements Listener {
 
     @EventHandler
     public void disableAI(CreatureSpawnEvent event) {
-        if (plugin.getConfig().getBoolean("mobs-disabled")) {
-            event.getEntity().setAI(false);
-        } else {
+        if (plugin.getConfig().getBoolean("mobAI")) {
             event.getEntity().setAI(true);
+        } else {
+            event.getEntity().setAI(false);
+        }
+    }
+
+    @EventHandler
+    public void removeZombies(CreatureSpawnEvent event) {
+        if (plugin.getConfig().getBoolean("zombies-disabled")) {
+            if ((event.getEntity() instanceof Zombie) || (event.getEntity() instanceof Drowned)) {
+                event.getEntity().remove();
+            }
+        }
+    }
+
+    @EventHandler
+    public void whitelistZombies(CreatureSpawnEvent event) {
+        if (plugin.getConfig().getBoolean("zombies-whitelisted")) {
+            if (!(event.getEntity() instanceof Zombie)) {
+                event.getEntity().remove();
+            }
         }
     }
 }

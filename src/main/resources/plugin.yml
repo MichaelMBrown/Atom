@@ -10,7 +10,7 @@ commands:
   sc:
     description: Communicate with Staff
     usage: /<command>
-    permission: clarke.chat.staffchat
+    permission: clarke.command.staffchat
   kick:
     description: Remove a player
     usage: /<command>
@@ -56,7 +56,7 @@ commands:
     usage: /<command>
   clarke:
     description: Clarke
-    permission: clarke.command.clarke
+    default: true
     usage: /<command>
   weather:
     description: Changes the weather
@@ -65,4 +65,12 @@ commands:
   edit:
     description: Does alot
     permission: clarke.command.edit
+    usage: /<command>
+  freeze:
+    description: Halts a players actions
+    permission: clarke.command.freeze
+    usage: /<command>
+  smite:
+    description: Summons a lightning bold
+    permission: clarke.command.smite
     usage: /<command>

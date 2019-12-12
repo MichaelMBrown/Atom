@@ -21,8 +21,8 @@ public class teleport implements CommandExecutor {
                         if (target != null) {
                             Location targetLoc = target.getLocation();
                             ((Player) sender).teleport(targetLoc);
-                            sender.sendMessage(ChatColor.GREEN + "Teleported to " + ChatColor.YELLOW + target.getDisplayName());
-                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "Teleported to " + ChatColor.GOLD + target.getDisplayName(), false);
+                            sender.sendMessage(ChatColor.GREEN + "Teleported to " + ChatColor.YELLOW + target.getName());
+                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported to " + ChatColor.GOLD + target.getName(), false);
                         } else {
                             staff_utils.playerNotFound((Player) sender);
                         }
@@ -32,8 +32,8 @@ public class teleport implements CommandExecutor {
                         if (target != null && target2 != null) {
                             Location toTarget = target2.getLocation();
                             target.teleport(toTarget);
-                            sender.sendMessage(ChatColor.GREEN + "Teleported " + ChatColor.YELLOW + target.getDisplayName() + ChatColor.GREEN + " to " + ChatColor.YELLOW + target2.getDisplayName());
-                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "Teleported " + ChatColor.GOLD + target.getDisplayName() + ChatColor.YELLOW + " to " + ChatColor.GOLD + target2.getDisplayName(), false);
+                            sender.sendMessage(ChatColor.GREEN + "Teleported " + ChatColor.YELLOW + target.getName() + ChatColor.GREEN + " to " + ChatColor.YELLOW + target2.getName());
+                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " to " + ChatColor.GOLD + target2.getName(), false);
                         } else {
                             staff_utils.playerNotFound((Player) sender);
                         }

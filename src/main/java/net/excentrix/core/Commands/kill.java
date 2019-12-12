@@ -17,8 +17,8 @@ public class kill implements CommandExecutor {
                     Player target = Bukkit.getPlayerExact(args[0]);
                     if (target != null) {
                         target.setHealth(0);
-                        sender.sendMessage(ChatColor.GREEN + "Killed player " + ChatColor.YELLOW + target.getDisplayName());
-                        staff_utils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getDisplayName());
+                        sender.sendMessage(ChatColor.GREEN + "Killed player " + ChatColor.YELLOW + target.getName());
+                        staff_utils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
                     } else staff_utils.playerNotFound((Player) sender);
                 } else {
                     staff_utils.printUsage((Player) sender, "kill", "[player]");
