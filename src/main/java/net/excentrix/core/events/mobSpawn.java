@@ -1,7 +1,7 @@
 package net.excentrix.core.events;
 
 import net.excentrix.core.Core;
-import org.bukkit.entity.Drowned;
+import org.bukkit.entity.WanderingTrader;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,20 +21,27 @@ public class mobSpawn implements Listener {
     }
 
     @EventHandler
-    public void removeZombies(CreatureSpawnEvent event) {
-        if (plugin.getConfig().getBoolean("zombies-disabled")) {
-            if ((event.getEntity() instanceof Zombie) || (event.getEntity() instanceof Drowned)) {
+    public void whitelistZombies(CreatureSpawnEvent event) {
+        if (plugin.getConfig().getBoolean("zombies-whitelisted")) {
+            if (!(event.getEntity() instanceof Zombie)) {
                 event.getEntity().remove();
             }
         }
     }
 
     @EventHandler
-    public void whitelistZombies(CreatureSpawnEvent event) {
-        if (plugin.getConfig().getBoolean("zombies-whitelisted")) {
-            if (!(event.getEntity() instanceof Zombie)) {
+    public void disableDrowned(CreatureSpawnEvent event) {
+        if (plugin.getConfig().getBoolean("disableDrowned")) {
+            if (event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.DROWNED) {
                 event.getEntity().remove();
             }
+        }
+    }
+
+    @EventHandler
+    public void disableWanderingTrader(CreatureSpawnEvent event) {
+        if (event.getEntity() instanceof WanderingTrader) {
+            event.setCancelled(true);
         }
     }
 }

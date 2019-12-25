@@ -10,6 +10,7 @@ commands:
   sc:
     description: Communicate with Staff
     usage: /<command>
+    aliases: staffchat
     permission: clarke.command.staffchat
   kick:
     description: Remove a player
@@ -73,4 +74,9 @@ commands:
   smite:
     description: Summons a lightning bold
     permission: clarke.command.smite
+    usage: /<command>
+  enderchest:
+    description: Opens the Enderchest
+    permission: clarke.command.enderchest
+    aliases: [ec,echest]
     usage: /<command>

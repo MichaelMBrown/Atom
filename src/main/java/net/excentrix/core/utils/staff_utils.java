@@ -23,6 +23,7 @@ public class staff_utils {
 
 
     public static void scNotif(String sender, String args) {
+        plugin.getLogger().info(ChatColor.GOLD + sender + ChatColor.GRAY + ": " + ChatColor.WHITE + args);
         for (final Player p : Bukkit.getOnlinePlayers()) {
             if (p.hasPermission("clarke.chat.staffchat")) {
                 if (sender.equalsIgnoreCase("Console")) {

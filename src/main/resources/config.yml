@@ -1,5 +1,5 @@
 #Enter your server name here.
 server-name: 'undefined'
 mobAI: true
-zombies-disabled: false
-zombies-whitelisted: true
+disableDrowned: false
+zombies-whitelisted: false

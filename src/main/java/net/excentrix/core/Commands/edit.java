@@ -58,26 +58,17 @@ public class edit implements CommandExecutor {
                                 }
                             } else
                                 sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
-                        } else if (args[1].equalsIgnoreCase("zombiesDisabled")) {
+                        } else if (args[1].equalsIgnoreCase("disableDrowned")) {
                             if (args[2].equalsIgnoreCase("true")) {
-                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "zombiesDisabled" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
-                                sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "zombiesDisabled" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
-                                plugin.getConfig().set("zombies-disabled", true);
+                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "disableDrowned" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "disableDrowned" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
+                                plugin.getConfig().set("disableDrowned", true);
                                 plugin.saveConfig();
                                 plugin.reloadConfig();
-                                for (World world : Bukkit.getWorlds()) {
-                                    for (Entity entity : world.getEntities()) {
-                                        if (!(entity instanceof Player)) {
-                                            if (entity instanceof Zombie) {
-                                                entity.remove();
-                                            }
-                                        }
-                                    }
-                                }
                             } else if (args[2].equalsIgnoreCase("false")) {
-                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "zombiesDisabled" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
-                                sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "zombiesDisabled" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
-                                plugin.getConfig().set("zombies-disabled", false);
+                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "disableDrowned" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "disableDrowned" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
+                                plugin.getConfig().set("disableDrowned", false);
                                 plugin.saveConfig();
                                 plugin.reloadConfig();
                             } else

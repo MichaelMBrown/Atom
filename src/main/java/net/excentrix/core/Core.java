@@ -1,9 +1,7 @@
 package net.excentrix.core;
 
 import net.excentrix.core.Commands.*;
-import net.excentrix.core.events.freezeEvent;
-import net.excentrix.core.events.godEvent;
-import net.excentrix.core.events.mobSpawn;
+import net.excentrix.core.events.*;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -36,16 +34,18 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         getCommand("edit").setExecutor(new edit());
         getCommand("freeze").setExecutor(new freeze());
         getCommand("smite").setExecutor(new smite());
+        getCommand("enderchest").setExecutor(new enderchest());
         getServer().getPluginManager().registerEvents(new godEvent(), this);
         getServer().getPluginManager().registerEvents(new mobSpawn(), this);
         getServer().getPluginManager().registerEvents(new freezeEvent(), this);
+        getServer().getPluginManager().registerEvents(new deathEvents(), this);
+        getServer().getPluginManager().registerEvents(new joinEvent(), this);
 
 
         //("staff").setExecutor(new staff());
         getConfig().options().copyDefaults();
         saveDefaultConfig();
     }
-
     @Override
     public void onDisable() {
         // Plugin shutdown logic

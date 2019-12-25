@@ -8,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 
 public class heal implements CommandExecutor {
     @Override
@@ -23,15 +24,22 @@ public class heal implements CommandExecutor {
                             target.setHealth(20);
                             target.setFireTicks(0);
                             target.setFoodLevel(20);
+                            for (PotionEffect effect : target.getActivePotionEffects()) {
+                                target.removePotionEffect(effect.getType());
+                            }
                         } else {
                             staff_utils.playerNotFound((Player) sender);
                         }
                     } else {
                         sender.sendMessage(ChatColor.GREEN + "You healed yourself.");
                         BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + sender.getName(), false);
-                        ((Player) sender).setHealth(20);
-                        ((Player) sender).setFireTicks(0);
-                        ((Player) sender).setFoodLevel(20);
+                        Player commandSender = (Player) sender;
+                        commandSender.setHealth(20);
+                        commandSender.setFireTicks(0);
+                        commandSender.setFoodLevel(20);
+                        for (PotionEffect effect : commandSender.getActivePotionEffects()) {
+                            commandSender.removePotionEffect(effect.getType());
+                        }
                     }
                 } else {
                     staff_utils.noPerm((Player) sender);
