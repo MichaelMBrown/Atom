@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -24,10 +24,10 @@ public class enderchest implements CommandExecutor {
                         if (target != null) {
                             player.sendMessage(ChatColor.GREEN + "Opening the Enderchest of " + ChatColor.YELLOW + commandSender.getName());
                             player.openInventory(target.getEnderChest());
-                        } else staff_utils.playerNotFound(player);
-                    } else staff_utils.noPerm(player);
-                } else staff_utils.printUsage(player, "enderchest", "[player]");
-            } else staff_utils.noPerm(player);
+                        } else staffUtils.playerNotFound(player);
+                    } else staffUtils.noPerm(player);
+                } else staffUtils.printUsage(player, "enderchest", "[player]");
+            } else staffUtils.noPerm(player);
         }
         return true;
     }

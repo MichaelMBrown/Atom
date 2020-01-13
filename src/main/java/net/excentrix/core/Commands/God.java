@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -29,12 +29,12 @@ public class God implements CommandExecutor, Listener {
                                 target.setInvulnerable(true);
                                 Core.godList.add(target);
                             } else if (args[1].equalsIgnoreCase("off") || args[1].equalsIgnoreCase("false")) {
-                                sender.sendMessage(ChatColor.GREEN + "You disabled God Mode for " + ChatColor.GOLD + target.getName() + ChatColor.GREEN + ".");
+                                sender.sendMessage(ChatColor.GREEN + "You disabled God Mode for " + ChatColor.YELLOW + target.getName() + ChatColor.GREEN + ".");
                                 BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God mode for " + ChatColor.GOLD + target.getName(), false);
                                 target.setInvulnerable(false);
                                 Core.godList.remove(target);
                             }
-                        } else staff_utils.playerNotFound((Player) sender);
+                        } else staffUtils.playerNotFound((Player) sender);
                         if (args[0].equalsIgnoreCase("on")) {
                             sender.sendMessage(ChatColor.GREEN + "You turned on your God Mode.");
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God Mode.", false);
@@ -59,10 +59,10 @@ public class God implements CommandExecutor, Listener {
                             Core.godList.add(player);
                         }
                     } else
-                        staff_utils.printUsage((Player) sender, "god", "[player] <mode>");
+                        staffUtils.printUsage((Player) sender, "god", "[player] <mode>");
                 }
             } else
-                staff_utils.noPerm((Player) sender);
+                staffUtils.noPerm((Player) sender);
         } else {
             sender.sendMessage(ChatColor.RED + "You " + ChatColor.UNDERLINE + "MUST" + ChatColor.RESET + "" + ChatColor.RED + " be a player to execute this command!");
         }

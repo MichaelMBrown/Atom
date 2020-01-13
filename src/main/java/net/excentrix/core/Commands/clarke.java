@@ -1,7 +1,8 @@
 package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.clarkeUtils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,36 +20,29 @@ public class clarke implements CommandExecutor {
         if (sender.hasPermission("clarke.command.clarke")) {
             if (args.length > 0) {
                 if (args[0].equalsIgnoreCase("help")) {
+                    Player player = (Player) sender;
                     sender.sendMessage(ChatColor.YELLOW + "==========" + ChatColor.GOLD + " Clarke Commands" + ChatColor.YELLOW + "==========");
-                    if (sender.hasPermission("clarke.command.fly"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/fly" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Enables/Disables Flight for a Player");
-                    if (sender.hasPermission("clarke.command.gamemode"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/gm" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Sets a Players Gamemode");
-                    if (sender.hasPermission("clarke.command.god"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/god" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Enables/Disables God for a Player");
-                    if (sender.hasPermission("clarke.command.heal"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/heal" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Heals a Player");
+                    clarkeUtils.clarkeCommand(player, "fly", "Enables/Disables Flight for a Player");
+                    clarkeUtils.clarkeCommand(player, "gamemode", "Sets a Players Gamemode");
+                    clarkeUtils.clarkeCommand(player, "god", "Enables/Disables God for a Player");
+                    clarkeUtils.clarkeCommand(player, "heal", "Heals a Player");
+                    clarkeUtils.clarkeCommand(player, "kick", "Removes a player from the Network");
+                    clarkeUtils.clarkeCommand(player, "kill", "Kills a Player");
+                    clarkeUtils.clarkeCommand(player, "staffchat", "Communicates in StaffChat");
+                    clarkeUtils.clarkeCommand(player, "tp", "Teleports Players");
+                    clarkeUtils.clarkeCommand(player, "weather", "Changes the Weather");
+                    clarkeUtils.clarkeCommand(player, "edit", "Edits in-game configs");
+                    clarkeUtils.clarkeCommand(player, "freeze", "Halts a players actions");
+                    clarkeUtils.clarkeCommand(player, "smite", "Summons a lightning-bolt");
+                    clarkeUtils.clarkeCommand(player, "enderchest", "Opens the Enderchest");
+                    clarkeUtils.clarkeCommand(player, "tphere", "Teleports a player to you");
+                    clarkeUtils.clarkeCommand(player, "say", "Broadcast to the Server");
+                    clarkeUtils.clarkeCommand(player, "give", "Give a player an Item");
+                    clarkeUtils.clarkeCommand(player, "grant", "Grant a user a rank");
                     sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/helpop" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Requests Staff Assistance");
-                    if (sender.hasPermission("clarke.command.kick"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/kick" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Kicks a Player");
-                    if (sender.hasPermission("clarke.command.kill"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/kill" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Kills a Player");
                     sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/report" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Reports a Player");
-                    if (sender.hasPermission("clarke.command.staffchat"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/sc" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Communicate in StaffChat");
-                    if (sender.hasPermission("clarke.command.tp"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/tp" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Teleport to a Player");
-                    if (sender.hasPermission("clarke.command.weather"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/weather" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Changes the weather");
-                    if (sender.hasPermission("clarke.command.edit"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/edit" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Changes things");
-                    if (sender.hasPermission("clarke.command.freeze"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/freeze" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Halts a players movements");
-                    if (sender.hasPermission("clarke.command.smite"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/smite" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Summons a lightning bolt");
-                    if (sender.hasPermission("clarke.command.enderchest"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/enderchest" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Opens the Enderchest");
-                    if (args[(int) totalArgs].equalsIgnoreCase("-i"))
+
+                    if (args[(int) totalArgs].equalsIgnoreCase("-i") && sender.hasPermission("clarke.internal"))
                         sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/setserver" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Sets the server name." + ChatColor.RED + " [Internal]");
                 } else if (args[0].equalsIgnoreCase("reload")) {
                     if (sender.hasPermission("clarke.command.clarke.reload")) {
@@ -56,7 +50,7 @@ public class clarke implements CommandExecutor {
                         sender.sendMessage(ChatColor.GREEN + "Reloaded " + ChatColor.YELLOW + "Clarke" + ChatColor.GREEN + "'s config.");
                         BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "reloaded the Config.", false);
                     } else {
-                        staff_utils.noPerm((Player) sender);
+                        staffUtils.noPerm((Player) sender);
                     }
                 } else if (args[0].equalsIgnoreCase("whatsmyuuid")) {
                     Player player;

@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -43,10 +43,10 @@ public class report implements CommandExecutor {
                                 sender.sendMessage(ChatColor.RED + "Valid Hacks: (KILLAURA, AIMBOT, FLIGHT, ANTIKNOCKBACK, CRITICALS, BHOP, SPEED, SPAM)");
                             }
                         } else {
-                            staff_utils.playerNotFound((Player) sender);
+                            staffUtils.playerNotFound((Player) sender);
                         }
                     } else {
-                        staff_utils.printUsage((Player) sender, "report", "<player> <hacks>");
+                        staffUtils.printUsage((Player) sender, "report", "<player> <hacks>");
                     }
                 }
             }
@@ -55,8 +55,8 @@ public class report implements CommandExecutor {
 
     public void notifyStaff(String sender, String target, String[] args) {
         if (args[1].equalsIgnoreCase("KA")) {
-            staff_utils.scNotif("Console", ChatColor.GOLD + sender + ChatColor.YELLOW + " has reported " + ChatColor.RED + target + ChatColor.YELLOW + " for " + ChatColor.RED + "KillAura" + ChatColor.YELLOW + ".");
+            staffUtils.scNotif("Console", ChatColor.GOLD + sender + ChatColor.YELLOW + " has reported " + ChatColor.RED + target + ChatColor.YELLOW + " for " + ChatColor.RED + "KillAura" + ChatColor.YELLOW + ".");
         } else
-            staff_utils.scNotif("Console", ChatColor.GOLD + sender + ChatColor.YELLOW + " has reported " + ChatColor.RED + target + ChatColor.YELLOW + " for " + ChatColor.RED + args[1].toLowerCase() + ChatColor.YELLOW + ".");
+            staffUtils.scNotif("Console", ChatColor.GOLD + sender + ChatColor.YELLOW + " has reported " + ChatColor.RED + target + ChatColor.YELLOW + " for " + ChatColor.RED + args[1].toLowerCase() + ChatColor.YELLOW + ".");
     }
 }

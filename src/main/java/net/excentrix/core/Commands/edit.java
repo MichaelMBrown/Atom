@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -27,7 +27,7 @@ public class edit implements CommandExecutor {
                         Boolean newBool = null;
                         if (args[1].equalsIgnoreCase("mobAI")) {
                             if (args[2].equalsIgnoreCase("true")) {
-                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "mobAI" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "mobAI" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
                                 sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "mobAI" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
                                 plugin.getConfig().set("mobAI", true);
                                 plugin.saveConfig();
@@ -42,7 +42,7 @@ public class edit implements CommandExecutor {
                                     }
                                 }
                             } else if (args[2].equalsIgnoreCase("false")) {
-                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "mobAI" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "mobAI" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
                                 sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "mobAI" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
                                 plugin.getConfig().set("mobAI", false);
                                 plugin.saveConfig();
@@ -60,13 +60,13 @@ public class edit implements CommandExecutor {
                                 sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
                         } else if (args[1].equalsIgnoreCase("disableDrowned")) {
                             if (args[2].equalsIgnoreCase("true")) {
-                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "disableDrowned" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "disableDrowned" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
                                 sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "disableDrowned" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
                                 plugin.getConfig().set("disableDrowned", true);
                                 plugin.saveConfig();
                                 plugin.reloadConfig();
                             } else if (args[2].equalsIgnoreCase("false")) {
-                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "disableDrowned" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "disableDrowned" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
                                 sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "disableDrowned" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
                                 plugin.getConfig().set("disableDrowned", false);
                                 plugin.saveConfig();
@@ -75,7 +75,7 @@ public class edit implements CommandExecutor {
                                 sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
                         } else if (args[1].equalsIgnoreCase("zombiesWhitelisted")) {
                             if (args[2].equalsIgnoreCase("true")) {
-                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "zombiesWhitelisted" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "zombiesWhitelisted" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
                                 sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "zombiesWhitelisted" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
                                 plugin.getConfig().set("zombies-whitelisted", true);
                                 plugin.saveConfig();
@@ -90,7 +90,7 @@ public class edit implements CommandExecutor {
                                     }
                                 }
                             } else if (args[2].equalsIgnoreCase("false")) {
-                                staff_utils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "zombiesWhitelisted" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
+                                staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + "zombiesWhitelisted" + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[2]);
                                 sender.sendMessage(ChatColor.GREEN + "Updated the value of " + ChatColor.GOLD + "zombiesWhitelisted" + ChatColor.GREEN + " to " + ChatColor.GOLD + args[2]);
                                 plugin.getConfig().set("zombies-whitelisted", false);
                                 plugin.saveConfig();
@@ -98,8 +98,8 @@ public class edit implements CommandExecutor {
                             } else
                                 sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
                         } else sender.sendMessage(ChatColor.RED + "Unknown data value, cannot edit!");
-                    } else staff_utils.printUsage((Player) sender, "edit", "<type> <data> <value>");
-                } else staff_utils.printUsage((Player) sender, "edit", "<type> <data> <value>");
+                    } else staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
+                } else staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
             }
         }
         return true;

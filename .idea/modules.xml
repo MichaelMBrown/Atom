@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Clarke.iml" filepath="$PROJECT_DIR$/Clarke.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CorePlugin.iml" filepath="$PROJECT_DIR$/CorePlugin.iml" />
     </modules>
   </component>
 </project>

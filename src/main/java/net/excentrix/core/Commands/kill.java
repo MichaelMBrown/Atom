@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -22,14 +22,14 @@ public class kill implements CommandExecutor {
                         } else {
                             target.setHealth(0);
                             sender.sendMessage(ChatColor.GREEN + "Killed player " + ChatColor.YELLOW + target.getName());
-                            staff_utils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
+                            staffUtils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
                         }
-                    } else staff_utils.playerNotFound((Player) sender);
+                    } else staffUtils.playerNotFound((Player) sender);
                 } else {
-                    staff_utils.printUsage((Player) sender, "kill", "<player>");
+                    staffUtils.printUsage((Player) sender, "kill", "<player>");
                 }
             } else {
-                staff_utils.noPerm((Player) sender);
+                staffUtils.noPerm((Player) sender);
             }
         }
         return true;

@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -33,10 +33,10 @@ public class freeze implements CommandExecutor {
                             target.sendMessage(ChatColor.DARK_GREEN + "You're now unfrozen.");
                         }
                     } else {
-                        staff_utils.playerNotFound((Player) sender);
+                        staffUtils.playerNotFound((Player) sender);
                     }
-                } else staff_utils.printUsage((Player) sender, "freeze", "<player>");
-            } else staff_utils.noPerm((Player) sender);
+                } else staffUtils.printUsage((Player) sender, "freeze", "<player>");
+            } else staffUtils.noPerm((Player) sender);
         }
         return true;
     }

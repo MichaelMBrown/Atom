@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -28,7 +28,7 @@ public class heal implements CommandExecutor {
                                 target.removePotionEffect(effect.getType());
                             }
                         } else {
-                            staff_utils.playerNotFound((Player) sender);
+                            staffUtils.playerNotFound((Player) sender);
                         }
                     } else {
                         sender.sendMessage(ChatColor.GREEN + "You healed yourself.");
@@ -42,7 +42,7 @@ public class heal implements CommandExecutor {
                         }
                     }
                 } else {
-                    staff_utils.noPerm((Player) sender);
+                    staffUtils.noPerm((Player) sender);
                 }
             }
         }

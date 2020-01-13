@@ -2,7 +2,8 @@ name: Clarke
 version: ${project.version}
 main: net.excentrix.core.Core
 api-version: 1.13
-softdepend: [Nothing]
+softdepend: [LuckPerms]
+depend: []
 authors: [qr0]
 description: Clarke Management System.
 website: excentrix.net
@@ -11,11 +12,9 @@ commands:
     description: Communicate with Staff
     usage: /<command>
     aliases: staffchat
-    permission: clarke.command.staffchat
   kick:
     description: Remove a player
     usage: /<command>
-    permission: clarke.command.kick
   report:
     description: Report a player
     default: true
@@ -26,34 +25,27 @@ commands:
     usage: /<command>
   fly:
     description: Enable Flight
-    permission: clarke.command.fly
     usage: /<command>
   setserver:
     description: [Admin Only]
-    permission: clarke.admin
     usage: /<command>
     aliases: set-server
   god:
     description: Make yourself a God
-    permission: clarke.command.god
     usage: /<command>
   heal:
     description: Heals yourself
-    permission: clarke.command.heal
     usage: /<command>
   gamemode:
     description: Changes gamemode
-    permission: clarke.command.gamemode
     usage: /<command>
     aliases: gm
   tp:
     description: Teleports plaers
-    permission: clarke.command.tp
     usage: /<command>
     aliases: teleport
   kill:
     description: Kills a Player
-    permission: clarke.command.kill
     usage: /<command>
   clarke:
     description: Clarke
@@ -61,22 +53,27 @@ commands:
     usage: /<command>
   weather:
     description: Changes the weather
-    permission: clarke.command.weather
     usage: /<command>
   edit:
     description: Does alot
-    permission: clarke.command.edit
     usage: /<command>
   freeze:
     description: Halts a players actions
-    permission: clarke.command.freeze
     usage: /<command>
   smite:
     description: Summons a lightning bold
-    permission: clarke.command.smite
     usage: /<command>
   enderchest:
     description: Opens the Enderchest
-    permission: clarke.command.enderchest
     aliases: [ec,echest]
     usage: /<command>
+  mutechat:
+    description: Silences Chat for Non-Staff
+  tphere:
+    description: Teleports a player to you
+  say:
+    description: Broadcast to the Server
+  grant:
+    description: Grants a user a Rank
+  give:
+    description: Gives a player an Item

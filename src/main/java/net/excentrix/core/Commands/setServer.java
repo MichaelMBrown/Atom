@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,11 +23,11 @@ public class setServer implements CommandExecutor {
                         sender.sendMessage(ChatColor.GREEN + "Done! You've set the server-name to " + ChatColor.YELLOW + args[0]);
                         plugin.saveConfig();
                         plugin.reloadConfig();
-                        staff_utils.scNotif(sender.getName(), "Set the server name to " + ChatColor.RED + args[0]);
+                        staffUtils.scNotif(sender.getName(), "Set the server name to " + ChatColor.RED + args[0]);
                     } else {
-                        staff_utils.printUsage((Player) sender, "setserver", "<new server name>");
+                        staffUtils.printUsage((Player) sender, "setserver", "<new server name>");
                     }
-                } else staff_utils.noPerm((Player) sender);
+                } else staffUtils.noPerm((Player) sender);
             }
         }
         return true;

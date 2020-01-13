@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -24,7 +24,7 @@ public class teleport implements CommandExecutor {
                             sender.sendMessage(ChatColor.GREEN + "Teleported to " + ChatColor.YELLOW + target.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported to " + ChatColor.GOLD + target.getName(), false);
                         } else {
-                            staff_utils.playerNotFound((Player) sender);
+                            staffUtils.playerNotFound((Player) sender);
                         }
                     } else if (args.length == 2) {
                         Player target = Bukkit.getPlayerExact(args[0]);
@@ -35,13 +35,13 @@ public class teleport implements CommandExecutor {
                             sender.sendMessage(ChatColor.GREEN + "Teleported " + ChatColor.YELLOW + target.getName() + ChatColor.GREEN + " to " + ChatColor.YELLOW + target2.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " to " + ChatColor.GOLD + target2.getName(), false);
                         } else {
-                            staff_utils.playerNotFound((Player) sender);
+                            staffUtils.playerNotFound((Player) sender);
                         }
                     } else {
-                        staff_utils.printUsage((Player) sender, "tp", "<player> [player]");
+                        staffUtils.printUsage((Player) sender, "tp", "<player> [player]");
                     }
                 } else {
-                    staff_utils.noPerm((Player) sender);
+                    staffUtils.noPerm((Player) sender);
                 }
             }
         }

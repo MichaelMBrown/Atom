@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,9 +19,9 @@ public class helpop implements CommandExecutor {
                         message = message + args[i] + " ";
                     }
                     sender.sendMessage(ChatColor.GREEN + "Your message: " + ChatColor.YELLOW + message + ChatColor.GREEN + "was sent to Staff!");
-                    staff_utils.scNotif("Console", ChatColor.GOLD + (sender.getName() + ChatColor.YELLOW + " requested help: " + ChatColor.GRAY + "" + ChatColor.ITALIC + message));
+                    staffUtils.scNotif("Console", ChatColor.GOLD + (sender.getName() + ChatColor.YELLOW + " requested help: " + ChatColor.GRAY + "" + ChatColor.ITALIC + message));
                 } else {
-                    staff_utils.printUsage((Player) sender, "helpop", "<message>");
+                    staffUtils.printUsage((Player) sender, "helpop", "<message>");
                 }
             }
         } else {

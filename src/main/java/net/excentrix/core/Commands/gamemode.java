@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -40,7 +40,7 @@ public class gamemode implements CommandExecutor {
                             sender.sendMessage(ChatColor.RED + "There is no gamemode by the name of " + args[0].toUpperCase());
                         }
                     } else {
-                        staff_utils.playerNotFound((Player) sender);
+                        staffUtils.playerNotFound((Player) sender);
                     }
                 } else if (args.length == 1 && !(sender instanceof ConsoleCommandSender)) {
                     if (args[0].equalsIgnoreCase("C") || args[0].equalsIgnoreCase("CREATIVE") || args[0].equals("1")) {
@@ -63,7 +63,7 @@ public class gamemode implements CommandExecutor {
                         sender.sendMessage(ChatColor.RED + "There is no gamemode by the name of " + args[0].toUpperCase());
                     }
                 } else {
-                    staff_utils.printUsage((Player) sender, "gamemode", "<gamemode> [player]");
+                    staffUtils.printUsage((Player) sender, "gamemode", "<gamemode> [player]");
                 }
             }
         }

@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -18,16 +18,16 @@ public class weather implements CommandExecutor {
                 Player p = (Player) sender;
                 if (sender.hasPermission("clarke.command.weather")) {
                     if (args.length == 0) {
-                        staff_utils.printUsage((Player) sender, "weather", "<weather> [world]");
+                        staffUtils.printUsage((Player) sender, "weather", "<weather> [world]");
                     } else if (args.length == 1) {
                         String currentWorld = p.getWorld().getName();
                         if (args[0].equalsIgnoreCase("clear")) {
                             Bukkit.getWorld(currentWorld).setStorm(false);
                             sender.sendMessage(ChatColor.GREEN + "Set the weather in " + ChatColor.YELLOW + currentWorld + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[0].toUpperCase());
-                            staff_utils.scNotif(p.getName(), "Changing the weather in " + ChatColor.GOLD + currentWorld + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
+                            staffUtils.scNotif(p.getName(), "Changing the weather in " + ChatColor.GOLD + currentWorld + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
                         } else if (args[0].equalsIgnoreCase("storm") || args[0].equalsIgnoreCase("rain")) {
                             sender.sendMessage(ChatColor.GREEN + "Set the weather in " + ChatColor.YELLOW + currentWorld + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[0].toUpperCase());
-                            staff_utils.scNotif(p.getName(), "Changing the weather in " + ChatColor.GOLD + currentWorld + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
+                            staffUtils.scNotif(p.getName(), "Changing the weather in " + ChatColor.GOLD + currentWorld + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
                             Bukkit.getWorld(currentWorld).setStorm(true);
                         } else sender.sendMessage(ChatColor.RED + "Unknown weather type: " + args[0]);
                     } else if (args.length == 2) {
@@ -36,11 +36,11 @@ public class weather implements CommandExecutor {
                             if (args[0].equalsIgnoreCase("clear")) {
                                 Bukkit.getWorld(targetWorld).setStorm(false);
                                 sender.sendMessage(ChatColor.GREEN + "Set the weather in " + ChatColor.YELLOW + targetWorld + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[0].toUpperCase());
-                                staff_utils.scNotif(p.getName(), "Changing the weather in " + ChatColor.GOLD + targetWorld + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
+                                staffUtils.scNotif(p.getName(), "Changing the weather in " + ChatColor.GOLD + targetWorld + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
                             } else if (args[0].equalsIgnoreCase("storm")) {
                                 Bukkit.getWorld(targetWorld).setStorm(true);
                                 sender.sendMessage(ChatColor.GREEN + "Set the weather in " + ChatColor.YELLOW + targetWorld + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[0].toUpperCase());
-                                staff_utils.scNotif(p.getName(), "Changing the weather in " + ChatColor.GOLD + targetWorld + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
+                                staffUtils.scNotif(p.getName(), "Changing the weather in " + ChatColor.GOLD + targetWorld + ChatColor.YELLOW + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
                             }
 
                         } else {
@@ -49,7 +49,7 @@ public class weather implements CommandExecutor {
                     } else
                         sender.sendMessage(ChatColor.RED + "To many arguments found. Expected [1,2] Found " + args.length);
                 } else {
-                    staff_utils.noPerm((Player) sender);
+                    staffUtils.noPerm((Player) sender);
                 }
             }
         }

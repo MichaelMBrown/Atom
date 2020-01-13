@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staff_utils;
+import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -32,8 +32,8 @@ public class smite implements CommandExecutor {
                         BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.YELLOW + "smited " + ChatColor.GOLD + target.getName(), false);
                         World world = target.getWorld();
                         world.strikeLightning(target.getLocation());
-                    } else staff_utils.playerNotFound((Player) commandSender);
-                } else staff_utils.printUsage((Player) commandSender, "smite", "[player]");
+                    } else staffUtils.playerNotFound((Player) commandSender);
+                } else staffUtils.printUsage((Player) commandSender, "smite", "[player]");
             }
         }
         return true;

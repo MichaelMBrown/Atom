@@ -3,3 +3,4 @@ server-name: 'undefined'
 mobAI: true
 disableDrowned: false
 zombies-whitelisted: false
+chat-silenced: false

@@ -9,13 +9,20 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class deathEvents implements Listener {
     @EventHandler
-    public void playerDeath(PlayerDeathEvent event) {
+    public void godDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        if (!Core.godList.contains(event.getEntity())) {
-            if (event.getEntity().getKiller() instanceof PlayerDeathEvent) {
-                event.setDeathMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + player.getName() + ChatColor.GRAY + " was killed by " + ChatColor.RED + event.getEntity().getKiller());
-            } else
-                event.setDeathMessage("");
+        if (Core.godList.contains(player)) {
+            event.setCancelled(true);
         }
     }
+
+    @EventHandler
+    public void deathReformat(PlayerDeathEvent event) {
+        Player player = event.getEntity();
+        if (event.getEntity().getKiller() != null) {
+            event.setDeathMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + player.getName() + ChatColor.GRAY + " was killed by " + ChatColor.RED + event.getEntity().getKiller().getName());
+        } else
+            event.setDeathMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + player.getName() + ChatColor.GRAY + " has died.");
+    }
 }
+
