@@ -34,12 +34,12 @@ public class kick implements CommandExecutor {
                                 for (int i = 1; i < args.length; i++) {
                                     reason = reason + args[i] + " ";
                                 }
-                                staffUtils.scNotif(sender.getName(), "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
+                                staffUtils.scNotif(sender.getName(), "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.GRAY + " with reason: " + ChatColor.WHITE + reason);
                                 target.kickPlayer(ChatColor.translateAlternateColorCodes('&', reason));
                                 plugin.getLogger().info(ChatColor.GREEN + sender.getName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " with reason " + ChatColor.WHITE + reason);
                             } else if (args.length == 1) {
                                 reason = "You have been kicked by " + sender.getName();
-                                staffUtils.scNotif(sender.getName(), "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + reason);
+                                staffUtils.scNotif(sender.getName(), "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.GRAY + " with reason: " + ChatColor.WHITE + reason);
                                 target.kickPlayer(ChatColor.translateAlternateColorCodes('&', reason));
                                 plugin.getLogger().info(ChatColor.GREEN + sender.getName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " with reason " + reason);
                             }
@@ -59,15 +59,15 @@ public class kick implements CommandExecutor {
                             for (int i = 1; i < args.length; ++i) {
                                 reason = reason + args[i] + " ";
                             }
-                            staffUtils.scNotif(ChatColor.RED + "Console", "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
+                            staffUtils.scNotif(ChatColor.RED + "Console", "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.GRAY + " with reason: " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
                             target.kickPlayer(ChatColor.translateAlternateColorCodes('&', reason));
-                            plugin.getLogger().info(ChatColor.GREEN + sender.getName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " with reason " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
+                            plugin.getLogger().info(ChatColor.GREEN + sender.getName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getName() + ChatColor.GRAY + " with reason " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
                         }
                         if (args.length == 1) {
                             reason = "You have been kicked by " + ChatColor.RED + "Console";
                             staffUtils.scNotif("Console", "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.YELLOW + " with reason: " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
                             target.kickPlayer(ChatColor.translateAlternateColorCodes('&', reason));
-                            plugin.getLogger().info(ChatColor.GREEN + sender.getName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " with reason " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
+                            plugin.getLogger().info(ChatColor.GREEN + sender.getName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getName() + ChatColor.GRAY + " with reason " + ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', reason));
                         }
                     } else {
                         staffUtils.playerNotFound((Player) sender);

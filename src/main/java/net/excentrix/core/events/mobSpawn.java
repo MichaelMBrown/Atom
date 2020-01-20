@@ -1,8 +1,8 @@
 package net.excentrix.core.events;
 
 import net.excentrix.core.Core;
+import org.bukkit.entity.Slime;
 import org.bukkit.entity.WanderingTrader;
-import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -21,9 +21,9 @@ public class mobSpawn implements Listener {
     }
 
     @EventHandler
-    public void whitelistZombies(CreatureSpawnEvent event) {
-        if (plugin.getConfig().getBoolean("zombies-whitelisted")) {
-            if (!(event.getEntity() instanceof Zombie)) {
+    public void disableSlimes(CreatureSpawnEvent event) {
+        if (plugin.getConfig().getBoolean("slimesDisabled")) {
+            if (event.getEntity() instanceof Slime) {
                 event.getEntity().remove();
             }
         }

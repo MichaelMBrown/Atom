@@ -29,6 +29,7 @@ public class clarke implements CommandExecutor {
                     clarkeUtils.clarkeCommand(player, "kick", "Removes a player from the Network");
                     clarkeUtils.clarkeCommand(player, "kill", "Kills a Player");
                     clarkeUtils.clarkeCommand(player, "staffchat", "Communicates in StaffChat");
+                    clarkeUtils.clarkeCommand(player, "toggleSC", "Toggles in-game staff chat");
                     clarkeUtils.clarkeCommand(player, "tp", "Teleports Players");
                     clarkeUtils.clarkeCommand(player, "weather", "Changes the Weather");
                     clarkeUtils.clarkeCommand(player, "edit", "Edits in-game configs");
@@ -39,6 +40,7 @@ public class clarke implements CommandExecutor {
                     clarkeUtils.clarkeCommand(player, "say", "Broadcast to the Server");
                     clarkeUtils.clarkeCommand(player, "give", "Give a player an Item");
                     clarkeUtils.clarkeCommand(player, "grant", "Grant a user a rank");
+                    clarkeUtils.clarkeCommand(player, "grants", "Shows what a User has been Granted");
                     sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/helpop" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Requests Staff Assistance");
                     sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/report" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Reports a Player");
 

@@ -1,7 +1,6 @@
 package net.excentrix.core.events;
 
 import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.Bukkit;
@@ -27,24 +26,12 @@ public class joinEvent implements Listener {
             player.sendMessage(ChatColor.DARK_GRAY + "Validating account...");
             player.sendMessage(ChatColor.GREEN + "Done! Applying grant: " + ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(group).getDisplayName()) + ChatColor.GREEN + " to You.");
             player.setPlayerListName(ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(group).getDisplayName()) + ChatColor.WHITE + " " + player.getName());
-
         }
         event.setJoinMessage("");
     }
 
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
-        Player player;
-        player = event.getPlayer();
-        String group;
-        if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
-            group = api.getUserManager().getUser(player.getName()).getPrimaryGroup();
-            if (group.equalsIgnoreCase("manager")) {
-                event.setQuitMessage("");
-                staffUtils.scNotif("Console", ChatColor.RED + "" + ChatColor.BOLD + player.getName() + ChatColor.YELLOW + " has logged out.");
-            }
-
-        }
         event.setQuitMessage("");
     }
 

@@ -17,7 +17,7 @@ public class playerTalk implements Listener {
         if (chatSilenced) {
             if (!(event.getPlayer().hasPermission("clarke.staff"))) {
                 event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.RED + "You cannot talk, as the Chat is disabled.");
+                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Chat> &7You cannot talk, as global chat is currently muted."));
             }
         }
     }

@@ -1,7 +1,7 @@
 name: Clarke
 version: ${project.version}
 main: net.excentrix.core.Core
-api-version: 1.13
+api-version: 1.15
 softdepend: [LuckPerms]
 depend: []
 authors: [qr0]
@@ -75,5 +75,9 @@ commands:
     description: Broadcast to the Server
   grant:
     description: Grants a user a Rank
+  grants:
+    description: Views a users grants
   give:
     description: Gives a player an Item
+  togglesc:
+    description: Toggles in-game staffchat

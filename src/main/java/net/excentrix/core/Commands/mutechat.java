@@ -18,17 +18,17 @@ public class mutechat implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender.hasPermission("clarke.command.mutechat")) {
             if (!chatSilenced) {
-                staffUtils.broadcastServer(ChatColor.RED + "The chat has been muted by " + commandSender.getName() + ".");
+                staffUtils.broadcastServer(ChatColor.translateAlternateColorCodes('&', "&9Chat> &7Global chat has been silenced by " + commandSender.getName()));
                 chatSilenced = true;
                 plugin.getConfig().set("chat-silenced", chatSilenced);
                 plugin.saveConfig();
-                staffUtils.scNotif("console", commandSender.getName() + " has muted the chat.");
+                staffUtils.scNotif("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has muted the chat.");
             } else {
-                staffUtils.broadcastServer(ChatColor.GREEN + "The chat has been unmuted by " + commandSender.getName() + ".");
+                staffUtils.broadcastServer(ChatColor.translateAlternateColorCodes('&', "&9Chat> &7Global chat has been unsilenced by " + commandSender.getName()));
                 chatSilenced = false;
                 plugin.getConfig().set("chat-silenced", chatSilenced);
                 plugin.saveConfig();
-                staffUtils.scNotif("console", commandSender.getName() + " has unmuted the chat.");
+                staffUtils.scNotif("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has unmuted the chat.");
             }
         } else staffUtils.noPerm((Player) commandSender);
         return true;

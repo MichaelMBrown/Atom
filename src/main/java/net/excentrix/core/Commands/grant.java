@@ -45,16 +45,15 @@ public class grant implements CommandExecutor {
                     if (api.getGroupManager().getGroup(args[1]) != null) {
                         if (commandSender.hasPermission("group." + args[1])) {
                             getServer().dispatchCommand(getServer().getConsoleSender(), "lp user " + target.getName() + " parent set " + args[1]);
-                            getLogger().info(ChatColor.RED + "User " + target.getName() + " was granted " + api.getGroupManager().getGroup(args[1]).getDisplayName() + " by " + sender.getName());
+                            getLogger().info(ChatColor.RED + "User " + target.getName() + " was granted " + ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(args[1]).getDisplayName()) + ChatColor.RED + " by " + sender.getName());
                             User user = loadUser(target);
                             api.getUserManager().getUser(target.getName()).setPrimaryGroup(args[1]);
                             api.getUserManager().saveUser(user);
                             commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Grant Manager> &7" + target.getName() + "'s grant was updated to " + api.getGroupManager().getGroup(args[1]).getDisplayName() + "&7!"));
-                            staffUtils.scNotif(commandSender.getName(), ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " has been granted " + api.getGroupManager().getGroup(args[1]).getDisplayName() + ChatColor.YELLOW + " by " + ChatColor.GOLD + commandSender.getName());
+                            //staffUtils.scNotif(commandSender.getName(), ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " has been granted " + api.getGroupManager().getGroup(args[1]).getDisplayName() + ChatColor.YELLOW + " by " + ChatColor.GOLD + commandSender.getName());
                         } else {
                             staffUtils.cannotPerform(commandSender);
                         }
-
                     } else {
                         sender.sendMessage(ChatColor.RED + "You cannot grant " + args[1].toUpperCase() + " as it does not exist.");
                     }

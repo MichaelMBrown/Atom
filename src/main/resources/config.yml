@@ -2,5 +2,5 @@
 server-name: 'undefined'
 mobAI: true
 disableDrowned: false
-zombies-whitelisted: false
+slimesDisabled: true
 chat-silenced: false

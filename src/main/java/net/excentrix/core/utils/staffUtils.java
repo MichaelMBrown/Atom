@@ -16,15 +16,17 @@ public class staffUtils {
         plugin.getLogger().info(ChatColor.GOLD + sender + ChatColor.GRAY + ": " + ChatColor.WHITE + args);
         for (final Player p : Bukkit.getOnlinePlayers()) {
             if (p.hasPermission("clarke.chat.staffchat")) {
-                if (sender.equalsIgnoreCase("Console")) {
-                    p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + plugin.getConfig().getString("server-name") + "] " + ChatColor.RED + "Console" + ChatColor.GRAY + ":" + ChatColor.YELLOW + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
-
-                } else {
-                    p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + plugin.getConfig().getString("server-name") + "] " + ChatColor.WHITE + sender + ChatColor.GRAY + ":" + ChatColor.YELLOW + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
-
+                if (!(Core.scMuted.contains(p))) {
+                    if (sender.equalsIgnoreCase("Console")) {
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Staff> &e[" + plugin.getConfig().getString("server-name") + "] &cConsole&7: ") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                    } else {
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Staff> &e[" + plugin.getConfig().getString("server-name") + "] &f" + sender + "&7: ") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                        //p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + plugin.getConfig().getString("server-name") + "] " + ChatColor.WHITE + sender + ChatColor.GRAY + ":" + ChatColor.YELLOW + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                    }
                 }
             }
         }
+
     }
 
     public static String getRank(String player) {
