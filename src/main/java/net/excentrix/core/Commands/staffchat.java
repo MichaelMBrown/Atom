@@ -12,6 +12,7 @@ import org.bukkit.plugin.Plugin;
 
 public class staffchat implements CommandExecutor {
     private static Plugin plugin = Core.getPlugin(Core.class);
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if ((sender instanceof Player)) {

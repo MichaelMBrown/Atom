@@ -15,6 +15,7 @@ import org.bukkit.plugin.Plugin;
 
 public class edit implements CommandExecutor {
     private static Plugin plugin = Core.getPlugin(Core.class);
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player theSender = (Player) sender;
