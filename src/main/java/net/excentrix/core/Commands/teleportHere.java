@@ -24,7 +24,7 @@ public class teleportHere implements CommandExecutor {
             Player target = Bukkit.getPlayerExact(strings[0]);
             if (target != null) {
                 target.teleport(toLocation);
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Player>&7 You have teleported &e" + target.getName() + " &7to You"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You have teleported &e" + target.getName() + " &7to You"));
                 BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported to " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " to themself.", false);
             } else staffUtils.playerNotFound(sender);
         } else staffUtils.printUsage(sender, "tphere", "<player>");

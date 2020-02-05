@@ -11,11 +11,15 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public class freezeEvent implements Listener {
     Core plugin;
 
+    public freezeEvent() {
+    }
+
     @EventHandler
     public void moveEvent(PlayerMoveEvent event) {
         if (Core.freezeList.contains(event.getPlayer())) {
             event.setCancelled(true);
         }
+
     }
 
     @EventHandler
@@ -24,6 +28,7 @@ public class freezeEvent implements Listener {
         if (Core.freezeList.contains(breakEventPlayer)) {
             breakEvent.setCancelled(true);
         }
+
     }
 
     @EventHandler
@@ -32,5 +37,6 @@ public class freezeEvent implements Listener {
         if (Core.freezeList.contains(player)) {
             placeEvent.setCancelled(true);
         }
+
     }
 }

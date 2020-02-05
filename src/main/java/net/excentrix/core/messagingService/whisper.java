@@ -1,4 +1,4 @@
-package net.excentrix.core.messaging_service;
+package net.excentrix.core.messagingService;
 
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
@@ -15,10 +15,10 @@ public class whisper implements CommandExecutor {
         Player commandSender = (Player) sender;
         String message = "";
         if (Core.freezeList.contains(sender)) {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Permissions> &7Sorry, you can't do this. :("));
+            staffUtils.cannotPerform(commandSender);
             return true;
         } else {
-            if (args.length == 0) {
+            if (args.length < 2) {
                 staffUtils.printUsage(commandSender, command.getName(), "<player> <message>");
             } else {
                 Player target = Bukkit.getPlayerExact(args[0]);
@@ -30,7 +30,7 @@ public class whisper implements CommandExecutor {
 
                         messageUtils.messagePlayer(commandSender, target, message);
                     } else {
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Chat> &7Sorry, you cannot message this player."));
+                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &cSorry, you cannot message this player."));
                     }
                 } else {
                     staffUtils.playerNotFound(commandSender);

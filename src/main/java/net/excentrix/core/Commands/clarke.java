@@ -22,6 +22,10 @@ public class clarke implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("help")) {
                     Player player = (Player) sender;
                     sender.sendMessage(ChatColor.YELLOW + "==========" + ChatColor.GOLD + " Clarke Commands" + ChatColor.YELLOW + "==========");
+                    sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/helpop" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Requests Staff Assistance");
+                    sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/report" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Reports a Player");
+                    sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/w" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Message a Player");
+                    sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/togglepm" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Toggles Receiving Messages.");
                     clarkeUtils.clarkeCommand(player, "fly", "Enables/Disables Flight for a Player");
                     clarkeUtils.clarkeCommand(player, "gamemode", "Sets a Players Gamemode");
                     clarkeUtils.clarkeCommand(player, "god", "Enables/Disables God for a Player");
@@ -30,7 +34,7 @@ public class clarke implements CommandExecutor {
                     clarkeUtils.clarkeCommand(player, "kill", "Kills a Player");
                     clarkeUtils.clarkeCommand(player, "staffchat", "Communicates in StaffChat");
                     clarkeUtils.clarkeCommand(player, "toggleSC", "Toggles in-game staff chat");
-                    clarkeUtils.clarkeCommand(player, "tp", "Teleports Players");
+                    clarkeUtils.clarkeCommand(player, "tp", "Teleport to Players");
                     clarkeUtils.clarkeCommand(player, "weather", "Changes the Weather");
                     clarkeUtils.clarkeCommand(player, "edit", "Edits in-game configs");
                     clarkeUtils.clarkeCommand(player, "freeze", "Halts a players actions");
@@ -41,8 +45,6 @@ public class clarke implements CommandExecutor {
                     clarkeUtils.clarkeCommand(player, "give", "Give a player an Item");
                     clarkeUtils.clarkeCommand(player, "grant", "Grant a user a rank");
                     clarkeUtils.clarkeCommand(player, "grants", "Shows what a User has been Granted");
-                    sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/helpop" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Requests Staff Assistance");
-                    sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/report" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Reports a Player");
 
                     if (args[(int) totalArgs].equalsIgnoreCase("-i") && sender.hasPermission("clarke.internal"))
                         sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/setserver" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Sets the server name." + ChatColor.RED + " [Internal]");

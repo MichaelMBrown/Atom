@@ -11,61 +11,36 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 
-@SuppressWarnings("DuplicatedCode")
 public class gamemode implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (command.getName().equalsIgnoreCase("gamemode") || command.getName().equalsIgnoreCase("gm")) {
-            if (sender.hasPermission("clarke.command.gamemode")) {
-                if (args.length == 2) {
-                    Player target = Bukkit.getPlayerExact(args[1]);
-                    if (target != null) {
-                        if (args[0].equalsIgnoreCase("C") || args[0].equalsIgnoreCase("CREATIVE") || args[0].equals("1")) {
-                            target.setGameMode(GameMode.CREATIVE);
-                            sender.sendMessage(ChatColor.YELLOW + target.getName() + ChatColor.GREEN + " is now in " + target.getGameMode() + ".");
-                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "Set " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + "'s gamemode to " + ChatColor.GOLD + target.getGameMode(), false);
-                        } else if (args[0].equalsIgnoreCase("S") || args[0].equalsIgnoreCase("SURVIVAL") || args[0].equals("0")) {
-                            target.setGameMode(GameMode.SURVIVAL);
-                            sender.sendMessage(ChatColor.YELLOW + target.getName() + ChatColor.GREEN + " is now in " + target.getGameMode() + ".");
-                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "Set " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + "'s gamemode to " + ChatColor.GOLD + target.getGameMode(), false);
-                        } else if (args[0].equalsIgnoreCase("SP") || args[0].equalsIgnoreCase("SPECTATOR") || args[0].equals("3")) {
-                            target.setGameMode(GameMode.SPECTATOR);
-                            sender.sendMessage(ChatColor.YELLOW + target.getName() + ChatColor.GREEN + " is now in " + target.getGameMode() + ".");
-                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "Set " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + "'s gamemode to " + ChatColor.GOLD + target.getGameMode(), false);
-                        } else if (args[0].equalsIgnoreCase("A") || args[0].equalsIgnoreCase("ADVENTURE") || args[0].equals("2")) {
-                            target.setGameMode(GameMode.ADVENTURE);
-                            sender.sendMessage(ChatColor.YELLOW + target.getName() + ChatColor.GREEN + " is now in " + target.getGameMode() + ".");
-                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "Set " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + "'s gamemode to " + ChatColor.GOLD + target.getGameMode(), false);
-                        } else {
-                            sender.sendMessage(ChatColor.RED + "There is no gamemode by the name of " + args[0].toUpperCase());
-                        }
-                    } else {
-                        staffUtils.playerNotFound((Player) sender);
-                    }
-                } else if (args.length == 1 && !(sender instanceof ConsoleCommandSender)) {
-                    if (args[0].equalsIgnoreCase("C") || args[0].equalsIgnoreCase("CREATIVE") || args[0].equals("1")) {
-                        ((Player) sender).setGameMode(GameMode.CREATIVE);
-                        sender.sendMessage(ChatColor.GREEN + "You are now in " + ((Player) sender).getGameMode() + ".");
-                        BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "Set own gamemode to " + ChatColor.GOLD + ((Player) sender).getGameMode(), false);
-                    } else if (args[0].equalsIgnoreCase("S") || args[0].equalsIgnoreCase("SURVIVAL") || args[0].equals("0")) {
-                        ((Player) sender).setGameMode(GameMode.SURVIVAL);
-                        sender.sendMessage(ChatColor.GREEN + "You are now in " + ((Player) sender).getGameMode() + ".");
-                        BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "Set own gamemode to " + ChatColor.GOLD + ((Player) sender).getGameMode(), false);
-                    } else if (args[0].equalsIgnoreCase("SP") || args[0].equalsIgnoreCase("SPECTATOR") || args[0].equals("3")) {
-                        ((Player) sender).setGameMode(GameMode.SPECTATOR);
-                        sender.sendMessage(ChatColor.GREEN + "You are now in " + ((Player) sender).getGameMode() + ".");
-                        BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "Set own gamemode to " + ChatColor.GOLD + ((Player) sender).getGameMode(), false);
-                    } else if (args[0].equalsIgnoreCase("A") || args[0].equalsIgnoreCase("ADVENTURE") || args[0].equals("2")) {
-                        ((Player) sender).setGameMode(GameMode.ADVENTURE);
-                        sender.sendMessage(ChatColor.GREEN + "You are now in " + ((Player) sender).getGameMode() + ".");
-                        BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "Set own gamemode to " + ChatColor.GOLD + ((Player) sender).getGameMode(), false);
-                    } else {
-                        sender.sendMessage(ChatColor.RED + "There is no gamemode by the name of " + args[0].toUpperCase());
-                    }
-                } else {
-                    staffUtils.printUsage((Player) sender, "gamemode", "<gamemode> [player]");
-                }
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        Player sender = (Player) commandSender;
+        if (!commandSender.hasPermission("clarke.command.gamemode")) {
+            staffUtils.noPerm(sender);
+            return true;
+        }
+        if ((strings.length == 1) && !(sender instanceof ConsoleCommandSender)) {
+            try {
+                sender.setGameMode(GameMode.valueOf(strings[0].toUpperCase()));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 " + sender.getName() + "'s game mode is now &f" + strings[0].toUpperCase()));
+                BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.translateAlternateColorCodes('&', "&7set own gamemode to &e&o" + strings[0].toUpperCase()), false);
+            } catch (IllegalArgumentException e) {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &7That game mode does not exist!"));
             }
+        } else if ((strings.length == 2) && !(sender instanceof ConsoleCommandSender)) {
+            Player target;
+            try {
+                target = Bukkit.getPlayerExact(strings[1]);
+                target.setGameMode(GameMode.valueOf(strings[0].toUpperCase()));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 " + target.getName() + "'s game mode is now &f" + strings[0].toUpperCase()));
+                BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.translateAlternateColorCodes('&', "&7set " + target.getName() + "'s gamemode to &e&o" + strings[0].toUpperCase()), false);
+            } catch (NullPointerException e) {
+                staffUtils.playerNotFound(sender);
+            } catch (IllegalArgumentException e) {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &7That game mode does not exist!"));
+            }
+        } else if (!(sender instanceof ConsoleCommandSender)) {
+            staffUtils.printUsage(sender, command.getName(), "<gamemode> [player]");
         }
         return true;
     }

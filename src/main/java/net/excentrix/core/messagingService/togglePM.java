@@ -1,4 +1,4 @@
-package net.excentrix.core.messaging_service;
+package net.excentrix.core.messagingService;
 
 import net.excentrix.core.Core;
 import org.bukkit.ChatColor;
@@ -15,10 +15,10 @@ public class togglePM implements CommandExecutor {
         Player commandSender = (Player) sender;
         if (Core.pmToggled.contains(commandSender)) {
             Core.pmToggled.remove(commandSender);
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Chat> &7You will now receive private messages from players."));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You will now receive private messages from players."));
         } else {
             Core.pmToggled.add(commandSender);
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Chat> &7You will no longer receive private messages."));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&7 You will no longer receive private messages."));
         }
 
         return true;

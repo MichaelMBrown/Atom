@@ -21,7 +21,7 @@ public class teleport implements CommandExecutor {
                         if (target != null) {
                             Location targetLoc = target.getLocation();
                             ((Player) sender).teleport(targetLoc);
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Player>&7 You have teleported to &e" + target.getName()));
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You have teleported to &e" + target.getName()));
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported to " + ChatColor.GOLD + target.getName(), false);
                         } else {
                             staffUtils.playerNotFound((Player) sender);
@@ -32,7 +32,7 @@ public class teleport implements CommandExecutor {
                         if (target != null && target2 != null) {
                             Location toTarget = target2.getLocation();
                             target.teleport(toTarget);
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Player>&7 You teleported &e" + target.getName() + "&7 to &e" + target2.getName()));
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You teleported &e" + target.getName() + "&7 to &e" + target2.getName()));
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " to " + ChatColor.GOLD + target2.getName(), false);
                         } else {
                             staffUtils.playerNotFound((Player) sender);

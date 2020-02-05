@@ -1,4 +1,4 @@
-package net.excentrix.core.messaging_service;
+package net.excentrix.core.messagingService;
 
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
@@ -17,10 +17,10 @@ public class socialspy implements CommandExecutor {
         } else {
             if (Core.nowSpying.contains(commandSender)) {
                 Core.nowSpying.remove(commandSender);
-                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Staff> &7You have disabled admin spying"));
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&7 You have disabled admin spying"));
             } else {
                 Core.nowSpying.add(commandSender);
-                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Staff> &7You have enabled admin spying"));
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You have enabled admin spying"));
             }
 
             return true;

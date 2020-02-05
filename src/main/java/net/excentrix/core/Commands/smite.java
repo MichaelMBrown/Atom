@@ -28,7 +28,7 @@ public class smite implements CommandExecutor {
                 } else if (strings.length == 1) {
                     Player target = Bukkit.getPlayerExact(strings[0]);
                     if (target != null) {
-                        commandSender.sendMessage(ChatColor.GREEN + "You smited " + ChatColor.YELLOW + target.getName());
+                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You smited &e" + target.getName()));
                         BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.YELLOW + "smited " + ChatColor.GOLD + target.getName(), false);
                         World world = target.getWorld();
                         world.strikeLightning(target.getLocation());

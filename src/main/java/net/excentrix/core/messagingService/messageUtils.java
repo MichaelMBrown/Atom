@@ -1,4 +1,4 @@
-package net.excentrix.core.messaging_service;
+package net.excentrix.core.messagingService;
 
 import net.excentrix.core.Core;
 import org.bukkit.Bukkit;
@@ -16,11 +16,11 @@ public class messageUtils {
     public static void messagePlayer(Player sender, Player receipt, String message) {
         for (final Player p : Bukkit.getOnlinePlayers()) {
             if (Core.nowSpying.contains(p) && p != sender && p != receipt) {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Messaging> &e" + sender.getName() + " -> " + receipt.getName() + " &7" + message));
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &e" + sender.getName() + "&8 -> &e" + receipt.getName() + " &7" + message));
             }
         }
         plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', "&e" + sender.getName() + " - > " + receipt.getName() + " " + message));
-        receipt.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Messaging> &e" + sender.getName() + " -> Me&7 " + message));
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Messaging> &eMe -> " + receipt.getName() + " &7" + message));
+        receipt.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&e " + sender.getName() + "&8 ->&e Me&7 " + message));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &eMe &8->&e " + receipt.getName() + " &7" + message));
     }
 }

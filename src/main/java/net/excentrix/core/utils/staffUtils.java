@@ -18,9 +18,9 @@ public class staffUtils {
             if (p.hasPermission("clarke.chat.staffchat")) {
                 if (!(Core.scMuted.contains(p))) {
                     if (sender.equalsIgnoreCase("Console")) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Staff> &e[" + plugin.getConfig().getString("server-name") + "] &cConsole&7: ") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&6&l✩&8&l] &7[&f" + plugin.getConfig().getString("server-name") + "&7] &cConsole&7: ") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
                     } else {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Staff> &e[" + plugin.getConfig().getString("server-name") + "] &f" + sender + "&7: ") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&6&l✩&8&l] &7[&f" + plugin.getConfig().getString("server-name") + "&7] &a" + sender + "&7: ") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
                         //p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + plugin.getConfig().getString("server-name") + "] " + ChatColor.WHITE + sender + ChatColor.GRAY + ":" + ChatColor.YELLOW + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
                     }
                 }
@@ -42,18 +42,19 @@ public class staffUtils {
     }
 
     public static void cannotPerform(Player player) {
-        player.sendMessage(ChatColor.BLUE + "Permissions> " + ChatColor.GRAY + "You cannot do this.");
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &cYou are forbidden perform this action."));
     }
 
     public static void noPerm(Player player) {
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Permissions> &7You do not have permission for this command!"));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &cYou do not have permission for this command!"));
     }
 
     public static void playerNotFound(Player player) {
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Player Lookup> &7There is no player by that name connected to this server!"));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &cThere is no player by that name connected to this server!"));
     }
 
     public static void printUsage(Player player, String command, String args) {
-        player.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/" + command + " " + ChatColor.WHITE + args);
+//        player.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/" + command + " " + ChatColor.WHITE + args);
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &eUsage: &6/" + command + " &f" + args));
     }
 }

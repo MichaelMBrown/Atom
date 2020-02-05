@@ -20,10 +20,10 @@ public class toggleSC implements CommandExecutor {
             return true;
         } else {
             if (Core.scMuted.contains(sender)) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Chat Manager> &7You enabled the Staff Chat!"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 &7You enabled the Staff Chat!"));
                 Core.scMuted.remove(sender);
             } else {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Chat Manager> &7You disabled the Staff Chat!"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 &7You disabled the Staff Chat!"));
                 Core.scMuted.add(sender);
             }
         }

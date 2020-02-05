@@ -18,11 +18,11 @@ public class kill implements CommandExecutor {
                     Player target = Bukkit.getPlayerExact(args[0]);
                     if (target != null) {
                         if (Core.godList.contains(target)) {
-                            sender.sendMessage(ChatColor.RED + "That player cannot be damaged, as they are in God Mode.");
+                            staffUtils.cannotPerform((Player) sender);
                         } else {
                             target.setHealth(0);
-                            sender.sendMessage(ChatColor.GREEN + "Killed player " + ChatColor.YELLOW + target.getName());
-                            staffUtils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 Killed &e" + target.getName()));
+//                            staffUtils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
                         }
                     } else staffUtils.playerNotFound((Player) sender);
                 } else {

@@ -1,7 +1,7 @@
 name: Clarke
-version: ${project.version}
+version: 1.0-SNAPSHOT
 main: net.excentrix.core.Core
-api-version: 1.15
+api-version: 1.14
 softdepend: [LuckPerms]
 depend: []
 authors: [qr0]
@@ -81,3 +81,10 @@ commands:
     description: Gives a player an Item
   togglesc:
     description: Toggles in-game staffchat
+  whisper:
+    description: Message a player
+    aliases: [w,msg,tell,t]
+  socialspy:
+    description: Toggles Admin Spying
+  togglepm:
+    description: Toggles private messaging

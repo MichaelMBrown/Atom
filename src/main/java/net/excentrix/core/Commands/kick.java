@@ -35,13 +35,14 @@ public class kick implements CommandExecutor {
                                     reason = reason + args[i] + " ";
                                 }
                                 staffUtils.scNotif(sender.getName(), "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.GRAY + " with reason: " + ChatColor.WHITE + reason);
-                                target.kickPlayer(ChatColor.translateAlternateColorCodes('&', reason));
+                                target.kickPlayer(ChatColor.translateAlternateColorCodes('&', "&cYou've been kicked for: \n&r" + reason));
                                 plugin.getLogger().info(ChatColor.GREEN + sender.getName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " with reason " + ChatColor.WHITE + reason);
                             } else if (args.length == 1) {
-                                reason = "You have been kicked by " + sender.getName();
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Punishments> &7You must provide a reason for this kick!"));
+                                /*reason = "You have been kicked by " + sender.getName();
                                 staffUtils.scNotif(sender.getName(), "kicked player " + ChatColor.GOLD + Array.get(args, 0) + ChatColor.GRAY + " with reason: " + ChatColor.WHITE + reason);
                                 target.kickPlayer(ChatColor.translateAlternateColorCodes('&', reason));
-                                plugin.getLogger().info(ChatColor.GREEN + sender.getName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " with reason " + reason);
+                                plugin.getLogger().info(ChatColor.GREEN + sender.getName() + ChatColor.YELLOW + " kicked player " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " with reason " + reason);*/
                             }
                         } else
                             staffUtils.playerNotFound((Player) sender);

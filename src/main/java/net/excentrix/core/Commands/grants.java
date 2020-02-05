@@ -14,31 +14,35 @@ import org.bukkit.plugin.Plugin;
 
 public class grants implements CommandExecutor {
     private static Plugin plugin = Core.getPlugin(Core.class);
-    LuckPerms api = LuckPermsProvider.get();
+
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player player;
         Player target;
         player = (Player) commandSender;
-        if (!(commandSender.hasPermission("clarke.command.grants"))) {
-            staffUtils.noPerm((Player) commandSender);
-            return true;
-        } else {
-            if (strings.length != 1) {
-                staffUtils.printUsage(player, "grants", "<player>");
-            } else {
-                target = Bukkit.getPlayerExact(strings[0]);
-                try {
-                    String group = staffUtils.getRank(target.getName());
-                    if (target != null) {
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Grant Manager> &e" + target.getName() + "&7 belongs to: " + api.getGroupManager().getGroup(group).getDisplayName() + "&7."));
+        if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
+            LuckPerms api = LuckPermsProvider.get();
+            if (!(commandSender.hasPermission("clarke.command.grants"))) {
+                staffUtils.noPerm((Player) commandSender);
+                return true;
+            } else if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
+                if (strings.length != 1) {
+                    staffUtils.printUsage(player, "grants", "<player>");
+                } else {
+                    target = Bukkit.getPlayerExact(strings[0]);
+                    try {
+                        String group = staffUtils.getRank(target.getName());
+                        if (target != null) {
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &e" + target.getName() + "&7 has the grant: " + api.getGroupManager().getGroup(group).getDisplayName() + "&7."));
+                        }
+                    } catch (NullPointerException e) {
+                        staffUtils.playerNotFound(player);
                     }
-                } catch (NullPointerException e) {
-                    staffUtils.playerNotFound(player);
                 }
             }
-        }
+        } else
+            commandSender.sendMessage(ChatColor.RED + "Cannot perform any actions using grant, as the dependency is not found!");
         return true;
     }
 }

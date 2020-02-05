@@ -2,9 +2,9 @@ package net.excentrix.core;
 
 import net.excentrix.core.Commands.*;
 import net.excentrix.core.events.*;
-import net.excentrix.core.messaging_service.socialspy;
-import net.excentrix.core.messaging_service.togglePM;
-import net.excentrix.core.messaging_service.whisper;
+import net.excentrix.core.messagingService.socialspy;
+import net.excentrix.core.messagingService.togglePM;
+import net.excentrix.core.messagingService.whisper;
 import net.excentrix.core.tasks.updateTablist;
 import org.bukkit.ChatColor;
 import org.bukkit.command.TabCompleter;

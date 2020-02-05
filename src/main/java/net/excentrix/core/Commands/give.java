@@ -40,9 +40,10 @@ public class give implements CommandExecutor {
                         for (Player p : Bukkit.getOnlinePlayers()) {
                             p.getInventory().addItem(item);
                         }
-                        sender.sendMessage(ChatColor.BLUE + "Give> " + ChatColor.GRAY + "You gave " + ChatColor.YELLOW + amount + " " + item.getI18NDisplayName() + ChatColor.GRAY + " to " + ChatColor.YELLOW + strings[0].toUpperCase());
+//                        sender.sendMessage(ChatColor.BLUE + "Give> " + ChatColor.GRAY + "You gave " + ChatColor.YELLOW + amount + " " + item.getI18NDisplayName() + ChatColor.GRAY + " to " + ChatColor.YELLOW + strings[0].toUpperCase()); &8&l[&a&l✩&8&l]
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You gave &e" + amount + " " + item.getI18NDisplayName() + "&7 to &e" + strings[0].toUpperCase()));
                     } catch (NullPointerException e) {
-                        sender.sendMessage(ChatColor.BLUE + "Give> " + ChatColor.GRAY + "That is an invalid option to spawn!");
+                        staffUtils.cannotPerform(sender);
                     }
                 } else staffUtils.printUsage(sender, "give", "<player> <item> [count]");
             } else if (target != null) {
@@ -59,9 +60,9 @@ public class give implements CommandExecutor {
                     try {
                         ItemStack item = new ItemStack(Objects.requireNonNull(Material.getMaterial(strings[1].toUpperCase())), amount);
                         target.getInventory().addItem(item);
-                        sender.sendMessage(ChatColor.BLUE + "Give> " + ChatColor.GRAY + "You gave " + ChatColor.YELLOW + amount + " " + item.getI18NDisplayName() + ChatColor.GRAY + " to " + ChatColor.YELLOW + strings[0]);
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You gave &e" + amount + " " + item.getI18NDisplayName() + "&7 to &e" + strings[0]));
                     } catch (NullPointerException e) {
-                        sender.sendMessage(ChatColor.BLUE + "Give> " + ChatColor.GRAY + "That is an invalid option to spawn!");
+                        staffUtils.cannotPerform(sender);
                     }
                 } else staffUtils.printUsage(sender, "give", "<player> <item> [count]");
             } else staffUtils.playerNotFound(sender);

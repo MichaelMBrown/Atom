@@ -27,7 +27,7 @@ public class edit implements CommandExecutor {
                         if (args[1].equalsIgnoreCase("mobAI")) {
                             if (args[2].equalsIgnoreCase("true")) {
                                 staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Game Manager> &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
                                 plugin.getConfig().set("mobAI", true);
                                 plugin.saveConfig();
                                 plugin.reloadConfig();
@@ -42,7 +42,7 @@ public class edit implements CommandExecutor {
                                 }
                             } else if (args[2].equalsIgnoreCase("false")) {
                                 staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Game Manager> &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
                                 plugin.getConfig().set("mobAI", false);
                                 plugin.saveConfig();
                                 plugin.reloadConfig();
@@ -60,13 +60,13 @@ public class edit implements CommandExecutor {
                         } else if (args[1].equalsIgnoreCase("disableDrowned")) {
                             if (args[2].equalsIgnoreCase("true")) {
                                 staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Game Manager> &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
                                 plugin.getConfig().set("disableDrowned", true);
                                 plugin.saveConfig();
                                 plugin.reloadConfig();
                             } else if (args[2].equalsIgnoreCase("false")) {
                                 staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9Game Manager> &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
                                 plugin.getConfig().set("disableDrowned", false);
                                 plugin.saveConfig();
                                 plugin.reloadConfig();
