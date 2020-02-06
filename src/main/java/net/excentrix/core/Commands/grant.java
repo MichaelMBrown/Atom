@@ -59,7 +59,7 @@ public class grant implements CommandExecutor {
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&c You cannot grant &o" + args[1].toLowerCase() + "&r&c as it doesn't exist."));
                     }
-                }
+                } else staffUtils.playerNotFound(commandSender);
             }
         } else {
             sender.sendMessage(ChatColor.RED + "Cannot perform any actions using grant, as the dependency is not found!");

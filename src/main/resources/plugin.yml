@@ -88,3 +88,5 @@ commands:
     description: Toggles Admin Spying
   togglepm:
     description: Toggles private messaging
+  announceToStaff:
+    description: "Nothing to see here :)"

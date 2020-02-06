@@ -2,6 +2,7 @@ package net.excentrix.core;
 
 import net.excentrix.core.Commands.*;
 import net.excentrix.core.events.*;
+import net.excentrix.core.internalCommands.announceToStaff;
 import net.excentrix.core.messagingService.socialspy;
 import net.excentrix.core.messagingService.togglePM;
 import net.excentrix.core.messagingService.whisper;
@@ -54,6 +55,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         this.getCommand("whisper").setExecutor(new whisper());
         this.getCommand("togglePM").setExecutor(new togglePM());
         this.getCommand("socialspy").setExecutor(new socialspy());
+        this.getCommand("announceToStaff").setExecutor(new announceToStaff());
         this.getServer().getPluginManager().registerEvents(new godEvent(), this);
         this.getServer().getPluginManager().registerEvents(new mobSpawn(), this);
         this.getServer().getPluginManager().registerEvents(new freezeEvent(), this);
