@@ -49,9 +49,17 @@ public class grant implements CommandExecutor {
                 if (target != null) {
                     if (api.getGroupManager().getGroup(args[1]) != null) {
                         if (commandSender.hasPermission("group." + args[1])) {
+                            String grantName = api.getGroupManager().getGroup(args[1]).getDisplayName();
                             getServer().dispatchCommand(getServer().getConsoleSender(), "lp user " + target.getName() + " parent set " + args[1]);
-                            getLogger().info(ChatColor.DARK_RED + "User " + target.getName() + " was granted " + ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(args[1]).getDisplayName()) + ChatColor.DARK_RED + " by " + sender.getName());
-                            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&f " + target.getName() + "&7's grant was updated to " + api.getGroupManager().getGroup(args[1]).getDisplayName() + "&7!"));
+                            if (grantName != null) {
+                                getLogger().info(ChatColor.DARK_RED + "User " + target.getName() + " was granted " + ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(args[1]).getDisplayName()) + ChatColor.DARK_RED + " by " + sender.getName());
+                                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&f " + target.getName() + "&7's grant was updated to " + grantName + "&7!"));
+                                target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You are now granted " + grantName + "&7."));
+                            } else {
+                                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&f " + target.getName() + "&7's grant was updated to " + api.getGroupManager().getGroup(args[1]).getName() + "&7!"));
+                                target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You are now granted " + api.getGroupManager().getGroup(args[1]).getName() + "&7."));
+                                getLogger().info(ChatColor.DARK_RED + "User " + target.getName() + " was granted " + ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(args[1]).getName()) + ChatColor.DARK_RED + " by " + sender.getName());
+                            }
                             //staffUtils.scNotif(commandSender.getName(), ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " has been granted " + api.getGroupManager().getGroup(args[1]).getDisplayName() + ChatColor.YELLOW + " by " + ChatColor.GOLD + commandSender.getName());
                         } else {
                             staffUtils.cannotPerform(commandSender);

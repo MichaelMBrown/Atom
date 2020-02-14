@@ -1,6 +1,14 @@
-#Enter your server name here.
+# Enter your server name here.
+# This shows up in the StaffChat, and other Commands.
 server-name: 'undefined'
+# Decides whether or not Mobs should be Smart.
 mobAI: true
+# Disable the Drowned Spawn Event.
 disableDrowned: false
+# Disables the Slime Spawn Event.
 slimesDisabled: true
+# Enables / Disables Global Chat
+# Changes in here require a /clarke reload
 chat-silenced: false
+# When set to FALSE disables the Spawning of Phantoms
+doInsomnia: false

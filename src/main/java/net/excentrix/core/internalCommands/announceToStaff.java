@@ -28,11 +28,11 @@ public class announceToStaff implements CommandExecutor {
                 String newMessage = message.substring(substring);
                 if (target != null) {
                     BukkitCommand.broadcastCommandMessage(target, ChatColor.translateAlternateColorCodes('&', newMessage), false);
-                } else plugin.getLogger().warning("Unknown Player specified");
+                }// else plugin.getLogger().warning("Unknown Player specified");
             } else plugin.getLogger().warning("Not enough args supplied");
-        } else {
-            sender.sendMessage("Unknown Command. Type \"/help\" for help.");
-        }
+        }// else {
+//            sender.sendMessage("Unknown command. Type \"/help\" for help.");
+//        }
         return true;
     }
 }

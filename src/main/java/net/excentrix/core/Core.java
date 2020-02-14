@@ -60,7 +60,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         this.getServer().getPluginManager().registerEvents(new mobSpawn(), this);
         this.getServer().getPluginManager().registerEvents(new freezeEvent(), this);
         this.getServer().getPluginManager().registerEvents(new deathEvents(), this);
-        this.getServer().getPluginManager().registerEvents(new joinEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new authEvent(), this);
         this.getServer().getPluginManager().registerEvents(new playerTalk(), this);
         this.getConfig().options().copyDefaults();
         this.saveDefaultConfig();

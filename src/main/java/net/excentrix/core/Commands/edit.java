@@ -23,56 +23,94 @@ public class edit implements CommandExecutor {
             if (sender.hasPermission("clarke.command.edit")) {
                 if (args.length == 3) {
                     if (args[0].equalsIgnoreCase("boolean") || args[0].equalsIgnoreCase("bool")) {
-                        Boolean newBool = null;
-                        if (args[1].equalsIgnoreCase("mobAI")) {
-                            if (args[2].equalsIgnoreCase("true")) {
-                                staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
-                                plugin.getConfig().set("mobAI", true);
-                                plugin.saveConfig();
-                                plugin.reloadConfig();
-                                for (World world : Bukkit.getWorlds()) {
-                                    for (Entity entity : world.getEntities()) {
-                                        if (!(entity instanceof Player)) {
-                                            if (entity instanceof Creature) {
-                                                ((Creature) entity).setAI(true);
+                        String value = args[2].toUpperCase();
+                        String configOption = args[1].toUpperCase();
+                        switch (configOption) {
+                            case "MOBAI":
+                                switch (value) {
+                                    case "TRUE":
+                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        plugin.getConfig().set("mobAI", true);
+                                        plugin.saveConfig();
+                                        plugin.reloadConfig();
+                                        for (World world : Bukkit.getWorlds()) {
+                                            for (Entity entity : world.getEntities()) {
+                                                if (!(entity instanceof Player)) {
+                                                    if (entity instanceof Creature) {
+                                                        ((Creature) entity).setAI(true);
+                                                    }
+                                                }
                                             }
                                         }
-                                    }
-                                }
-                            } else if (args[2].equalsIgnoreCase("false")) {
-                                staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
-                                plugin.getConfig().set("mobAI", false);
-                                plugin.saveConfig();
-                                plugin.reloadConfig();
-                                for (World world : Bukkit.getWorlds()) {
-                                    for (Entity entity : world.getEntities()) {
-                                        if (!(entity instanceof Player)) {
-                                            if (entity instanceof Creature) {
-                                                ((Creature) entity).setAI(false);
+                                        break;
+                                    case "FALSE":
+                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        plugin.getConfig().set("mobAI", false);
+                                        plugin.saveConfig();
+                                        plugin.reloadConfig();
+                                        for (World world : Bukkit.getWorlds()) {
+                                            for (Entity entity : world.getEntities()) {
+                                                if (!(entity instanceof Player)) {
+                                                    if (entity instanceof Creature) {
+                                                        ((Creature) entity).setAI(false);
+                                                    }
+                                                }
                                             }
                                         }
-                                    }
+                                        break;
+                                    default:
+                                        sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
+                                        break;
                                 }
-                            } else
-                                sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
-                        } else if (args[1].equalsIgnoreCase("disableDrowned")) {
-                            if (args[2].equalsIgnoreCase("true")) {
-                                staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
-                                plugin.getConfig().set("disableDrowned", true);
-                                plugin.saveConfig();
-                                plugin.reloadConfig();
-                            } else if (args[2].equalsIgnoreCase("false")) {
-                                staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
-                                plugin.getConfig().set("disableDrowned", false);
-                                plugin.saveConfig();
-                                plugin.reloadConfig();
-                            } else
-                                sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
-                        } else staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
+                                break;
+                            case "DISABLEDROWNED":
+                                switch (value) {
+                                    case "TRUE":
+                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        plugin.getConfig().set("disableDrowned", true);
+                                        plugin.saveConfig();
+                                        plugin.reloadConfig();
+                                        break;
+                                    case "FALSE":
+                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        plugin.getConfig().set("disableDrowned", false);
+                                        plugin.saveConfig();
+                                        plugin.reloadConfig();
+                                        break;
+                                    default:
+                                        sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
+                                        break;
+                                }
+                                break;
+                            case "DOINSOMNIA":
+                                switch (value) {
+                                    case "TRUE":
+                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        plugin.getConfig().set("doInsomnia", true);
+                                        plugin.saveConfig();
+                                        plugin.reloadConfig();
+                                        break;
+                                    case "FALSE":
+                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        plugin.getConfig().set("doInsomnia", false);
+                                        plugin.saveConfig();
+                                        plugin.reloadConfig();
+                                        break;
+                                    default:
+                                        sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
+                                        break;
+                                }
+                                break;
+                            default:
+                                staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
+                                break;
+                        }
                     } else staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
                 }
             }

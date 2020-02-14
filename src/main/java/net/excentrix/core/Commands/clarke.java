@@ -1,7 +1,6 @@
 package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
-import net.excentrix.core.utils.clarkeUtils;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+
+import static net.excentrix.core.utils.clarkeUtils.clarkeCommand;
 
 public class clarke implements CommandExecutor {
     private static Plugin plugin = Core.getPlugin(Core.class);
@@ -26,25 +27,25 @@ public class clarke implements CommandExecutor {
                     sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/report" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Reports a Player");
                     sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/w" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Message a Player");
                     sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/togglepm" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Toggles Receiving Messages.");
-                    clarkeUtils.clarkeCommand(player, "fly", "Enables/Disables Flight for a Player");
-                    clarkeUtils.clarkeCommand(player, "gamemode", "Sets a Players Gamemode");
-                    clarkeUtils.clarkeCommand(player, "god", "Enables/Disables God for a Player");
-                    clarkeUtils.clarkeCommand(player, "heal", "Heals a Player");
-                    clarkeUtils.clarkeCommand(player, "kick", "Removes a player from the Network");
-                    clarkeUtils.clarkeCommand(player, "kill", "Kills a Player");
-                    clarkeUtils.clarkeCommand(player, "staffchat", "Communicates in StaffChat");
-                    clarkeUtils.clarkeCommand(player, "toggleSC", "Toggles in-game staff chat");
-                    clarkeUtils.clarkeCommand(player, "tp", "Teleport to Players");
-                    clarkeUtils.clarkeCommand(player, "weather", "Changes the Weather");
-                    clarkeUtils.clarkeCommand(player, "edit", "Edits in-game configs");
-                    clarkeUtils.clarkeCommand(player, "freeze", "Halts a players actions");
-                    clarkeUtils.clarkeCommand(player, "smite", "Summons a lightning-bolt");
-                    clarkeUtils.clarkeCommand(player, "enderchest", "Opens the Enderchest");
-                    clarkeUtils.clarkeCommand(player, "tphere", "Teleports a player to you");
-                    clarkeUtils.clarkeCommand(player, "say", "Broadcast to the Server");
-                    clarkeUtils.clarkeCommand(player, "give", "Give a player an Item");
-                    clarkeUtils.clarkeCommand(player, "grant", "Grant a user a rank");
-                    clarkeUtils.clarkeCommand(player, "grants", "Shows what a User has been Granted");
+                    clarkeCommand(player, "fly", "Enables/Disables Flight for a Player");
+                    clarkeCommand(player, "gamemode", "Sets a Players Gamemode");
+                    clarkeCommand(player, "god", "Enables/Disables God for a Player");
+                    clarkeCommand(player, "heal", "Heals a Player");
+                    clarkeCommand(player, "kick", "Removes a player from the Network");
+                    clarkeCommand(player, "kill", "Kills a Player");
+                    clarkeCommand(player, "staffchat", "Communicates in StaffChat");
+                    clarkeCommand(player, "toggleSC", "Toggles in-game staff chat");
+                    clarkeCommand(player, "tp", "Teleport to Players");
+                    clarkeCommand(player, "weather", "Changes the Weather");
+                    clarkeCommand(player, "edit", "Edits in-game configs");
+                    clarkeCommand(player, "freeze", "Halts a players actions");
+                    clarkeCommand(player, "smite", "Summons a lightning-bolt");
+                    clarkeCommand(player, "enderchest", "Opens the Enderchest");
+                    clarkeCommand(player, "tphere", "Teleports a player to you");
+                    clarkeCommand(player, "say", "Broadcast to the Server");
+                    clarkeCommand(player, "give", "Give a player an Item");
+                    clarkeCommand(player, "grant", "Grant a user a rank");
+                    clarkeCommand(player, "grants", "Shows what a User has been Granted");
 
                     if (args[(int) totalArgs].equalsIgnoreCase("-i") && sender.hasPermission("clarke.internal"))
                         sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/setserver" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Sets the server name." + ChatColor.RED + " [Internal]");

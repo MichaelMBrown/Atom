@@ -12,11 +12,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
-public class joinEvent implements Listener {
+public class authEvent implements Listener {
 
     private static Plugin plugin = Core.getPlugin(Core.class);
 
-    public joinEvent() {
+    public authEvent() {
     }
 
     @EventHandler
@@ -27,7 +27,13 @@ public class joinEvent implements Listener {
             String group = api.getUserManager().getUser(player.getName()).getPrimaryGroup();
             String grant = api.getGroupManager().getGroup(group).getDisplayName();
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &8Please hold while we check your grants..."));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Done! Applying " + grant + "&7 to you!"));
+            Core.freezeList.add(player);
+            if (grant == null) {
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&c WARN: Something went wrong in identifying your grants, playing it safe and locking you."));
+                Core.freezeList.add(player);
+            } else
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Done! Applying " + grant + "&7 to you!"));
+            Core.freezeList.remove(player);
         } else {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&c WARN: I could not verify you grants, playing it safe and locking you."));
             Core.freezeList.add(player);
