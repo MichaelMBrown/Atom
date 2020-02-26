@@ -43,7 +43,7 @@ public class give implements CommandExecutor {
 //                        sender.sendMessage(ChatColor.BLUE + "Give> " + ChatColor.GRAY + "You gave " + ChatColor.YELLOW + amount + " " + item.getI18NDisplayName() + ChatColor.GRAY + " to " + ChatColor.YELLOW + strings[0].toUpperCase()); &8&l[&a&l✩&8&l]
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You gave &e" + amount + " " + item.getI18NDisplayName() + "&7 to &e" + strings[0].toUpperCase()));
                     } catch (NullPointerException e) {
-                        staffUtils.cannotPerform(sender);
+                        staffUtils.actionForbidden(sender);
                     }
                 } else staffUtils.printUsage(sender, "give", "<player> <item> [count]");
             } else if (target != null) {
@@ -62,7 +62,7 @@ public class give implements CommandExecutor {
                         target.getInventory().addItem(item);
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You gave &e" + amount + " " + item.getI18NDisplayName() + "&7 to &e" + strings[0]));
                     } catch (NullPointerException e) {
-                        staffUtils.cannotPerform(sender);
+                        staffUtils.actionForbidden(sender);
                     }
                 } else staffUtils.printUsage(sender, "give", "<player> <item> [count]");
             } else staffUtils.playerNotFound(sender);

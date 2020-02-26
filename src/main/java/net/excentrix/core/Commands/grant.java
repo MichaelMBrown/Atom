@@ -40,7 +40,7 @@ public class grant implements CommandExecutor {
             }
             Player commandSender = (Player) sender;
             if (!(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Manager")) && !(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Owner")) && !(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Admin")) && !(staffUtils.getRank(sender.getName())).equalsIgnoreCase("Developer")) {
-                staffUtils.cannotPerform(commandSender);
+                staffUtils.actionForbidden(commandSender);
                 return true;
             } else if (args.length != 2) {
                 staffUtils.printUsage(commandSender, "grant", "<user> <grant>");
@@ -62,7 +62,7 @@ public class grant implements CommandExecutor {
                             }
                             //staffUtils.scNotif(commandSender.getName(), ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " has been granted " + api.getGroupManager().getGroup(args[1]).getDisplayName() + ChatColor.YELLOW + " by " + ChatColor.GOLD + commandSender.getName());
                         } else {
-                            staffUtils.cannotPerform(commandSender);
+                            staffUtils.actionForbidden(commandSender);
                         }
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&c You cannot grant &o" + args[1].toLowerCase() + "&r&c as it doesn't exist."));

@@ -31,7 +31,10 @@ public class staffUtils {
 
     public static String getRank(String player) {
         String rank;
-        rank = api.getUserManager().getUser(player).getPrimaryGroup();
+        if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
+            rank = api.getUserManager().getUser(player).getPrimaryGroup();
+        } else
+            rank = "N/A";
         return rank;
     }
 
@@ -41,7 +44,7 @@ public class staffUtils {
         }
     }
 
-    public static void cannotPerform(Player player) {
+    public static void actionForbidden(Player player) {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &cYou are forbidden perform this action."));
     }
 

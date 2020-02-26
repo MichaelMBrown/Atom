@@ -47,7 +47,7 @@ public class weather implements CommandExecutor {
                             sender.sendMessage(ChatColor.RED + "That world does not exist! Unable to process any changes.");
                         }
                     } else
-                        sender.sendMessage(ChatColor.RED + "To many arguments found. Expected [1,2] Found " + args.length);
+                        sender.sendMessage(ChatColor.RED + "To many arguments found. Expected [1-2] Found " + args.length);
                 } else {
                     staffUtils.noPerm((Player) sender);
                 }

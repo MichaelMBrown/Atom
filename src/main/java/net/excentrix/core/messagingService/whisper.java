@@ -15,7 +15,7 @@ public class whisper implements CommandExecutor {
         Player commandSender = (Player) sender;
         String message = "";
         if (Core.freezeList.contains(sender)) {
-            staffUtils.cannotPerform(commandSender);
+            staffUtils.actionForbidden(commandSender);
             return true;
         } else {
             if (args.length < 2) {

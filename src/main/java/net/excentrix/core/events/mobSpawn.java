@@ -1,7 +1,7 @@
 package net.excentrix.core.events;
 
-import com.destroystokyo.paper.event.entity.PhantomPreSpawnEvent;
 import net.excentrix.core.Core;
+import org.bukkit.entity.Phantom;
 import org.bukkit.entity.Slime;
 import org.bukkit.entity.WanderingTrader;
 import org.bukkit.event.EventHandler;
@@ -47,9 +47,11 @@ public class mobSpawn implements Listener {
     }
 
     @EventHandler
-    public void disableInsomnia(PhantomPreSpawnEvent event) {
+    public void disableInsomnia(CreatureSpawnEvent event) {
         if (!(plugin.getConfig().getBoolean("doInsomnia"))) {
-            event.setShouldAbortSpawn(true);
+            if (event.getEntity() instanceof Phantom) {
+                event.setCancelled(true);
+            }
         }
     }
 }

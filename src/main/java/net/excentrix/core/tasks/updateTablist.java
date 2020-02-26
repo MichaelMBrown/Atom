@@ -20,25 +20,38 @@ public class updateTablist extends BukkitRunnable {
     @Override
     public void run() {
         if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
+            //Define Staff Colours
+            ChatColor colourOwner = ChatColor.DARK_RED;
+            ChatColor colourDeveloper = ChatColor.AQUA;
+            ChatColor colourBold = ChatColor.BOLD;
+            ChatColor colourAdmin = ChatColor.RED;
+            ChatColor colourStaff = ChatColor.DARK_PURPLE;
+            ChatColor colourBasic = ChatColor.GRAY;
+            //Run Logic
             LuckPerms api = LuckPermsProvider.get();
             for (Player p : Bukkit.getOnlinePlayers()) {
                 group = api.getUserManager().getUser(p.getName()).getPrimaryGroup();
                 if (api.getGroupManager().getGroup(group).getDisplayName() != null) {
                     switch (group) {
                         case "owner":
-                            p.setPlayerListName(ChatColor.DARK_RED + p.getName());
+                            p.setPlayerListName(colourOwner + p.getName());
+                            p.setDisplayName(colourOwner + p.getName());
                             break;
                         case "developer":
-                            p.setPlayerListName(ChatColor.AQUA + "" + ChatColor.BOLD + p.getName());
+                            p.setPlayerListName(colourDeveloper + "" + ChatColor.BOLD + p.getName());
+                            p.setDisplayName(colourDeveloper + "" + colourBold + p.getName());
                             break;
                         case "admin":
-                            p.setPlayerListName(ChatColor.RED + p.getName());
+                            p.setPlayerListName(colourAdmin + p.getName());
+                            p.setDisplayName(colourAdmin + p.getName());
                             break;
                         case "staff":
-                            p.setPlayerListName(ChatColor.DARK_PURPLE + p.getName());
+                            p.setPlayerListName(colourStaff + p.getName());
+                            p.setDisplayName(colourStaff + p.getName());
                             break;
                         default:
-                            p.setPlayerListName(ChatColor.GRAY + p.getName());
+                            p.setPlayerListName(colourBasic + p.getName());
+                            p.setDisplayName(colourBasic + p.getName());
                     }
                 }
 //            p.setPlayerListName(ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(group).));

@@ -18,7 +18,7 @@ public class kill implements CommandExecutor {
                     Player target = Bukkit.getPlayerExact(args[0]);
                     if (target != null) {
                         if (Core.godList.contains(target)) {
-                            staffUtils.cannotPerform((Player) sender);
+                            staffUtils.actionForbidden((Player) sender);
                         } else {
                             target.setHealth(0);
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 Killed &e" + target.getName()));
