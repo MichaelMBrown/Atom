@@ -18,15 +18,13 @@ public class staffUtils {
             if (p.hasPermission("clarke.chat.staffchat")) {
                 if (!(Core.scMuted.contains(p))) {
                     if (sender.equalsIgnoreCase("Console")) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&6&l✩&8&l] &7[&f" + plugin.getConfig().getString("server-name") + "&7] &cConsole&7: ") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&6&l✩&8&l] &7[&f" + plugin.getConfig().getString("server-name") + "&7] &4SYSTEM&7: ") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
                     } else {
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&6&l✩&8&l] &7[&f" + plugin.getConfig().getString("server-name") + "&7] &a" + sender + "&7: ") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
-                        //p.sendMessage(ChatColor.AQUA + "[S] " + ChatColor.DARK_AQUA + "[" + plugin.getConfig().getString("server-name") + "] " + ChatColor.WHITE + sender + ChatColor.GRAY + ":" + ChatColor.YELLOW + " " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
                     }
                 }
             }
         }
-
     }
 
     public static String getRank(String player) {
@@ -38,10 +36,38 @@ public class staffUtils {
         return rank;
     }
 
+    public static Integer getRankInteger(String str_Player) {
+        int rankValue = 0;
+        if (!(Bukkit.getPluginManager().isPluginEnabled("LuckPerms"))) {
+            return rankValue;
+        }
+        Player player = Bukkit.getPlayerExact(str_Player);
+        if (player.hasPermission("clarke.rank.0")) {
+            rankValue = 0;
+        } else if (player.hasPermission("clarke.rank.1")) {
+            rankValue = 1;
+        } else if (player.hasPermission("clarke.rank.2")) {
+            rankValue = 2;
+        } else if (player.hasPermission("clarke.rank.3")) {
+            rankValue = 3;
+        } else if (player.hasPermission("clarke.rank.4")) {
+            rankValue = 4;
+        } else rankValue = 0;
+        return rankValue;
+    }
+
     public static void broadcastServer(String message) {
         for (final Player p : Bukkit.getOnlinePlayers()) {
             p.sendMessage(message);
         }
+    }
+
+    public static void informativeMessage(Player sender, String message) {
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7" + message));
+    }
+
+    public static void errorMessage(Player sender, String message) {
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &c" + message));
     }
 
     public static void actionForbidden(Player player) {

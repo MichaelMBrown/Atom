@@ -1,41 +1,39 @@
 package net.excentrix.core.events;
 
 import net.excentrix.core.Core;
+import net.excentrix.core.utils.staffUtils;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
 public class authEvent implements Listener {
 
     private static Plugin plugin = Core.getPlugin(Core.class);
 
-    public authEvent() {
-    }
-
     @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
+    public void authOnJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
             LuckPerms api = LuckPermsProvider.get();
             String group = api.getUserManager().getUser(player.getName()).getPrimaryGroup();
             String grant = api.getGroupManager().getGroup(group).getDisplayName();
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &8Please hold while we check your grants..."));
+            staffUtils.informativeMessage(player, "Please hold while I verify your grants...");
             Core.freezeList.add(player);
             if (grant == null) {
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&c WARN: Something went wrong in identifying your grants, playing it safe and locking you."));
+                staffUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
+                staffUtils.scNotif("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
                 Core.freezeList.add(player);
             } else
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Done! Applying " + grant + "&7 to you!"));
+                staffUtils.informativeMessage(player, "&aVerified&7 Applying your " + grant + " to you now.");
             Core.freezeList.remove(player);
         } else {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&c WARN: I could not verify you grants, playing it safe and locking you."));
+            staffUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
+            staffUtils.scNotif("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
             Core.freezeList.add(player);
         }
 
@@ -43,7 +41,10 @@ public class authEvent implements Listener {
     }
 
     @EventHandler
-    public void onLeave(PlayerQuitEvent event) {
-        event.setQuitMessage("");
+    public void buildMode(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        if (staffUtils.getRankInteger(player.getName()) >= 3) {
+            Core.buildDenied.add(player);
+        }
     }
 }

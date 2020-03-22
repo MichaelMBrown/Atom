@@ -12,9 +12,11 @@ commands:
     description: Communicate with Staff
     usage: /<command>
     aliases: staffchat
+    permission: clarke.chat.staffchat
   kick:
     description: Remove a player
     usage: /<command>
+    permission: clarke.command.kick
   report:
     description: Report a player
     default: true
@@ -26,27 +28,34 @@ commands:
   fly:
     description: Enable Flight
     usage: /<command>
+    permission: clarke.command.fly
   setserver:
     description: [Admin Only]
     usage: /<command>
     aliases: set-server
+    permission: clarke.command.setserver
   god:
     description: Make yourself a God
     usage: /<command>
+    permission: clarke.command.god
   heal:
     description: Heals yourself
     usage: /<command>
+    permission: clarke.command.heal
   gamemode:
     description: Changes gamemode
     usage: /<command>
     aliases: gm
+    permission: clarke.command.gamemode
   tp:
     description: Teleports plaers
     usage: /<command>
     aliases: teleport
+    permission: clarke.command.tp
   kill:
     description: Kills a Player
     usage: /<command>
+    permission: clarke.command.kill
   clarke:
     description: Clarke
     default: true
@@ -54,39 +63,69 @@ commands:
   weather:
     description: Changes the weather
     usage: /<command>
+    permission: clarke.command.weather
   edit:
     description: Does alot
     usage: /<command>
+    permission: clarke.command.edit
   freeze:
     description: Halts a players actions
     usage: /<command>
+    permission: clarke.command.freeze
   smite:
     description: Summons a lightning bold
     usage: /<command>
+    permission: clarke.command.smite
   enderchest:
     description: Opens the Enderchest
     aliases: [ec,echest]
     usage: /<command>
+    permission: clarke.command.enderchest
   mutechat:
     description: Silences Chat for Non-Staff
+    permission: clarke.command.mutechat
   tphere:
     description: Teleports a player to you
+    permission: clarke.command.tphere
   say:
     description: Broadcast to the Server
+    permission: clarke.command.say
   grant:
     description: Grants a user a Rank
+    usage: /<command>
+    permission: clarke.command.grant
   grants:
     description: Views a users grants
+    permission: clarke.command.grants
+    usage: /<command>
   give:
     description: Gives a player an Item
+    usage: /<command>
+    permission: clarke.command.give
   togglesc:
     description: Toggles in-game staffchat
+    usage: /<command>
+    permission: clarke.chat.staffchat
   whisper:
     description: Message a player
     aliases: [w,msg,tell,t]
+    usage: /<command>
+    default: true
   socialspy:
     description: Toggles Admin Spying
+    permission: clarke.command.socialspy
   togglepm:
     description: Toggles private messaging
+    usage: /<command>
+    default: true
   announceToStaff:
     description: "Nothing to see here :)"
+  setspawn:
+    description: Sets the Spawn
+    permission: clarke.command.setspawn
+  spawn:
+    description: Teleports to the Spawnpoint
+    default: true
+  build:
+    description: Toggles Build Mode.
+    permission: clarke.command.buildmode

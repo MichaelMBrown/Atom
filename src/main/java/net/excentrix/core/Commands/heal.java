@@ -24,6 +24,7 @@ public class heal implements CommandExecutor {
                             target.setHealth(20);
                             target.setFireTicks(0);
                             target.setFoodLevel(20);
+                            target.setSaturation(20);
                             for (PotionEffect effect : target.getActivePotionEffects()) {
                                 target.removePotionEffect(effect.getType());
                             }
@@ -37,6 +38,7 @@ public class heal implements CommandExecutor {
                         commandSender.setHealth(20);
                         commandSender.setFireTicks(0);
                         commandSender.setFoodLevel(20);
+                        commandSender.setSaturation(20);
                         for (PotionEffect effect : commandSender.getActivePotionEffects()) {
                             commandSender.removePotionEffect(effect.getType());
                         }

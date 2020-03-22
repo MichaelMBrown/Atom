@@ -9,6 +9,7 @@ import net.excentrix.core.messagingService.whisper;
 import net.excentrix.core.tabCompletionServices.*;
 import net.excentrix.core.tasks.updateTablist;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -23,12 +24,18 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
     public static ArrayList<Player> scMuted = new ArrayList();
     public static ArrayList<Player> pmToggled = new ArrayList();
     public static ArrayList<Player> nowSpying = new ArrayList();
+    public static ArrayList<Player> buildDenied = new ArrayList<>();
     public static Boolean chatSilenced;
+    public static Location spawn;
 
     public Core() {
     }
 
     public void onEnable() {
+        this.getConfig().options().copyDefaults();
+        this.saveDefaultConfig();
+        // Register Commands
+
         // Clarke Command
         this.getCommand("clarke").setExecutor(new clarke());
         this.getCommand("clarke").setTabCompleter(new clarkeCompletion());
@@ -89,16 +96,29 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         this.getCommand("togglePM").setExecutor(new togglePM());
         // SocialSpy Command
         this.getCommand("socialspy").setExecutor(new socialspy());
+        // Setspawn Command
+        this.getCommand("setspawn").setExecutor(new setSpawn());
+        // Spawn Command
+        this.getCommand("spawn").setExecutor(new spawn());
+        // Build Command
+        this.getCommand("build").setExecutor(new buildMode());
+
+
         // Internals :)
+
         this.getCommand("announceToStaff").setExecutor(new announceToStaff());
         this.getServer().getPluginManager().registerEvents(new godEvent(), this);
         this.getServer().getPluginManager().registerEvents(new mobSpawn(), this);
         this.getServer().getPluginManager().registerEvents(new freezeEvent(), this);
         this.getServer().getPluginManager().registerEvents(new deathEvents(), this);
         this.getServer().getPluginManager().registerEvents(new authEvent(), this);
-        this.getServer().getPluginManager().registerEvents(new playerTalk(), this);
-        this.getConfig().options().copyDefaults();
-        this.saveDefaultConfig();
+        this.getServer().getPluginManager().registerEvents(new playerChatEvents(), this);
+        this.getServer().getPluginManager().registerEvents(new portalEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new preventionMode(), this);
+
+
+        // Setup Global Chat
+
         chatSilenced = this.getConfig().getBoolean("chat-silenced");
         if (chatSilenced) {
             this.getLogger().info(ChatColor.YELLOW + "The chat is " + ChatColor.RED + "disabled" + ChatColor.YELLOW + " as it was turned off, prior to reboot.");
@@ -106,7 +126,17 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
             this.getLogger().info(ChatColor.YELLOW + "The chat is " + ChatColor.GREEN + "enabled" + ChatColor.YELLOW + " as it was turned on, prior to reboot.");
         }
 
+        // Starting the Scoreboard Task
+
         BukkitTask updateSB = (new updateTablist(this)).runTaskTimerAsynchronously(this, 0L, 60L);
+
+        // Assigning the Spawn Values
+        try {
+            spawn = getServer().getWorld(this.getConfig().getString("world")).getSpawnLocation();
+        } catch (NullPointerException e) {
+            getServer().getLogger().warning("World " + this.getConfig().getString("world") + " has an invalid Spawn point.");
+        }
+
     }
 
     public void onDisable() {

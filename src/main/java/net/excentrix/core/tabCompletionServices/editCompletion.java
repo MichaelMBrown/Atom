@@ -22,6 +22,7 @@ public class editCompletion implements TabCompleter {
                 configOptions.add("mobAI");
                 configOptions.add("disableDrowned");
                 configOptions.add("doInsomnia");
+                configOptions.add("disablePortals");
                 return configOptions;
             }
             if (args.length == 3) {

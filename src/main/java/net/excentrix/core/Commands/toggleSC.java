@@ -2,7 +2,6 @@ package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,10 +19,10 @@ public class toggleSC implements CommandExecutor {
             return true;
         } else {
             if (Core.scMuted.contains(sender)) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 &7You enabled the Staff Chat!"));
+                staffUtils.informativeMessage(sender, "&aYou've enabled staff messages.");
                 Core.scMuted.remove(sender);
             } else {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 &7You disabled the Staff Chat!"));
+                staffUtils.informativeMessage(sender, "&cYou've disabled staff messages.");
                 Core.scMuted.add(sender);
             }
         }

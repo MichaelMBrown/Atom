@@ -1,4 +1,6 @@
 # Enter your server name here.
+# Changes in here require a /clarke reload
+
 # This shows up in the StaffChat, and other Commands.
 server-name: 'undefined'
 # Decides whether or not Mobs should be Smart.
@@ -8,7 +10,10 @@ disableDrowned: false
 # Disables the Slime Spawn Event.
 slimesDisabled: true
 # Enables / Disables Global Chat
-# Changes in here require a /clarke reload
 chat-silenced: false
-# When set to FALSE disables the Spawning of Phantoms
+# When set to FALSE disables the Spawning of Phantoms.
 doInsomnia: false
+# Default World : Set this to your main world.
+world: 'world'
+# Disables the creation of Nether Portals
+disable-portals: true

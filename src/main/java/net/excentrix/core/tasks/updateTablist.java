@@ -39,19 +39,20 @@ public class updateTablist extends BukkitRunnable {
                             break;
                         case "developer":
                             p.setPlayerListName(colourDeveloper + "" + ChatColor.BOLD + p.getName());
-                            p.setDisplayName(colourDeveloper + "" + colourBold + p.getName());
+                            p.setDisplayName(colourDeveloper + "" + colourBold + p.getName() + ChatColor.RESET);
                             break;
                         case "admin":
                             p.setPlayerListName(colourAdmin + p.getName());
-                            p.setDisplayName(colourAdmin + p.getName());
+                            p.setDisplayName(colourAdmin + p.getName() + ChatColor.RESET);
                             break;
                         case "staff":
                             p.setPlayerListName(colourStaff + p.getName());
-                            p.setDisplayName(colourStaff + p.getName());
+                            p.setDisplayName(colourStaff + p.getName() + ChatColor.RESET);
                             break;
                         default:
                             p.setPlayerListName(colourBasic + p.getName());
-                            p.setDisplayName(colourBasic + p.getName());
+                            p.setDisplayName(colourBasic + p.getName() + ChatColor.RESET);
+                            break;
                     }
                 }
 //            p.setPlayerListName(ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(group).));

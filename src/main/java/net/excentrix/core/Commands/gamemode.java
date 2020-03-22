@@ -28,6 +28,9 @@ public class gamemode implements CommandExecutor {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &7That game mode does not exist!"));
             }
         } else if ((strings.length == 2) && !(sender instanceof ConsoleCommandSender)) {
+            if (!(sender.hasPermission("clarke.command.gamemode.others"))) {
+                staffUtils.noPerm(sender);
+            }
             Player target;
             try {
                 target = Bukkit.getPlayerExact(strings[1]);

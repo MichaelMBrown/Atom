@@ -107,6 +107,27 @@ public class edit implements CommandExecutor {
                                         break;
                                 }
                                 break;
+                            case "DISABLEPORTALS":
+                                switch (value) {
+                                    case "TRUE":
+                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        plugin.getConfig().set("disable-portals", true);
+                                        plugin.saveConfig();
+                                        plugin.reloadConfig();
+                                        break;
+                                    case "FALSE":
+                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        plugin.getConfig().set("disable-portals", false);
+                                        plugin.saveConfig();
+                                        plugin.reloadConfig();
+                                        break;
+                                    default:
+                                        sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
+                                        break;
+                                }
+                                break;
                             default:
                                 staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
                                 break;

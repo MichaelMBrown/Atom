@@ -3,7 +3,6 @@ package net.excentrix.core.Commands;
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -59,7 +58,7 @@ public class clarke implements CommandExecutor {
                         staffUtils.noPerm((Player) sender);
                     }
                 } else if (args[0].equalsIgnoreCase("debug")) {
-                    sender.sendMessage(String.valueOf(GameMode.values()));
+                    sender.sendMessage(staffUtils.getRankInteger(sender.getName()).toString());
                 } else {
                     sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/clarke " + ChatColor.WHITE + "<help/reload>");
                 }
