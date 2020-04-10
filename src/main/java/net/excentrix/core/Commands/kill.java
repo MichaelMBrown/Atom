@@ -3,7 +3,6 @@ package net.excentrix.core.Commands;
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,7 +20,7 @@ public class kill implements CommandExecutor {
                             staffUtils.actionForbidden((Player) sender);
                         } else {
                             target.setHealth(0);
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 Killed &e" + target.getName()));
+                            staffUtils.informativeMessage((Player) sender, "Killed &e" + target.getName());
 //                            staffUtils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
                         }
                     } else staffUtils.playerNotFound((Player) sender);

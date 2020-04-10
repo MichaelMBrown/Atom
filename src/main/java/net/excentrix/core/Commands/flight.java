@@ -20,20 +20,20 @@ public class flight implements CommandExecutor {
                         if (target != null) {
                             if (args[1].equalsIgnoreCase("on")) {
 //                                sender.sendMessage(ChatColor.GREEN + "You turned flight on for " + ChatColor.YELLOW + target.getName() + ChatColor.GREEN + "!");
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You turned flight on for &f" + target.getName() + "&7!"));
+                                staffUtils.informativeMessage((Player) sender, "You turned flight on for &f" + target.getName() + "&7!");
                                 if (!target.isOnGround() || !target.isSwimming()) {
                                     target.setAllowFlight(true);
                                     target.setFlying(true);
                                 } else target.setAllowFlight(true);
                             } else if (args[1].equalsIgnoreCase("off")) {
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&7 You turned flight off for &f" + target.getName() + "&7!"));
+                                staffUtils.informativeMessage((Player) sender, "You turned flight off for &f" + target.getName() + "&7!");
                                 target.setFlying(false);
                                 target.setAllowFlight(false);
                             }
                         } else staffUtils.playerNotFound((Player) sender);
                     } else if (args.length == 0) {
                         if (((Player) sender).getAllowFlight()) {
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&7 You turned flight off for &f" + sender.getName() + "&7!"));
+                            staffUtils.informativeMessage((Player) sender, "You turned flight off for &f" + sender.getName() + "&7!");
                             ((Player) sender).setAllowFlight(false);
                             ((Player) sender).setFlying(false);
                         } else {
@@ -41,7 +41,7 @@ public class flight implements CommandExecutor {
                                 ((Player) sender).setAllowFlight(true);
                                 ((Player) sender).setFlying(true);
                             } else ((Player) sender).setAllowFlight(true);
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You turned flight on for &f" + sender.getName() + "&7!"));
+                            staffUtils.informativeMessage((Player) sender, "You turned flight on for &f" + sender.getName() + "&7!");
                         }
                     } else
                         staffUtils.printUsage((Player) sender, "fly", "[player] <mode>");

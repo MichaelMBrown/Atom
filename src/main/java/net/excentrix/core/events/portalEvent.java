@@ -19,7 +19,7 @@ public class portalEvent implements Listener {
             if (event.getEntity() instanceof Player) {
                 event.setCancelled(true);
                 staffUtils.errorMessage((Player) event.getEntity(), "Sorry, the creation of Nether Portals have been disabled. :-(");
-                staffUtils.scNotif("console", ChatColor.RED + event.getEntity().getName() + ChatColor.YELLOW + " tried to create a Nether Portal.");
+                staffUtils.scNotify("console", ChatColor.RED + event.getEntity().getName() + ChatColor.YELLOW + " tried to create a Nether Portal.");
             }
         }
     }

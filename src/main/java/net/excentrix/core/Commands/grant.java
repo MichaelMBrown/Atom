@@ -53,24 +53,23 @@ public class grant implements CommandExecutor {
                             getServer().dispatchCommand(getServer().getConsoleSender(), "lp user " + target.getName() + " parent set " + args[1]);
                             if (grantName != null) {
                                 getLogger().info(ChatColor.DARK_RED + "User " + target.getName() + " was granted " + ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(args[1]).getDisplayName()) + ChatColor.DARK_RED + " by " + sender.getName());
-                                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&f " + target.getName() + "&7's grant was updated to " + grantName + "&7!"));
-                                target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You are now granted " + grantName + "&7."));
+                                staffUtils.informativeMessage(commandSender, target.getName() + "&7's grant was updated to " + grantName + "&7!");
+                                staffUtils.informativeMessage(target, "You are now granted " + grantName + "&7.");
                             } else {
-                                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&f " + target.getName() + "&7's grant was updated to " + api.getGroupManager().getGroup(args[1]).getName() + "&7!"));
-                                target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You are now granted " + api.getGroupManager().getGroup(args[1]).getName() + "&7."));
-                                getLogger().info(ChatColor.DARK_RED + "User " + target.getName() + " was granted " + ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(args[1]).getName()) + ChatColor.DARK_RED + " by " + sender.getName());
+                                staffUtils.informativeMessage(commandSender, target.getName() + "&7's grant was updated to " + api.getGroupManager().getGroup(args[1]).getName() + "&7!");
+                                staffUtils.informativeMessage(target, "You are now granted " + api.getGroupManager().getGroup(args[1]).getName() + "&7.");
+                                getLogger().info(ChatColor.translateAlternateColorCodes('&', "&6&lUser &7" + target.getName() + "&6&l was granted: &f'" + api.getGroupManager().getGroup(args[1]).getName() + "&f'&6&l by &c&l" + sender.getName()));
                             }
-                            //staffUtils.scNotif(commandSender.getName(), ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " has been granted " + api.getGroupManager().getGroup(args[1]).getDisplayName() + ChatColor.YELLOW + " by " + ChatColor.GOLD + commandSender.getName());
                         } else {
                             staffUtils.actionForbidden(commandSender);
                         }
                     } else {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l]&c You cannot grant &o" + args[1].toLowerCase() + "&r&c as it doesn't exist."));
+                        staffUtils.errorMessage(commandSender, "You cannot grant " + args[1].toLowerCase() + "&c as it doesn't exist.");
                     }
                 } else staffUtils.playerNotFound(commandSender);
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "Cannot perform any actions using grant, as the dependency is not found!");
+            staffUtils.errorMessage((Player) sender, "Cannot execute any grant commands because I'm missing the Dependency! (&aLuckPerms&c)");
         }
         return true;
     }

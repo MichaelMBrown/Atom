@@ -1,18 +1,21 @@
 package net.excentrix.core;
 
 import net.excentrix.core.Commands.*;
+import net.excentrix.core.enchants.trueDamage;
 import net.excentrix.core.events.*;
 import net.excentrix.core.internalCommands.announceToStaff;
-import net.excentrix.core.messagingService.socialspy;
-import net.excentrix.core.messagingService.togglePM;
-import net.excentrix.core.messagingService.whisper;
+import net.excentrix.core.messagingServices.socialspy;
+import net.excentrix.core.messagingServices.togglePM;
+import net.excentrix.core.messagingServices.whisper;
 import net.excentrix.core.tabCompletionServices.*;
 import net.excentrix.core.tasks.updateTablist;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -26,104 +29,133 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
     public static ArrayList<Player> nowSpying = new ArrayList();
     public static ArrayList<Player> buildDenied = new ArrayList<>();
     public static Boolean chatSilenced;
+    public static Boolean enchantSupport = false;
     public static Location spawn;
+    //public static final double clarkeVersion = 1.2;
 
     public Core() {
     }
 
-    public void onEnable() {
-        this.getConfig().options().copyDefaults();
-        this.saveDefaultConfig();
-        // Register Commands
+    // Setup the Economy
+    private static Economy econ = null;
 
+    public static Economy getEcon() {
+        return econ;
+    }
+
+    private boolean setupEconomy() {
+        RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
+        if (economyProvider != null) {
+            econ = economyProvider.getProvider();
+        }
+
+        return (econ != null);
+    }
+
+    public void onEnable() {
+        //Setup the custom enchant support
+        enchantSupport = getConfig().getString("server-name").equalsIgnoreCase("kitpvp");
+
+
+        // Setup Economy
+        setupEconomy();
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+
+
+        // Register Commands
         // Clarke Command
-        this.getCommand("clarke").setExecutor(new clarke());
-        this.getCommand("clarke").setTabCompleter(new clarkeCompletion());
+        getCommand("clarke").setExecutor(new clarke());
+        getCommand("clarke").setTabCompleter(new clarkeCompletion());
         // Kick Command
-        this.getCommand("kick").setExecutor(new kick());
+        getCommand("kick").setExecutor(new kick());
         // Report Command
-        this.getCommand("report").setExecutor(new report());
-        this.getCommand("report").setTabCompleter(new reportCompletion());
+        getCommand("report").setExecutor(new report());
+        getCommand("report").setTabCompleter(new reportCompletion());
         // Helpop Command
-        this.getCommand("helpop").setExecutor(new helpop());
+        getCommand("helpop").setExecutor(new helpop());
         // Flight Command
-        this.getCommand("fly").setExecutor(new flight());
+        getCommand("fly").setExecutor(new flight());
         // SetServer Command
-        this.getCommand("setserver").setExecutor(new setServer());
+        getCommand("setserver").setExecutor(new setServer());
         // God Command
-        this.getCommand("god").setExecutor(new God());
+        getCommand("god").setExecutor(new God());
         // StaffChat Command
-        this.getCommand("sc").setExecutor(new staffchat());
+        getCommand("sc").setExecutor(new staffchat());
         // Heal Command
-        this.getCommand("heal").setExecutor(new heal());
+        getCommand("heal").setExecutor(new heal());
         // Gamemode Command
-        this.getCommand("gamemode").setExecutor(new gamemode());
-        this.getCommand("gamemode").setTabCompleter(new gamemodeCompletion());
+        getCommand("gamemode").setExecutor(new gamemode());
+        getCommand("gamemode").setTabCompleter(new gamemodeCompletion());
         // TP Command
-        this.getCommand("tp").setExecutor(new teleport());
+        getCommand("tp").setExecutor(new teleport());
         // Kill Command
-        this.getCommand("kill").setExecutor(new kill());
+        getCommand("kill").setExecutor(new kill());
         // Weather Command
-        this.getCommand("weather").setExecutor(new weather());
-        this.getCommand("weather").setTabCompleter(new weatherCompletion());
+        getCommand("weather").setExecutor(new weather());
+        getCommand("weather").setTabCompleter(new weatherCompletion());
         // Edit Command
-        this.getCommand("edit").setExecutor(new edit());
-        this.getCommand("edit").setTabCompleter(new editCompletion());
+        getCommand("edit").setExecutor(new edit());
+        getCommand("edit").setTabCompleter(new editCompletion());
         // Freeze Command
-        this.getCommand("freeze").setExecutor(new freeze());
+        getCommand("freeze").setExecutor(new freeze());
         // Smite Command
-        this.getCommand("smite").setExecutor(new smite());
+        getCommand("smite").setExecutor(new smite());
         // Mutechat Commmand
-        this.getCommand("mutechat").setExecutor(new mutechat());
+        getCommand("mutechat").setExecutor(new mutechat());
         // Enderchest Command
-        this.getCommand("enderchest").setExecutor(new enderchest());
+        getCommand("enderchest").setExecutor(new enderchest());
         // TPHere Command
-        this.getCommand("tphere").setExecutor(new teleportHere());
+        getCommand("tphere").setExecutor(new teleportHere());
         // Say Command
-        this.getCommand("say").setExecutor(new say());
+        getCommand("say").setExecutor(new say());
         // Grant Command
-        this.getCommand("grant").setExecutor(new grant());
-        this.getCommand("grant").setTabCompleter(new grantCompletion());
+        getCommand("grant").setExecutor(new grant());
+        getCommand("grant").setTabCompleter(new grantCompletion());
         // Grants Command
-        this.getCommand("grants").setExecutor(new grants());
+        getCommand("grants").setExecutor(new grants());
         // Give Command
-        this.getCommand("give").setExecutor(new give());
+        getCommand("give").setExecutor(new give());
         // Toggle StaffChat Command
-        this.getCommand("togglesc").setExecutor(new toggleSC());
+        getCommand("togglesc").setExecutor(new toggleSC());
         // Whisper Command
-        this.getCommand("whisper").setExecutor(new whisper());
+        getCommand("whisper").setExecutor(new whisper());
         // TogglePM Command
-        this.getCommand("togglePM").setExecutor(new togglePM());
+        getCommand("togglePM").setExecutor(new togglePM());
         // SocialSpy Command
-        this.getCommand("socialspy").setExecutor(new socialspy());
+        getCommand("socialspy").setExecutor(new socialspy());
         // Setspawn Command
-        this.getCommand("setspawn").setExecutor(new setSpawn());
+        getCommand("setspawn").setExecutor(new setSpawn());
         // Spawn Command
-        this.getCommand("spawn").setExecutor(new spawn());
+        getCommand("spawn").setExecutor(new spawn());
         // Build Command
-        this.getCommand("build").setExecutor(new buildMode());
+        getCommand("build").setExecutor(new buildMode());
+        //Balance Command
+        getCommand("balance").setExecutor(new balance());
 
 
         // Internals :)
 
-        this.getCommand("announceToStaff").setExecutor(new announceToStaff());
-        this.getServer().getPluginManager().registerEvents(new godEvent(), this);
-        this.getServer().getPluginManager().registerEvents(new mobSpawn(), this);
-        this.getServer().getPluginManager().registerEvents(new freezeEvent(), this);
-        this.getServer().getPluginManager().registerEvents(new deathEvents(), this);
-        this.getServer().getPluginManager().registerEvents(new authEvent(), this);
-        this.getServer().getPluginManager().registerEvents(new playerChatEvents(), this);
-        this.getServer().getPluginManager().registerEvents(new portalEvent(), this);
-        this.getServer().getPluginManager().registerEvents(new preventionMode(), this);
+        getCommand("announceToStaff").setExecutor(new announceToStaff());
+        getServer().getPluginManager().registerEvents(new godEvent(), this);
+        getServer().getPluginManager().registerEvents(new mobSpawn(), this);
+        getServer().getPluginManager().registerEvents(new freezeEvent(), this);
+        getServer().getPluginManager().registerEvents(new deathEvents(), this);
+        getServer().getPluginManager().registerEvents(new authEvent(), this);
+        getServer().getPluginManager().registerEvents(new playerChatEvents(), this);
+        getServer().getPluginManager().registerEvents(new portalEvent(), this);
+        getServer().getPluginManager().registerEvents(new preventionMode(), this);
+        getServer().getPluginManager().registerEvents(new rightVersion(), this);
+        getServer().getPluginManager().registerEvents(new trueDamage(), this);
 
 
         // Setup Global Chat
 
-        chatSilenced = this.getConfig().getBoolean("chat-silenced");
+        chatSilenced = getConfig().getBoolean("chat-silenced");
         if (chatSilenced) {
-            this.getLogger().info(ChatColor.YELLOW + "The chat is " + ChatColor.RED + "disabled" + ChatColor.YELLOW + " as it was turned off, prior to reboot.");
+            getLogger().info(ChatColor.YELLOW + "The chat is " + ChatColor.RED + "disabled" + ChatColor.YELLOW + " as it was turned off, prior to reboot.");
         } else {
-            this.getLogger().info(ChatColor.YELLOW + "The chat is " + ChatColor.GREEN + "enabled" + ChatColor.YELLOW + " as it was turned on, prior to reboot.");
+            getLogger().info(ChatColor.YELLOW + "The chat is " + ChatColor.GREEN + "enabled" + ChatColor.YELLOW + " as it was turned on, prior to reboot.");
         }
 
         // Starting the Scoreboard Task
@@ -132,16 +164,16 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 
         // Assigning the Spawn Values
         try {
-            spawn = getServer().getWorld(this.getConfig().getString("world")).getSpawnLocation();
+            spawn = getServer().getWorld(getConfig().getString("world")).getSpawnLocation();
         } catch (NullPointerException e) {
-            getServer().getLogger().warning("World " + this.getConfig().getString("world") + " has an invalid Spawn point.");
+            getServer().getLogger().warning("World " + getConfig().getString("world") + " has an invalid Spawn point.");
         }
 
     }
 
     public void onDisable() {
-        this.getLogger().info(ChatColor.YELLOW + "Saving chat state to disk.");
-        this.getConfig().set("chat-silenced", chatSilenced);
-        this.getLogger().info(ChatColor.GREEN + "Success!");
+        getLogger().info(ChatColor.YELLOW + "Saving chat state to disk.");
+        getConfig().set("chat-silenced", chatSilenced);
+        getLogger().info(ChatColor.GREEN + "Success!");
     }
 }

@@ -18,8 +18,8 @@ public class helpop implements CommandExecutor {
                     for (int i = 0; i < args.length; ++i) {
                         message = message + args[i] + " ";
                     }
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 Your message &f" + message + "&7was send to the staff!"));
-                    staffUtils.scNotif("Console", ChatColor.GOLD + (sender.getName() + ChatColor.YELLOW + " requested help: " + ChatColor.GRAY + "" + ChatColor.ITALIC + message));
+                    staffUtils.informativeMessage((Player) sender, "Your message &f" + message + "&7was send to the staff!");
+                    staffUtils.scNotify("Console", ChatColor.GOLD + (sender.getName() + ChatColor.YELLOW + " requested help: " + ChatColor.GRAY + "" + ChatColor.ITALIC + message));
                 } else {
                     staffUtils.printUsage((Player) sender, "helpop", "<message>");
                 }

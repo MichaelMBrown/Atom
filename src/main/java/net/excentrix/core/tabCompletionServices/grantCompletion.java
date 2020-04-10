@@ -10,6 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class grantCompletion implements TabCompleter {
@@ -27,6 +29,7 @@ public class grantCompletion implements TabCompleter {
                             canGrant.add(e.getName());
                         }
                     }
+                    Collections.sort(canGrant, Comparator.naturalOrder());
                     return canGrant;
                 }
             }

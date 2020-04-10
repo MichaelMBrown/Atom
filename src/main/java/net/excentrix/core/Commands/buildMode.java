@@ -11,7 +11,7 @@ public class buildMode implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
-        if (!(sender.hasPermission("clarke.command.buildmode")))
+        if (!(sender.hasPermission("clarke.command.build")))
             return true;
         if (Core.buildDenied.contains(player)) {
             staffUtils.informativeMessage(player, "&aYour build mode has been turned on.");

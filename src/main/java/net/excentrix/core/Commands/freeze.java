@@ -22,15 +22,15 @@ public class freeze implements CommandExecutor {
                         if (!Core.freezeList.contains(target)) {
                             Core.freezeList.add(target);
                             target.setInvulnerable(true);
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You froze " + target.getName()));
+                            staffUtils.informativeMessage((Player) sender, "You froze " + target.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "froze " + ChatColor.GOLD + target.getName(), false);
-                            target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &cYou have been frozen."));
+                            staffUtils.errorMessage(target, "You have been frozen.");
                         } else {
                             Core.freezeList.remove(target);
                             target.setInvulnerable(false);
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You unfroze " + target.getName()));
+                            staffUtils.informativeMessage((Player) sender, "You unfroze " + target.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "unfroze " + ChatColor.GOLD + target.getName(), false);
-                            target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &aYou are no longer frozen."));
+                            staffUtils.informativeMessage(target, "You are no longer frozen.");
                         }
                     } else {
                         staffUtils.playerNotFound((Player) sender);

@@ -1,9 +1,10 @@
 name: Clarke
-version: 1.0-SNAPSHOT
+version: 1.4
 main: net.excentrix.core.Core
 api-version: 1.14
 softdepend: [LuckPerms]
-depend: []
+#loadbefore: [LiteBans]
+depend: [Vault]
 authors: [qr0]
 description: Clarke Management System.
 website: excentrix.net
@@ -128,4 +129,8 @@ commands:
     default: true
   build:
     description: Toggles Build Mode.
-    permission: clarke.command.buildmode
+    permission: clarke.command.build
+  balance:
+    description: Returns balance
+    aliases:
+      - bal

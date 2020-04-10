@@ -14,6 +14,7 @@ public class clarkeCompletion implements TabCompleter {
             List<String> arguments = new ArrayList<>();
             arguments.add("reload");
             arguments.add("help");
+            arguments.add("ver");
             return arguments;
         }
         return null;

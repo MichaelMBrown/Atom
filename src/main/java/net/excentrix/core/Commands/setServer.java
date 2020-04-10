@@ -2,9 +2,6 @@ package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
-import net.luckperms.api.LuckPerms;
-import net.luckperms.api.LuckPermsProvider;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,13 +20,9 @@ public class setServer implements CommandExecutor {
                     if (args.length == 1) {
                         sender.sendMessage(ChatColor.DARK_GRAY + "Processing request...");
                         plugin.getConfig().set("server-name", args[0]);
-                        sender.sendMessage(ChatColor.GREEN + "Done! You've set the server-name to " + ChatColor.YELLOW + args[0]);
+                        staffUtils.informativeMessage((Player) sender, "Done! You've set the server-name to " + ChatColor.YELLOW + args[0]);
                         plugin.saveConfig();
-                        staffUtils.scNotif(sender.getName(), "Set the server name to " + ChatColor.RED + args[0]);
-                        if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
-                            LuckPerms api = LuckPermsProvider.get();
-
-                        }
+                        staffUtils.scNotify(sender.getName(), "Set the server name to " + ChatColor.RED + args[0]);
                     } else {
                         staffUtils.printUsage((Player) sender, "setserver", "<new server name>");
                     }

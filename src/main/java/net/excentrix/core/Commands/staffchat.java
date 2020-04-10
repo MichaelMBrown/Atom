@@ -2,7 +2,6 @@ package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,8 +19,8 @@ public class staffchat implements CommandExecutor {
                 if (command.getName().equalsIgnoreCase("sc")) {
                     if (args.length > 0) {
                         String message = String.join(" ", args);
-                        plugin.getLogger().info(ChatColor.GOLD + ((Player) sender).getDisplayName() + ChatColor.GRAY + ": " + ChatColor.WHITE + message);
-                        staffUtils.scNotif(sender.getName(), message);
+                        //plugin.getLogger().info(ChatColor.GOLD + ((Player) sender).getDisplayName() + ChatColor.GRAY + ": " + ChatColor.WHITE + message);
+                        staffUtils.scNotify(sender.getName(), message);
                     } else {
                         staffUtils.printUsage((Player) sender, "sc", "<message>");
                     }
@@ -31,7 +30,7 @@ public class staffchat implements CommandExecutor {
             if (command.getName().equalsIgnoreCase("sc")) {
                 if (args.length > 0) {
                     String message = String.join(" ", args);
-                    staffUtils.scNotif("Console", message);
+                    staffUtils.scNotify("Console", message);
                 } else
                     staffUtils.printUsage((Player) sender, "sc", "<message>");
             }

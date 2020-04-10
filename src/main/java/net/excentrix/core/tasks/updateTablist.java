@@ -45,9 +45,37 @@ public class updateTablist extends BukkitRunnable {
                             p.setPlayerListName(colourAdmin + p.getName());
                             p.setDisplayName(colourAdmin + p.getName() + ChatColor.RESET);
                             break;
-                        case "staff":
+                        case "head-mod":
+                            p.setPlayerListName(colourStaff + "" + ChatColor.ITALIC + p.getName());
+                            p.setDisplayName(colourStaff + "" + ChatColor.ITALIC + p.getName() + ChatColor.RESET);
+                            break;
+                        case "mod":
                             p.setPlayerListName(colourStaff + p.getName());
                             p.setDisplayName(colourStaff + p.getName() + ChatColor.RESET);
+                            break;
+                        case "helper":
+                            p.setPlayerListName(ChatColor.YELLOW + p.getName());
+                            p.setDisplayName(ChatColor.YELLOW + p.getName() + ChatColor.RESET);
+                            break;
+                        case "goliath":
+                            p.setPlayerListName(ChatColor.GOLD + "" + ChatColor.BOLD + p.getName());
+                            p.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + p.getName() + ChatColor.RESET);
+                            break;
+                        case "mvp+":
+                            p.setPlayerListName(ChatColor.AQUA + "" + ChatColor.ITALIC + p.getName());
+                            p.setDisplayName(ChatColor.AQUA + "" + ChatColor.ITALIC + p.getName() + ChatColor.RESET);
+                            break;
+                        case "mvp":
+                            p.setPlayerListName(ChatColor.AQUA + p.getName());
+                            p.setDisplayName(ChatColor.AQUA + p.getName() + ChatColor.RESET);
+                            break;
+                        case "vip+":
+                            p.setPlayerListName(ChatColor.GREEN + "" + ChatColor.ITALIC + p.getName());
+                            p.setDisplayName(ChatColor.GREEN + "" + ChatColor.ITALIC + p.getName() + ChatColor.RESET);
+                            break;
+                        case "vip":
+                            p.setPlayerListName(ChatColor.GREEN + "" + ChatColor.ITALIC + p.getName());
+                            p.setDisplayName(ChatColor.GREEN + "" + ChatColor.ITALIC + p.getName() + ChatColor.RESET);
                             break;
                         default:
                             p.setPlayerListName(colourBasic + p.getName());

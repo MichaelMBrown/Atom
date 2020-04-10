@@ -1,9 +1,8 @@
-package net.excentrix.core.messagingService;
+package net.excentrix.core.messagingServices;
 
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,7 +29,7 @@ public class whisper implements CommandExecutor {
 
                         messageUtils.messagePlayer(commandSender, target, message);
                     } else {
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &cSorry, you cannot message this player."));
+                        staffUtils.errorMessage(commandSender, "Sorry, you cannot message this player.");
                     }
                 } else {
                     staffUtils.playerNotFound(commandSender);

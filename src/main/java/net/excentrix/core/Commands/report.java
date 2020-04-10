@@ -8,6 +8,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+// Deprecated
+
+//TODO: Rewrite this command
+
 public class report implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if ((sender instanceof Player)) {
@@ -55,8 +59,8 @@ public class report implements CommandExecutor {
 
     public void notifyStaff(String sender, String target, String[] args) {
         if (args[1].equalsIgnoreCase("KA")) {
-            staffUtils.scNotif("Console", ChatColor.GOLD + sender + ChatColor.YELLOW + " has reported " + ChatColor.RED + target + ChatColor.YELLOW + " for " + ChatColor.RED + "KillAura" + ChatColor.YELLOW + ".");
+            staffUtils.scNotify("Console", ChatColor.GOLD + sender + ChatColor.YELLOW + " has reported " + ChatColor.RED + target + ChatColor.YELLOW + " for " + ChatColor.RED + "KillAura" + ChatColor.YELLOW + ".");
         } else
-            staffUtils.scNotif("Console", ChatColor.GOLD + sender + ChatColor.YELLOW + " has reported " + ChatColor.RED + target + ChatColor.YELLOW + " for " + ChatColor.RED + args[1].toLowerCase() + ChatColor.YELLOW + ".");
+            staffUtils.scNotify("Console", ChatColor.GOLD + sender + ChatColor.YELLOW + " has reported " + ChatColor.RED + target + ChatColor.YELLOW + " for " + ChatColor.RED + args[1].toLowerCase() + ChatColor.YELLOW + ".");
     }
 }

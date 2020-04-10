@@ -18,17 +18,17 @@ public class mutechat implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender.hasPermission("clarke.command.mutechat")) {
             if (!chatSilenced) {
-                staffUtils.broadcastServer(ChatColor.translateAlternateColorCodes('&', "&8&l[&c&l❌&8&l] &7Global chat has been disabled by " + commandSender.getName()));
+                staffUtils.broadcastServer(ChatColor.translateAlternateColorCodes('&', "&e&lClarke&f Global chat has been disabled by " + commandSender.getName()));
                 chatSilenced = true;
                 plugin.getConfig().set("chat-silenced", chatSilenced);
                 plugin.saveConfig();
-                staffUtils.scNotif("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has muted the chat.");
+                staffUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has muted the chat.");
             } else {
-                staffUtils.broadcastServer(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 Global chat has been enabled by " + commandSender.getName()));
+                staffUtils.broadcastServer(ChatColor.translateAlternateColorCodes('&', "&e&lClarke&f Global chat has been enabled by " + commandSender.getName()));
                 chatSilenced = false;
                 plugin.getConfig().set("chat-silenced", chatSilenced);
                 plugin.saveConfig();
-                staffUtils.scNotif("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has unmuted the chat.");
+                staffUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has unmuted the chat.");
             }
         } else staffUtils.noPerm((Player) commandSender);
         return true;

@@ -20,50 +20,56 @@ public class clarke implements CommandExecutor {
         double totalArgs = args.length - 1;
         if (sender.hasPermission("clarke.command.clarke")) {
             if (args.length > 0) {
-                if (args[0].equalsIgnoreCase("help")) {
-                    Player player = (Player) sender;
-                    sender.sendMessage(ChatColor.YELLOW + "==========" + ChatColor.GOLD + " Clarke Commands" + ChatColor.YELLOW + "==========");
-                    sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/helpop" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Requests Staff Assistance");
-                    sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/report" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Reports a Player");
-                    sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/w" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Message a Player");
-                    sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/togglepm" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Toggles Receiving Messages.");
-                    clarkeCommand(player, "fly", "Enables/Disables Flight for a Player");
-                    clarkeCommand(player, "gamemode", "Sets a Players Gamemode");
-                    clarkeCommand(player, "god", "Enables/Disables God for a Player");
-                    clarkeCommand(player, "heal", "Heals a Player");
-                    clarkeCommand(player, "kick", "Removes a player from the Network");
-                    clarkeCommand(player, "kill", "Kills a Player");
-                    clarkeCommand(player, "staffchat", "Communicates in StaffChat");
-                    clarkeCommand(player, "toggleSC", "Toggles in-game staff chat");
-                    clarkeCommand(player, "tp", "Teleport to Players");
-                    clarkeCommand(player, "weather", "Changes the Weather");
-                    clarkeCommand(player, "edit", "Edits in-game configs");
-                    clarkeCommand(player, "freeze", "Halts a players actions");
-                    clarkeCommand(player, "smite", "Summons a lightning-bolt");
-                    clarkeCommand(player, "enderchest", "Opens the Enderchest");
-                    clarkeCommand(player, "tphere", "Teleports a player to you");
-                    clarkeCommand(player, "say", "Broadcast to the Server");
-                    clarkeCommand(player, "give", "Give a player an Item");
-                    clarkeCommand(player, "grant", "Grant a user a rank");
-                    clarkeCommand(player, "grants", "Shows what a User has been Granted");
-
-                    if (args[(int) totalArgs].equalsIgnoreCase("-i") && sender.hasPermission("clarke.internal"))
-                        sender.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/setserver" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Sets the server name." + ChatColor.RED + " [Internal]");
-                } else if (args[0].equalsIgnoreCase("reload")) {
-                    if (sender.hasPermission("clarke.command.clarke.reload")) {
-                        plugin.reloadConfig();
-                        sender.sendMessage(ChatColor.GREEN + "Reloaded " + ChatColor.YELLOW + "Clarke" + ChatColor.GREEN + "'s config.");
-                        BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "reloaded the Config.", false);
-                    } else {
-                        staffUtils.noPerm((Player) sender);
-                    }
-                } else if (args[0].equalsIgnoreCase("debug")) {
-                    sender.sendMessage(staffUtils.getRankInteger(sender.getName()).toString());
-                } else {
-                    sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/clarke " + ChatColor.WHITE + "<help/reload>");
+                String option = args[0].toLowerCase();
+                switch (option) {
+                    case "help":
+                        Player player = (Player) sender;
+                        player.sendMessage(ChatColor.YELLOW + "==========" + ChatColor.GOLD + " Clarke Commands" + ChatColor.YELLOW + "==========");
+                        player.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/helpop" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Requests Staff Assistance");
+                        player.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/report" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Reports a Player");
+                        player.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/w" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Message a Player");
+                        player.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/togglepm" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Toggles Receiving Messages.");
+                        clarkeCommand(player, "fly", "Enables/Disables Flight for a Player");
+                        clarkeCommand(player, "gamemode", "Sets a Players Gamemode");
+                        clarkeCommand(player, "god", "Enables/Disables God for a Player");
+                        clarkeCommand(player, "heal", "Heals a Player");
+                        clarkeCommand(player, "kick", "Removes a player from the Network");
+                        clarkeCommand(player, "kill", "Kills a Player");
+                        clarkeCommand(player, "staffchat", "Communicates in StaffChat");
+                        clarkeCommand(player, "toggleSC", "Toggles in-game staff chat");
+                        clarkeCommand(player, "tp", "Teleport to Players");
+                        clarkeCommand(player, "weather", "Changes the Weather");
+                        clarkeCommand(player, "edit", "Edits in-game configs");
+                        clarkeCommand(player, "freeze", "Halts a players actions");
+                        clarkeCommand(player, "smite", "Summons a lightning-bolt");
+                        clarkeCommand(player, "enderchest", "Opens the Enderchest");
+                        clarkeCommand(player, "tphere", "Teleports a player to you");
+                        clarkeCommand(player, "say", "Broadcast to the Server");
+                        clarkeCommand(player, "give", "Give a player an Item");
+                        clarkeCommand(player, "grant", "Grant a user a rank");
+                        clarkeCommand(player, "grants", "Shows what a User has been Granted");
+                        clarkeCommand(player, "build", "Toggles Buildmode.");
+                        clarkeCommand(player, "balance", "Views your Balance");
+                        clarkeCommand(player, "setserver", "Sets the internal server name");
+                        break;
+                    case "reload":
+                        if (sender.hasPermission("clarke.command.clarke.reload")) {
+                            plugin.reloadConfig();
+                            sender.sendMessage(ChatColor.GREEN + "Reloaded " + ChatColor.YELLOW + "Clarke" + ChatColor.GREEN + "'s config.");
+                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "reloaded the Config.", false);
+                        } else staffUtils.noPerm((Player) sender);
+                        break;
+                    case "debug":
+                        sender.sendMessage(ChatColor.RED + "Temporarily disabled.");
+                        break;
+                    case "version":
+                        staffUtils.informativeMessage((Player) sender, "This server is running &e&lClarke &fv" + plugin.getDescription().getVersion());
+                    default:
+                        staffUtils.informativeMessage((Player) sender, "This server is running &e&lClarke &fv" + plugin.getDescription().getVersion());
+                        break;
                 }
             } else
-                sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/clarke " + ChatColor.WHITE + "<help/reload>");
+                sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/clarke " + ChatColor.WHITE + "<help/reload/version>");
         }
         return true;
     }

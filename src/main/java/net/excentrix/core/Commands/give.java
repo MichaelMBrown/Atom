@@ -2,7 +2,6 @@ package net.excentrix.core.Commands;
 
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -40,8 +39,7 @@ public class give implements CommandExecutor {
                         for (Player p : Bukkit.getOnlinePlayers()) {
                             p.getInventory().addItem(item);
                         }
-//                        sender.sendMessage(ChatColor.BLUE + "Give> " + ChatColor.GRAY + "You gave " + ChatColor.YELLOW + amount + " " + item.getI18NDisplayName() + ChatColor.GRAY + " to " + ChatColor.YELLOW + strings[0].toUpperCase()); &8&l[&a&l✩&8&l]
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You gave &e" + amount + " " + item.getI18NDisplayName() + "&7 to &e" + strings[0].toUpperCase()));
+                        staffUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&7 to &e" + strings[0].toUpperCase());
                     } catch (NullPointerException e) {
                         staffUtils.actionForbidden(sender);
                     }
@@ -60,7 +58,7 @@ public class give implements CommandExecutor {
                     try {
                         ItemStack item = new ItemStack(Objects.requireNonNull(Material.getMaterial(strings[1].toUpperCase())), amount);
                         target.getInventory().addItem(item);
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You gave &e" + amount + " " + item.getI18NDisplayName() + "&7 to &e" + strings[0]));
+                        staffUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&7 to &e" + strings[0]);
                     } catch (NullPointerException e) {
                         staffUtils.actionForbidden(sender);
                     }

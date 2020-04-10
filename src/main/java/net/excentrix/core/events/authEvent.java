@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
 public class authEvent implements Listener {
@@ -22,19 +23,19 @@ public class authEvent implements Listener {
             LuckPerms api = LuckPermsProvider.get();
             String group = api.getUserManager().getUser(player.getName()).getPrimaryGroup();
             String grant = api.getGroupManager().getGroup(group).getDisplayName();
-            staffUtils.informativeMessage(player, "Please hold while I verify your grants...");
+            if (plugin.getConfig().getString("server-name").equalsIgnoreCase("hub"))
+                staffUtils.informativeMessage(player, "Please hold while I verify your grants...");
             Core.freezeList.add(player);
-            if (grant == null) {
-                staffUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
-                staffUtils.scNotif("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
-                Core.freezeList.add(player);
-            } else
-                staffUtils.informativeMessage(player, "&aVerified&7 Applying your " + grant + " to you now.");
+            if (plugin.getConfig().getString("server-name").equalsIgnoreCase("hub"))
+                if (grant == null) {
+                    staffUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
+                    staffUtils.scNotify("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
+                } else
+                    staffUtils.informativeMessage(player, "&aVerified&7 Applying your " + grant + " &7grant to you now.");
             Core.freezeList.remove(player);
         } else {
             staffUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
-            staffUtils.scNotif("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
-            Core.freezeList.add(player);
+            staffUtils.scNotify("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
         }
 
         event.setJoinMessage("");
@@ -43,8 +44,15 @@ public class authEvent implements Listener {
     @EventHandler
     public void buildMode(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if (staffUtils.getRankInteger(player.getName()) >= 3) {
+        //if (staffUtils.getRankInteger(player.getName()) >= 3) {
+        if (!(player.getWorld().getName().equalsIgnoreCase("plots"))) {
             Core.buildDenied.add(player);
         }
+        //}
+    }
+
+    @EventHandler
+    public void leaveEvent(PlayerQuitEvent event) {
+        event.setQuitMessage("");
     }
 }

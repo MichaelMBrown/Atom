@@ -29,8 +29,8 @@ public class edit implements CommandExecutor {
                             case "MOBAI":
                                 switch (value) {
                                     case "TRUE":
-                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
                                         plugin.getConfig().set("mobAI", true);
                                         plugin.saveConfig();
                                         plugin.reloadConfig();
@@ -45,8 +45,8 @@ public class edit implements CommandExecutor {
                                         }
                                         break;
                                     case "FALSE":
-                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
                                         plugin.getConfig().set("mobAI", false);
                                         plugin.saveConfig();
                                         plugin.reloadConfig();
@@ -68,15 +68,15 @@ public class edit implements CommandExecutor {
                             case "DISABLEDROWNED":
                                 switch (value) {
                                     case "TRUE":
-                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
                                         plugin.getConfig().set("disableDrowned", true);
                                         plugin.saveConfig();
                                         plugin.reloadConfig();
                                         break;
                                     case "FALSE":
-                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
                                         plugin.getConfig().set("disableDrowned", false);
                                         plugin.saveConfig();
                                         plugin.reloadConfig();
@@ -89,15 +89,15 @@ public class edit implements CommandExecutor {
                             case "DOINSOMNIA":
                                 switch (value) {
                                     case "TRUE":
-                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
                                         plugin.getConfig().set("doInsomnia", true);
                                         plugin.saveConfig();
                                         plugin.reloadConfig();
                                         break;
                                     case "FALSE":
-                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
                                         plugin.getConfig().set("doInsomnia", false);
                                         plugin.saveConfig();
                                         plugin.reloadConfig();
@@ -110,15 +110,15 @@ public class edit implements CommandExecutor {
                             case "DISABLEPORTALS":
                                 switch (value) {
                                     case "TRUE":
-                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
                                         plugin.getConfig().set("disable-portals", true);
                                         plugin.saveConfig();
                                         plugin.reloadConfig();
                                         break;
                                     case "FALSE":
-                                        staffUtils.scNotif(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l] &7Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]));
+                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.GOLD + args[2]);
+                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1].toUpperCase() + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
                                         plugin.getConfig().set("disable-portals", false);
                                         plugin.saveConfig();
                                         plugin.reloadConfig();

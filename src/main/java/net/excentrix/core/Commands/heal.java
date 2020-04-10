@@ -19,7 +19,7 @@ public class heal implements CommandExecutor {
                     if (args.length == 1) {
                         Player target = Bukkit.getPlayerExact(args[0]);
                         if (target != null) {
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You healed " + target.getName()));
+                            staffUtils.informativeMessage((Player) sender, "You healed " + target.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + target.getName(), false);
                             target.setHealth(20);
                             target.setFireTicks(0);
@@ -32,7 +32,7 @@ public class heal implements CommandExecutor {
                             staffUtils.playerNotFound((Player) sender);
                         }
                     } else {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l[&a&l✩&8&l]&7 You healed yourself."));
+                        staffUtils.informativeMessage((Player) sender, "You healed yourself.");
                         BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + sender.getName(), false);
                         Player commandSender = (Player) sender;
                         commandSender.setHealth(20);
