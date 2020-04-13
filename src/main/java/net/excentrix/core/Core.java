@@ -132,10 +132,11 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         getCommand("build").setExecutor(new buildMode());
         //Balance Command
         getCommand("balance").setExecutor(new balance());
+        //Shrug Command
+        getCommand("shrug").setExecutor(new shrug());
 
 
         // Internals :)
-
         getCommand("announceToStaff").setExecutor(new announceToStaff());
         getServer().getPluginManager().registerEvents(new godEvent(), this);
         getServer().getPluginManager().registerEvents(new mobSpawn(), this);
@@ -150,7 +151,6 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 
 
         // Setup Global Chat
-
         chatSilenced = getConfig().getBoolean("chat-silenced");
         if (chatSilenced) {
             getLogger().info(ChatColor.YELLOW + "The chat is " + ChatColor.RED + "disabled" + ChatColor.YELLOW + " as it was turned off, prior to reboot.");
@@ -159,7 +159,6 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         }
 
         // Starting the Scoreboard Task
-
         BukkitTask updateSB = (new updateTablist(this)).runTaskTimerAsynchronously(this, 0L, 60L);
 
         // Assigning the Spawn Values

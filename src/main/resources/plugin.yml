@@ -1,5 +1,5 @@
 name: Clarke
-version: 1.4
+version: 1.5
 main: net.excentrix.core.Core
 api-version: 1.14
 softdepend: [LuckPerms]
@@ -134,3 +134,5 @@ commands:
     description: Returns balance
     aliases:
       - bal
+  shrug:
+    description: "¯\_(ツ)_/¯"

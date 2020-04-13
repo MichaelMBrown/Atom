@@ -1,7 +1,6 @@
 package net.excentrix.core.events;
 
 import net.excentrix.core.Core;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,11 +23,13 @@ public class deathEvents implements Listener {
     public void deathReformat(PlayerDeathEvent event) {
         Player player = event.getEntity();
         if (event.getEntity().getKiller() != null) {
-            event.setDeathMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + player.getName() + ChatColor.GRAY + " was killed by " + ChatColor.RED + event.getEntity().getKiller().getName());
+            //event.setDeathMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + player.getName() + ChatColor.GRAY + " was killed by " + ChatColor.RED + event.getEntity().getKiller().getName());
+            event.setDeathMessage("");
             //World world = player.getWorld();
             //world.strikeLightning(player.getLocation());
         } else {
-            event.setDeathMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + player.getName() + ChatColor.GRAY + " has died.");
+            //event.setDeathMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + player.getName() + ChatColor.GRAY + " has died.");
+            event.setDeathMessage("");
             //World world = player.getWorld();
             //world.strikeLightning(player.getLocation());
         }

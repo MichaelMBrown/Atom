@@ -29,11 +29,11 @@ public class preventionMode implements Listener {
 
     @EventHandler
     public void onWorld(PlayerChangedWorldEvent event) {
-        if (event.getFrom().getName().equalsIgnoreCase("kitpvp")) {
-            if (event.getPlayer().getWorld().getName().equalsIgnoreCase("plots")) {
+        if (event.getFrom().getName().equalsIgnoreCase("Hub")) {
+            if (event.getPlayer().getWorld().getName().equalsIgnoreCase("Skyblock")) {
                 Core.buildDenied.remove(event.getPlayer());
             }
-        } else if (event.getFrom().getName().equalsIgnoreCase("plots")) {
+        } else if (event.getFrom().getName().equalsIgnoreCase("Hub")) {
             Core.buildDenied.add(event.getPlayer());
         }
     }
