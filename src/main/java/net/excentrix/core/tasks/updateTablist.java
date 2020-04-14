@@ -57,6 +57,10 @@ public class updateTablist extends BukkitRunnable {
                             p.setPlayerListName(ChatColor.YELLOW + p.getName());
                             p.setDisplayName(ChatColor.YELLOW + p.getName() + ChatColor.RESET);
                             break;
+                        case "builder":
+                            p.setPlayerListName(ChatColor.DARK_PURPLE + p.getName());
+                            p.setDisplayName(ChatColor.DARK_PURPLE + p.getName() + ChatColor.RESET);
+                            break;
                         case "goliath":
                             p.setPlayerListName(ChatColor.GOLD + "" + ChatColor.BOLD + p.getName());
                             p.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + p.getName() + ChatColor.RESET);
@@ -74,8 +78,8 @@ public class updateTablist extends BukkitRunnable {
                             p.setDisplayName(ChatColor.GREEN + "" + ChatColor.ITALIC + p.getName() + ChatColor.RESET);
                             break;
                         case "vip":
-                            p.setPlayerListName(ChatColor.GREEN + "" + ChatColor.ITALIC + p.getName());
-                            p.setDisplayName(ChatColor.GREEN + "" + ChatColor.ITALIC + p.getName() + ChatColor.RESET);
+                            p.setPlayerListName(ChatColor.GREEN + "" + p.getName());
+                            p.setDisplayName(ChatColor.GREEN + "" + p.getName() + ChatColor.RESET);
                             break;
                         default:
                             p.setPlayerListName(colourBasic + p.getName());

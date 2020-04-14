@@ -1,6 +1,7 @@
 package net.excentrix.core;
 
 import net.excentrix.core.Commands.*;
+import net.excentrix.core.enchants.telekinesis;
 import net.excentrix.core.enchants.trueDamage;
 import net.excentrix.core.events.*;
 import net.excentrix.core.internalCommands.announceToStaff;
@@ -54,7 +55,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 
     public void onEnable() {
         //Setup the custom enchant support
-        enchantSupport = getConfig().getString("server-name").equalsIgnoreCase("kitpvp");
+        enchantSupport = getConfig().getString("server-name").equalsIgnoreCase("skyblock") || getConfig().getString("server-name").equalsIgnoreCase("kitpvp");
 
 
         // Setup Economy
@@ -148,6 +149,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         getServer().getPluginManager().registerEvents(new preventionMode(), this);
         getServer().getPluginManager().registerEvents(new rightVersion(), this);
         getServer().getPluginManager().registerEvents(new trueDamage(), this);
+        getServer().getPluginManager().registerEvents(new telekinesis(), this);
 
 
         // Setup Global Chat
