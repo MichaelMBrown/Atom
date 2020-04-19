@@ -29,12 +29,14 @@ public class preventionMode implements Listener {
 
     @EventHandler
     public void onWorld(PlayerChangedWorldEvent event) {
-        if (event.getFrom().getName().equalsIgnoreCase("Hub")) {
-            if (event.getPlayer().getWorld().getName().equalsIgnoreCase("Skyblock")) {
+        switch (event.getPlayer().getWorld().getName().toLowerCase()) {
+            case "skyblock":
                 Core.buildDenied.remove(event.getPlayer());
-            }
-        } else if (event.getFrom().getName().equalsIgnoreCase("Hub")) {
-            Core.buildDenied.add(event.getPlayer());
+                break;
+            case "hub":
+                Core.buildDenied.add(event.getPlayer());
+                break;
         }
     }
 }
+

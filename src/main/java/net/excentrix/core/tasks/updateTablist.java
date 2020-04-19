@@ -25,7 +25,7 @@ public class updateTablist extends BukkitRunnable {
             ChatColor colourDeveloper = ChatColor.AQUA;
             ChatColor colourBold = ChatColor.BOLD;
             ChatColor colourAdmin = ChatColor.RED;
-            ChatColor colourStaff = ChatColor.DARK_PURPLE;
+            ChatColor colourStaff = ChatColor.GOLD;
             ChatColor colourBasic = ChatColor.GRAY;
             //Run Logic
             LuckPerms api = LuckPermsProvider.get();
@@ -45,7 +45,7 @@ public class updateTablist extends BukkitRunnable {
                             p.setPlayerListName(colourAdmin + p.getName());
                             p.setDisplayName(colourAdmin + p.getName() + ChatColor.RESET);
                             break;
-                        case "head-mod":
+                        case "senior-mod":
                             p.setPlayerListName(colourStaff + "" + ChatColor.ITALIC + p.getName());
                             p.setDisplayName(colourStaff + "" + ChatColor.ITALIC + p.getName() + ChatColor.RESET);
                             break;
@@ -56,6 +56,10 @@ public class updateTablist extends BukkitRunnable {
                         case "helper":
                             p.setPlayerListName(ChatColor.YELLOW + p.getName());
                             p.setDisplayName(ChatColor.YELLOW + p.getName() + ChatColor.RESET);
+                            break;
+                        case "senior-builder":
+                            p.setPlayerListName(ChatColor.DARK_PURPLE + "" + ChatColor.ITALIC + p.getName());
+                            p.setDisplayName(ChatColor.DARK_PURPLE + "" + ChatColor.ITALIC + p.getName() + ChatColor.RESET);
                             break;
                         case "builder":
                             p.setPlayerListName(ChatColor.DARK_PURPLE + p.getName());

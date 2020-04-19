@@ -1,5 +1,5 @@
 name: Clarke
-version: 1.5
+version: "1.6"
 main: net.excentrix.core.Core
 api-version: 1.14
 softdepend: [LuckPerms]
