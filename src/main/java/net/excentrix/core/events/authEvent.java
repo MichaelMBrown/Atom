@@ -44,11 +44,16 @@ public class authEvent implements Listener {
     @EventHandler
     public void buildMode(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        //if (staffUtils.getRankInteger(player.getName()) >= 3) {
-        if (plugin.getConfig().getString("server-name").equalsIgnoreCase("skyblock")) {
-            Core.buildDenied.remove(player);
-        } else Core.buildDenied.add(player);
-        //}
+        switch (plugin.getConfig().getString("server-name").toLowerCase()) {
+            case "skyblock":
+                Core.buildDenied.remove(player);
+                break;
+            case "prison":
+                Core.buildDenied.remove(player);
+                break;
+            default:
+                Core.buildDenied.add(player);
+        }
     }
 
     @EventHandler

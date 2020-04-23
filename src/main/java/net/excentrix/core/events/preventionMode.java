@@ -3,13 +3,14 @@ package net.excentrix.core.events;
 import net.excentrix.core.Core;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 public class preventionMode implements Listener {
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void preventBuild(BlockBreakEvent event) {
         if (Core.buildDenied.contains(event.getPlayer())) {
             event.setCancelled(true);
@@ -18,7 +19,7 @@ public class preventionMode implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void preventPlace(BlockPlaceEvent event) {
         if (Core.buildDenied.contains(event.getPlayer())) {
             event.setCancelled(true);

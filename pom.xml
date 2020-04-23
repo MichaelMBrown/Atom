@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.excentrix</groupId>
-    <artifactId>core</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>Clarke</artifactId>
+    <version>1.6</version>
     <packaging>jar</packaging>
 
     <name>Clarke</name>
