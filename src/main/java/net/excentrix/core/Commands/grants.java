@@ -37,8 +37,9 @@ public class grants implements CommandExecutor {
                             String grantName = api.getGroupManager().getGroup(group).getDisplayName();
                             if (grantName == null) {
                                 staffUtils.informativeMessage(player, target.getName() + "&7 has the grant: " + api.getGroupManager().getGroup(group).getName() + "&7.");
-                            } else
+                            } else {
                                 staffUtils.informativeMessage(player, target.getName() + "&7 has the grant: " + api.getGroupManager().getGroup(group).getDisplayName() + "&7.");
+                            }
                         }
                     } catch (NullPointerException e) {
                         staffUtils.playerNotFound(player);
