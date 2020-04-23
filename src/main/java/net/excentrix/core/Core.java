@@ -33,12 +33,11 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
     public static Boolean enchantSupport = false;
     public static Location spawn;
     //public static final double clarkeVersion = 1.2;
+    // Setup the Economy
+    private static Economy econ = null;
 
     public Core() {
     }
-
-    // Setup the Economy
-    private static Economy econ = null;
 
     public static Economy getEcon() {
         return econ;
