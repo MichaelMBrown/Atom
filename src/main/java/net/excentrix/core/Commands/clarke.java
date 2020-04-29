@@ -62,8 +62,6 @@ public class clarke implements CommandExecutor {
                     case "debug":
                         sender.sendMessage(ChatColor.RED + "Temporarily disabled.");
                         break;
-                    case "version":
-                        staffUtils.informativeMessage((Player) sender, "This server is running &e&lClarke &fv" + plugin.getDescription().getVersion());
                     default:
                         staffUtils.informativeMessage((Player) sender, "This server is running &e&lClarke &fv" + plugin.getDescription().getVersion());
                         break;
