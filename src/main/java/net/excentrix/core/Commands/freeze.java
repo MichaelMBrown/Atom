@@ -17,19 +17,20 @@ public class freeze implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("freeze")) {
             if (sender.hasPermission("clarke.command.freeze")) {
                 if (args.length == 1) {
-                    Player target = Bukkit.getPlayerExact(args[0]);
+                    Player targetPlayer = Bukkit.getPlayerExact(args[0]);
+                    Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                     if (target != null) {
                         if (!Core.freezeList.contains(target)) {
                             Core.freezeList.add(target);
                             target.setInvulnerable(true);
-                            staffUtils.informativeMessage((Player) sender, "You froze " + target.getName());
-                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "froze " + ChatColor.GOLD + target.getName(), false);
+                            staffUtils.informativeMessage((Player) sender, "You froze " + ChatColor.GOLD + target.getName());
+                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "froze " + ChatColor.YELLOW + target.getName(), false);
                             staffUtils.errorMessage(target, "You have been frozen.");
                         } else {
                             Core.freezeList.remove(target);
                             target.setInvulnerable(false);
-                            staffUtils.informativeMessage((Player) sender, "You unfroze " + target.getName());
-                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "unfroze " + ChatColor.GOLD + target.getName(), false);
+                            staffUtils.informativeMessage((Player) sender, "You unfroze " + ChatColor.GOLD + target.getName());
+                            BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "unfroze " + ChatColor.YELLOW + target.getName(), false);
                             staffUtils.informativeMessage(target, "You are no longer frozen.");
                         }
                     } else {

@@ -19,7 +19,6 @@ public class grants implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player player;
-        Player target;
         player = (Player) commandSender;
         if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
             LuckPerms api = LuckPermsProvider.get();
@@ -30,7 +29,8 @@ public class grants implements CommandExecutor {
                 if (strings.length != 1) {
                     staffUtils.printUsage(player, "grants", "<player>");
                 } else {
-                    target = Bukkit.getPlayerExact(strings[0]);
+                    Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
+                    Player target = staffUtils.findPlayer((Player) commandSender, targetPlayer);
                     try {
                         String group = staffUtils.getRank(target.getName());
                         if (target != null) {

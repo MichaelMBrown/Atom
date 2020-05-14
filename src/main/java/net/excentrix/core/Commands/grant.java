@@ -22,11 +22,11 @@ public class grant implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player target;
         if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
             LuckPerms api = LuckPermsProvider.get();
             if (sender instanceof ConsoleCommandSender) {
-                target = Bukkit.getPlayerExact(args[0]);
+                Player targetPlayer = Bukkit.getPlayerExact(args[0]);
+                Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                 if (target != null) {
                     if (api.getGroupManager().getGroup(args[1]) != null) {
                         getServer().dispatchCommand(getServer().getConsoleSender(), "lp user " + target.getName() + " parent set " + args[1]);
@@ -45,7 +45,8 @@ public class grant implements CommandExecutor {
             } else if (args.length != 2) {
                 staffUtils.printUsage(commandSender, "grant", "<user> <grant>");
             } else {
-                target = Bukkit.getPlayerExact(args[0]);
+                Player targetPlayer = Bukkit.getPlayerExact(args[0]);
+                Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                 if (target != null) {
                     if (api.getGroupManager().getGroup(args[1]) != null) {
                         if (commandSender.hasPermission("group." + args[1])) {

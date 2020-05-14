@@ -22,7 +22,8 @@ public class give implements CommandExecutor {
         }
         if (strings.length > 0) {
             int amount;
-            Player target = Bukkit.getPlayerExact(strings[0]);
+            Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
+            Player target = staffUtils.findPlayer(sender, targetPlayer);
             if (strings[0].equalsIgnoreCase("all")) {
                 if (strings.length > 1) {
                     try {

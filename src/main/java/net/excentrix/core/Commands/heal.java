@@ -17,9 +17,10 @@ public class heal implements CommandExecutor {
             if (command.getName().equalsIgnoreCase("heal")) {
                 if (sender.hasPermission("clarke.command.heal")) {
                     if (args.length == 1) {
-                        Player target = Bukkit.getPlayerExact(args[0]);
+                        Player targetPlayer = Bukkit.getPlayerExact(args[0]);
+                        Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                         if (target != null) {
-                            staffUtils.informativeMessage((Player) sender, "You healed " + target.getName());
+                            staffUtils.informativeMessage((Player) sender, "You healed &e" + target.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + target.getName(), false);
                             target.setHealth(20);
                             target.setFireTicks(0);
@@ -32,7 +33,7 @@ public class heal implements CommandExecutor {
                             staffUtils.playerNotFound((Player) sender);
                         }
                     } else {
-                        staffUtils.informativeMessage((Player) sender, "You healed yourself.");
+                        staffUtils.informativeMessage((Player) sender, "You healed &eyourself&7.");
                         BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + sender.getName(), false);
                         Player commandSender = (Player) sender;
                         commandSender.setHealth(20);

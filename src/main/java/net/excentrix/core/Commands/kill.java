@@ -14,7 +14,8 @@ public class kill implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("kill")) {
             if (sender.hasPermission("clarke.command.kill")) {
                 if (args.length == 1) {
-                    Player target = Bukkit.getPlayerExact(args[0]);
+                    Player targetPlayer = Bukkit.getPlayerExact(args[0]);
+                    Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                     if (target != null) {
                         if (Core.godList.contains(target)) {
                             staffUtils.actionForbidden((Player) sender);

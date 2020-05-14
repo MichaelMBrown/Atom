@@ -1,5 +1,5 @@
 name: Clarke
-version: "1.6"
+version: "1.6.7"
 main: net.excentrix.core.Core
 api-version: 1.14
 softdepend: [LuckPerms]
@@ -9,11 +9,11 @@ authors: [qr0]
 description: Clarke Management System.
 website: excentrix.net
 commands:
-  sc:
-    description: Communicate with Staff
-    usage: /<command>
-    aliases: staffchat
-    permission: clarke.chat.staffchat
+  #  sc:
+  #    description: Communicate with Staff
+  #    usage: /<command>
+  #    aliases: staffchat
+  #    permission: clarke.chat.staffchat
   kick:
     description: Remove a player
     usage: /<command>
@@ -82,43 +82,44 @@ commands:
     aliases: [ec,echest]
     usage: /<command>
     permission: clarke.command.enderchest
-  mutechat:
-    description: Silences Chat for Non-Staff
-    permission: clarke.command.mutechat
+  #  mutechat:
+  #    description: Silences Chat for Non-Staff
+  #    permission: clarke.command.mutechat
+  #    aliases: [hushmode,togglechat,hush]
   tphere:
     description: Teleports a player to you
     permission: clarke.command.tphere
   say:
     description: Broadcast to the Server
     permission: clarke.command.say
-  grant:
-    description: Grants a user a Rank
-    usage: /<command>
-    permission: clarke.command.grant
-  grants:
-    description: Views a users grants
-    permission: clarke.command.grants
-    usage: /<command>
+  #  grant:
+  #    description: Grants a user a Rank
+  #    usage: /<command>
+  #    permission: clarke.command.grant
+  #  grants:
+  #    description: Views a users grants
+  #    permission: clarke.command.grants
+  #    usage: /<command>
   give:
     description: Gives a player an Item
     usage: /<command>
     permission: clarke.command.give
-  togglesc:
-    description: Toggles in-game staffchat
-    usage: /<command>
-    permission: clarke.chat.staffchat
-  whisper:
-    description: Message a player
-    aliases: [w,msg,tell,t]
-    usage: /<command>
-    default: true
-  socialspy:
-    description: Toggles Admin Spying
-    permission: clarke.command.socialspy
-  togglepm:
-    description: Toggles private messaging
-    usage: /<command>
-    default: true
+  #  togglesc:
+  #    description: Toggles in-game staffchat
+  #    usage: /<command>
+  #    permission: clarke.chat.staffchat
+  #  whisper:
+  #    description: Message a player
+  #    aliases: [w,msg,tell,t]
+  #    usage: /<command>
+  #    default: true
+  #  socialspy:
+  #    description: Toggles Admin Spying
+  #    permission: clarke.command.socialspy
+  #  togglepm:
+  #    description: Toggles private messaging
+  #    usage: /<command>
+  #    default: true
   announceToStaff:
     description: "Nothing to see here :)"
   setspawn:
@@ -136,3 +137,5 @@ commands:
       - bal
   shrug:
     description: "¯\_(ツ)_/¯"
+  rankup:
+    description: "[Prison] Ranks to the next avail rank."

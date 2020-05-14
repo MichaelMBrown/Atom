@@ -2,6 +2,8 @@ package net.excentrix.core.Commands;
 
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,13 +19,14 @@ public class clarke implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        double totalArgs = args.length - 1;
         if (sender.hasPermission("clarke.command.clarke")) {
+            LuckPerms api = LuckPermsProvider.get();
+            Player player = (Player) sender;
+
             if (args.length > 0) {
                 String option = args[0].toLowerCase();
                 switch (option) {
                     case "help":
-                        Player player = (Player) sender;
                         player.sendMessage(ChatColor.YELLOW + "==========" + ChatColor.GOLD + " Clarke Commands" + ChatColor.YELLOW + "==========");
                         player.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/helpop" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Requests Staff Assistance");
                         player.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/report" + ChatColor.YELLOW + " -- " + ChatColor.WHITE + "Reports a Player");
@@ -35,8 +38,8 @@ public class clarke implements CommandExecutor {
                         clarkeCommand(player, "heal", "Heals a Player");
                         clarkeCommand(player, "kick", "Removes a player from the Network");
                         clarkeCommand(player, "kill", "Kills a Player");
-                        clarkeCommand(player, "staffchat", "Communicates in StaffChat");
-                        clarkeCommand(player, "toggleSC", "Toggles in-game staff chat");
+                        //clarkeCommand(player, "staffchat", "Communicates in StaffChat");
+                        //clarkeCommand(player, "toggleSC", "Toggles in-game staff chat");
                         clarkeCommand(player, "tp", "Teleport to Players");
                         clarkeCommand(player, "weather", "Changes the Weather");
                         clarkeCommand(player, "edit", "Edits in-game configs");
@@ -46,8 +49,8 @@ public class clarke implements CommandExecutor {
                         clarkeCommand(player, "tphere", "Teleports a player to you");
                         clarkeCommand(player, "say", "Broadcast to the Server");
                         clarkeCommand(player, "give", "Give a player an Item");
-                        clarkeCommand(player, "grant", "Grant a user a rank");
-                        clarkeCommand(player, "grants", "Shows what a User has been Granted");
+                        //clarkeCommand(player, "grant", "Grant a user a rank");
+                        //clarkeCommand(player, "grants", "Shows what a User has been Granted");
                         clarkeCommand(player, "build", "Toggles Buildmode.");
                         clarkeCommand(player, "balance", "Views your Balance");
                         clarkeCommand(player, "setserver", "Sets the internal server name");
@@ -60,14 +63,14 @@ public class clarke implements CommandExecutor {
                         } else staffUtils.noPerm((Player) sender);
                         break;
                     case "debug":
-                        sender.sendMessage(ChatColor.RED + "Temporarily disabled.");
+                        staffUtils.errorMessage(player, "Disabled");
                         break;
                     default:
                         staffUtils.informativeMessage((Player) sender, "This server is running &e&lClarke &fv" + plugin.getDescription().getVersion());
                         break;
                 }
             } else
-                sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/clarke " + ChatColor.WHITE + "<help/reload/version>");
+                staffUtils.printUsage((Player) sender, "clarke", "<help/reload/version>");
         }
         return true;
     }

@@ -1,5 +1,6 @@
 package net.excentrix.core.utils;
 
+import de.myzelyam.api.vanish.VanishAPI;
 import net.excentrix.core.Core;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -64,27 +65,37 @@ public class staffUtils {
     }
 
     public static void informativeMessage(Player sender, String message) {
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e&lClarke &7" + message));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e&lClarke &7» &7" + message));
     }
 
     public static void errorMessage(Player sender, String message) {
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lClarke &c" + message));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lClarke &7» &c" + message));
     }
 
     public static void actionForbidden(Player player) {
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lClarke &cYou are forbidden perform this action."));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lClarke &7» &cYou are forbidden perform this action."));
     }
 
     public static void noPerm(Player player) {
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lClarke &cYou do not have permission for this command!"));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lClarke &7» &cYou do not have permission for this command!"));
     }
 
     public static void playerNotFound(Player player) {
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lClarke &cThere is no player by that name connected to this server!"));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lClarke &7» &cThere is no player by that name connected to this server!"));
     }
 
     public static void printUsage(Player player, String command, String args) {
 //        player.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.GOLD + "/" + command + " " + ChatColor.WHITE + args);
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cUsage: &6/" + command + " &f" + args));
+    }
+
+    public static Player findPlayer(Player sender, Player target) {
+        try {
+            if (VanishAPI.canSee(sender, target)) {
+                return target;
+            } else return null;
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 }

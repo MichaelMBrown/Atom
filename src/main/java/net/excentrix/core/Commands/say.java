@@ -20,7 +20,7 @@ public class say implements CommandExecutor {
             for (int i = 0; i < strings.length; i++) {
                 message = message + strings[i] + " ";
             }
-            staffUtils.broadcastServer(ChatColor.LIGHT_PURPLE + "[" + commandSender.getName() + "] " + message);
+            staffUtils.broadcastServer("\n" + ChatColor.LIGHT_PURPLE + "[" + commandSender.getName() + "] " + message + "\n " + ChatColor.WHITE);
         } else staffUtils.printUsage(player, "say", "<message>");
         return true;
     }

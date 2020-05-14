@@ -4,6 +4,10 @@ import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
+import net.luckperms.api.cacheddata.CachedMetaData;
+import net.luckperms.api.model.user.User;
+import net.luckperms.api.node.types.MetaNode;
+import net.luckperms.api.query.QueryOptions;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +19,7 @@ import org.bukkit.plugin.Plugin;
 public class authEvent implements Listener {
 
     private static Plugin plugin = Core.getPlugin(Core.class);
+    LuckPerms api = LuckPermsProvider.get();
 
     @EventHandler
     public void authOnJoin(PlayerJoinEvent event) {
@@ -37,7 +42,14 @@ public class authEvent implements Listener {
             staffUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
             staffUtils.scNotify("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
         }
+        QueryOptions queryOptions = api.getContextManager().getQueryOptions(player);
+        CachedMetaData metaData = api.getUserManager().getUser(player.getName()).getCachedData().getMetaData(queryOptions);
+        if (metaData.getMetaValue("prison_rank") == null) {
+            User user = api.getUserManager().getUser(player.getUniqueId());
+            user.data().add(MetaNode.builder("prison_rank", "A").build());
+            api.getUserManager().saveUser(user);
 
+        }
         event.setJoinMessage("");
     }
 
@@ -46,8 +58,7 @@ public class authEvent implements Listener {
         Player player = event.getPlayer();
         switch (plugin.getConfig().getString("server-name").toLowerCase()) {
             case "skyblock":
-                Core.buildDenied.remove(player);
-                break;
+            case "creative":
             case "prison":
                 Core.buildDenied.remove(player);
                 break;

@@ -17,7 +17,8 @@ public class teleport implements CommandExecutor {
             if (command.getName().equalsIgnoreCase("tp")) {
                 if (sender.hasPermission("clarke.command.tp")) {
                     if (args.length == 1) {
-                        Player target = Bukkit.getPlayerExact(args[0]);
+                        Player targetPlayer = Bukkit.getPlayerExact(args[0]);
+                        Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                         if (target != null) {
                             Location targetLoc = target.getLocation();
                             ((Player) sender).teleport(targetLoc);
@@ -27,12 +28,14 @@ public class teleport implements CommandExecutor {
                             staffUtils.playerNotFound((Player) sender);
                         }
                     } else if (args.length == 2) {
-                        Player target = Bukkit.getPlayerExact(args[0]);
-                        Player target2 = Bukkit.getPlayerExact(args[1]);
+                        Player targetLookup = Bukkit.getPlayerExact(args[0]);
+                        Player target = staffUtils.findPlayer((Player) sender, targetLookup);
+                        Player targetLookup2 = Bukkit.getPlayerExact(args[1]);
+                        Player target2 = staffUtils.findPlayer((Player) sender, targetLookup2);
                         if (target != null && target2 != null) {
                             Location toTarget = target2.getLocation();
                             target.teleport(toTarget);
-                            staffUtils.informativeMessage((Player) sender, "You have teleported to &6" + target.getName() + "&7 to &6" + target2.getName());
+                            staffUtils.informativeMessage((Player) sender, "You have teleported to &e" + target.getName() + "&7 to &e" + target2.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " to " + ChatColor.GOLD + target2.getName(), false);
                         } else {
                             staffUtils.playerNotFound((Player) sender);

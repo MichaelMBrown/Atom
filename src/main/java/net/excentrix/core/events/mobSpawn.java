@@ -38,11 +38,12 @@ public class mobSpawn implements Listener {
             }
         }
     }
-
     @EventHandler
     public void disableWanderingTrader(CreatureSpawnEvent event) {
-        if (event.getEntity() instanceof WanderingTrader) {
-            event.setCancelled(true);
+        if (plugin.getServer().getBukkitVersion().contains("1.14")) {
+            if (event.getEntity() instanceof WanderingTrader) {
+                event.setCancelled(true);
+            }
         }
     }
 

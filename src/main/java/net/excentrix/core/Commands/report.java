@@ -17,7 +17,8 @@ public class report implements CommandExecutor {
         if ((sender instanceof Player)) {
             if (command.getName().equalsIgnoreCase("report")) {
                 if ((args.length == 2)) {
-                    Player target = Bukkit.getPlayerExact(args[0]);
+                    Player targetPlayer = Bukkit.getPlayerExact(args[0]);
+                    Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                     if (target != null) {
                         if (args[1].equalsIgnoreCase("KillAura") || args[1].equalsIgnoreCase("ka")) {
                             sender.sendMessage(ChatColor.GREEN + "Thanks for reporting " + ChatColor.YELLOW + target.getName() + ChatColor.GREEN + " for " + ChatColor.RED + "KillAura" + ChatColor.GREEN + "!");

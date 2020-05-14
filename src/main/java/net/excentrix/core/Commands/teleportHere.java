@@ -21,10 +21,11 @@ public class teleportHere implements CommandExecutor {
             return true;
         }
         if (strings.length == 1) {
-            Player target = Bukkit.getPlayerExact(strings[0]);
+            Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
+            Player target = staffUtils.findPlayer(sender, targetPlayer);
             if (target != null) {
                 target.teleport(toLocation);
-                staffUtils.informativeMessage(sender, "You have teleported &6" + target.getName() + " &7to You");
+                staffUtils.informativeMessage(sender, "You have teleported &e" + target.getName() + " &7to &eYou");
                 BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported to " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " to themself.", false);
             } else staffUtils.playerNotFound(sender);
         } else staffUtils.printUsage(sender, "tphere", "<player>");

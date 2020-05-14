@@ -17,12 +17,13 @@ public class balance implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length == 1) {
-                Player target = Bukkit.getPlayerExact(args[0]);
+                Player targetPlayer = Bukkit.getPlayerExact(args[0]);
+                Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                 if (target != null) {
-                    staffUtils.informativeMessage((Player) sender, "&6" + target.getName() + "&7 has a balance of &a" + econ.format(econ.getBalance(target)));
+                    staffUtils.informativeMessage((Player) sender, "&e" + target.getName() + "&7 has a balance of &a" + econ.format(econ.getBalance(target)));
                 } else staffUtils.playerNotFound((Player) sender);
             } else {
-                staffUtils.informativeMessage((Player) sender, "&6You&7 have a balance of &a" + econ.format(econ.getBalance(player)));
+                staffUtils.informativeMessage((Player) sender, "&eYou&7 have a balance of &a" + econ.format(econ.getBalance(player)));
             }
         }
         return true;

@@ -6,15 +6,16 @@
 
     <groupId>net.excentrix</groupId>
     <artifactId>Clarke</artifactId>
-    <version>1.6</version>
+    <version>1.6.7</version>
     <packaging>jar</packaging>
 
     <name>Clarke</name>
 
     <description>Clarke Plugin</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>8</maven.compiler.release>
     </properties>
     <url>excentrix.net</url>
 
@@ -26,8 +27,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -68,6 +69,10 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>cubekrowd-repo</id>
+            <url>https://mavenrepo.cubekrowd.net/artifactory/repo/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -87,6 +92,13 @@
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>
             <version>1.7</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- SuperVanish -->
+        <dependency>
+            <groupId>de.myzelyam</groupId>
+            <artifactId>SuperVanish</artifactId>
+            <version>6.1.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

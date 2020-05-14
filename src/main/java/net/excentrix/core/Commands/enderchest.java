@@ -19,7 +19,8 @@ public class enderchest implements CommandExecutor {
                     staffUtils.informativeMessage(player, "Opening the Enderchest of &e" + commandSender.getName());
                 } else if ((strings.length == 1)) {
                     if (player.hasPermission("clarke.command.enderchest.others")) {
-                        Player target = Bukkit.getPlayerExact(strings[0]);
+                        Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
+                        Player target = staffUtils.findPlayer((Player) commandSender, targetPlayer);
                         if (target != null) {
                             staffUtils.informativeMessage(player, "Opening the Enderchest of &e" + target.getName());
                             player.openInventory(target.getEnderChest());

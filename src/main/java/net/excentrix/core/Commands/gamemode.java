@@ -22,7 +22,7 @@ public class gamemode implements CommandExecutor {
         if ((strings.length == 1) && !(sender instanceof ConsoleCommandSender)) {
             try {
                 sender.setGameMode(GameMode.valueOf(strings[0].toUpperCase()));
-                staffUtils.informativeMessage(sender, ChatColor.GOLD + sender.getName() + "&7's game mode is now &f" + strings[0].toUpperCase());
+                staffUtils.informativeMessage(sender, ChatColor.YELLOW + sender.getName() + "&7's game mode is now &f" + strings[0].toUpperCase());
                 BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.translateAlternateColorCodes('&', "&7&oset own gamemode to &e&o" + strings[0].toUpperCase()), false);
             } catch (IllegalArgumentException e) {
                 staffUtils.errorMessage(sender, "That gamemode does not exist!");
@@ -31,11 +31,12 @@ public class gamemode implements CommandExecutor {
             if (!(sender.hasPermission("clarke.command.gamemode.others"))) {
                 staffUtils.noPerm(sender);
             }
-            Player target;
+
             try {
-                target = Bukkit.getPlayerExact(strings[1]);
+                Player targetPlayer = Bukkit.getPlayerExact(strings[1]);
+                Player target = staffUtils.findPlayer(sender, targetPlayer);
                 target.setGameMode(GameMode.valueOf(strings[0].toUpperCase()));
-                staffUtils.informativeMessage(sender, ChatColor.GOLD + target.getName() + "&7's game mode is now &f" + strings[0].toUpperCase());
+                staffUtils.informativeMessage(sender, ChatColor.YELLOW + target.getName() + "&7's game mode is now &f" + strings[0].toUpperCase());
                 BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.translateAlternateColorCodes('&', "&7&oset " + target.getName() + "'s gamemode to &e&o" + strings[0].toUpperCase()), false);
             } catch (NullPointerException e) {
                 staffUtils.playerNotFound(sender);

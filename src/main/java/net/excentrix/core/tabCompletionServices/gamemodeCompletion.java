@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class gamemodeCompletion implements TabCompleter {
@@ -17,6 +19,7 @@ public class gamemodeCompletion implements TabCompleter {
                 for (GameMode c : GameMode.values()) {
                     possibleGamemodes.add(c.toString().toLowerCase());
                 }
+                Collections.sort(possibleGamemodes, Comparator.naturalOrder());
                 return possibleGamemodes;
             }
         }
