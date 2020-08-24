@@ -14,13 +14,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class edit implements CommandExecutor {
-    private static Plugin plugin = Core.getPlugin(Core.class);
+    private static final Plugin plugin = Core.getPlugin(Core.class);
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player theSender = (Player) sender;
         if (command.getName().equalsIgnoreCase("edit")) {
-            if (sender.hasPermission("clarke.command.edit")) {
+            if (sender.hasPermission("atom.command.edit")) {
                 if (args.length == 3) {
                     if (args[0].equalsIgnoreCase("boolean") || args[0].equalsIgnoreCase("bool")) {
                         String value = args[2].toUpperCase();

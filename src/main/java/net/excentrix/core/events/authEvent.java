@@ -18,7 +18,7 @@ import org.bukkit.plugin.Plugin;
 
 public class authEvent implements Listener {
 
-    private static Plugin plugin = Core.getPlugin(Core.class);
+    private static final Plugin plugin = Core.getPlugin(Core.class);
     LuckPerms api = LuckPermsProvider.get();
 
     @EventHandler
@@ -44,9 +44,13 @@ public class authEvent implements Listener {
         }
         QueryOptions queryOptions = api.getContextManager().getQueryOptions(player);
         CachedMetaData metaData = api.getUserManager().getUser(player.getName()).getCachedData().getMetaData(queryOptions);
-        if (metaData.getMetaValue("prison_rank") == null) {
+        if (metaData.getMetaValue("prison_rank") == null || metaData.getMetaValue("prison_rank").equals("A")) {
+            if (metaData.getMetaValue("prison_rank").equals("A")) {
+                User user = api.getUserManager().getUser(player.getUniqueId());
+                user.data().remove(MetaNode.builder("prison_rank", "A").build());
+            }
             User user = api.getUserManager().getUser(player.getUniqueId());
-            user.data().add(MetaNode.builder("prison_rank", "A").build());
+            user.data().add(MetaNode.builder("prison_rank", "A1").build());
             api.getUserManager().saveUser(user);
 
         }

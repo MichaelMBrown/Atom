@@ -1,5 +1,8 @@
 <component name="libraryTable">
   <library name="Maven: org.hamcrest:hamcrest-core:1.1">
+    <ANNOTATIONS>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/externalAnnotations/org/hamcrest/hamcrest-core/1.3-an1/hamcrest-core-1.3-an1-annotations.zip!/" />
+    </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar!/" />
     </CLASSES>

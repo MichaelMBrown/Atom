@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.excentrix</groupId>
-    <artifactId>Clarke</artifactId>
-    <version>1.6.7</version>
+    <artifactId>Atom</artifactId>
+    <version>1.7.3</version>
     <packaging>jar</packaging>
 
-    <name>Clarke</name>
+    <name>Atom</name>
 
-    <description>Clarke Plugin</description>
+    <description>Atom Management System</description>
     <properties>
         <java.version>8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

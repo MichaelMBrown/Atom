@@ -13,7 +13,7 @@ public class editCompletion implements TabCompleter {
         List<String> dataTypes = new ArrayList<>();
         List<String> configOptions = new ArrayList<>();
         List<String> dataValues = new ArrayList<>();
-        if (sender.hasPermission("clarke.command.edit")) {
+        if (sender.hasPermission("atom.command.edit")) {
             if (args.length == 1) {
                 dataTypes.add("boolean");
                 return dataTypes;

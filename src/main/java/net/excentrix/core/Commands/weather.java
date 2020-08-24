@@ -16,7 +16,7 @@ public class weather implements CommandExecutor {
         if (sender instanceof Player) {
             if (command.getName().equalsIgnoreCase("weather")) {
                 Player p = (Player) sender;
-                if (sender.hasPermission("clarke.command.weather")) {
+                if (sender.hasPermission("atom.command.weather")) {
                     if (args.length == 0) {
                         staffUtils.printUsage((Player) sender, "weather", "<weather> [world]");
                     } else if (args.length == 1) {

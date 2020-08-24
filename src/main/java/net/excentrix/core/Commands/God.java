@@ -18,19 +18,19 @@ public class God implements CommandExecutor, Listener {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (sender.hasPermission("clarke.command.god")) {
+            if (sender.hasPermission("atom.command.god")) {
                 if (command.getName().equalsIgnoreCase("god")) {
                     if (args.length > 0 && args.length != 1) {
                         Player targetPlayer = Bukkit.getPlayerExact(args[0]);
                         Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                         if (target != null) {
                             if (args[1].equalsIgnoreCase("on") || args[1].equalsIgnoreCase("true")) {
-                                staffUtils.informativeMessage((Player) sender, "You turned on God Mode for &e" + target.getName() + "&7!");
+                                staffUtils.informativeMessage((Player) sender, "You turned on God Mode for " + Core.playerColour + target.getName() + "&7!");
                                 BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God mode for " + ChatColor.YELLOW + target.getName(), false);
                                 target.setInvulnerable(true);
                                 Core.godList.add(target);
                             } else if (args[1].equalsIgnoreCase("off") || args[1].equalsIgnoreCase("false")) {
-                                staffUtils.informativeMessage((Player) sender, "You turned off God Mode for &f" + target.getName() + "&7!");
+                                staffUtils.informativeMessage((Player) sender, "You turned off God Mode for " + Core.playerColour + target.getName() + "&7!");
                                 BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God mode for " + ChatColor.YELLOW + target.getName(), false);
                                 target.setInvulnerable(false);
                                 Core.godList.remove(target);
@@ -38,12 +38,12 @@ public class God implements CommandExecutor, Listener {
                         } else staffUtils.playerNotFound((Player) sender);
                     } else if (args.length == 0) {
                         if (Core.godList.contains(player)) {
-                            staffUtils.informativeMessage((Player) sender, "You turned off God Mode for &e" + sender.getName() + "&7!");
+                            staffUtils.informativeMessage((Player) sender, "You turned off God Mode for " + Core.playerColour + sender.getName() + "&7!");
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "disabled God Mode.", false);
                             ((Player) sender).setInvulnerable(false);
                             Core.godList.remove(player);
                         } else {
-                            staffUtils.informativeMessage((Player) sender, "You turned on God Mode for &e" + sender.getName() + "&7!");
+                            staffUtils.informativeMessage((Player) sender, "You turned on God Mode for " + Core.playerColour + sender.getName() + "&7!");
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God Mode.", false);
                             ((Player) sender).setInvulnerable(true);
                             Core.godList.add(player);

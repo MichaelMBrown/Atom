@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 public class socialspy implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player commandSender = (Player) sender;
-        if (!sender.hasPermission("clarke.command.socialspy")) {
+        if (!sender.hasPermission("atom.command.socialspy")) {
             staffUtils.noPerm(commandSender);
             return true;
         } else {

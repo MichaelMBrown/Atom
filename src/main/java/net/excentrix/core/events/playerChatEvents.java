@@ -8,14 +8,14 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.Plugin;
 
 public class playerChatEvents implements Listener {
-    private static Plugin plugin = Core.getPlugin(Core.class);
+    private static final Plugin plugin = Core.getPlugin(Core.class);
 
     public playerChatEvents() {
     }
 
     @EventHandler
     public void talkEvent(AsyncPlayerChatEvent event) {
-        if (Core.chatSilenced && !event.getPlayer().hasPermission("clarke.staff")) {
+        if (Core.chatSilenced && !event.getPlayer().hasPermission("atom.staff")) {
             event.setCancelled(true);
             staffUtils.errorMessage(event.getPlayer(), "&7You cannot right now, as global chat is currently muted.");
         }

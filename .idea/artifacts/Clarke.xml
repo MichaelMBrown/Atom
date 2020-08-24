@@ -2,7 +2,7 @@
   <artifact type="jar" name="Clarke">
     <output-path>$PROJECT_DIR$/Project Dump</output-path>
     <root id="archive" name="Clarke.jar">
-      <element id="module-output" name="CorePlugin" />
+      <element id="module-output" name="Atom" />
     </root>
   </artifact>
 </component>

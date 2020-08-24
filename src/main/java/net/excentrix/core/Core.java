@@ -28,9 +28,11 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
     public static ArrayList<Player> nowSpying = new ArrayList();
     public static ArrayList<Player> buildDenied = new ArrayList<>();
     public static Boolean chatSilenced;
+    public static Boolean globalPVP;
     public static Boolean enchantSupport = false;
     public static Boolean isPrison = false;
     public static Location spawn;
+    public static ChatColor playerColour = ChatColor.AQUA;
     // Setup the Economy
     private static Economy econ = null;
 
@@ -52,7 +54,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 
     public void onEnable() {
         //Starting Plugin
-        getLogger().info("Enabling Clarke v" + getDescription().getVersion() + " on server " + getConfig().getString("server-name").toLowerCase());
+        getLogger().info("Enabling" + ChatColor.LIGHT_PURPLE + "Atom" + ChatColor.RESET + "v" + getDescription().getVersion() + " on server " + getConfig().getString("server-name").toLowerCase());
         //Setup the custom enchant support
         enchantSupport = getConfig().getString("server-name").equalsIgnoreCase("skyblock") || getConfig().getString("server-name").equalsIgnoreCase("prison");
         isPrison = getConfig().getString("server-name").equalsIgnoreCase("prison");
@@ -65,9 +67,9 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 
 
         // Register Commands
-        // Clarke Command
-        getCommand("clarke").setExecutor(new clarke());
-        getCommand("clarke").setTabCompleter(new clarkeCompletion());
+        // Atom Command
+        getCommand("atom").setExecutor(new atom());
+        getCommand("atom").setTabCompleter(new atomCompletion());
         // Kick Command
         getCommand("kick").setExecutor(new kick());
         // Report Command
@@ -103,7 +105,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         // Smite Command
         getCommand("smite").setExecutor(new smite());
         // Mutechat Commmand
-        //getCommand("mutechat").setExecutor(new mutechat());
+        getCommand("mutelocalchat").setExecutor(new mutelocalchat());
         // Enderchest Command
         getCommand("enderchest").setExecutor(new enderchest());
         // TPHere Command
@@ -137,6 +139,8 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         getCommand("shrug").setExecutor(new shrug());
         //Rankup Command
         getCommand("rankup").setExecutor(new rankup());
+        //TogglePVP Command
+        getCommand("togglepvp").setExecutor(new togglepvp());
 
 
         // Internals :)
@@ -152,6 +156,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         getServer().getPluginManager().registerEvents(new rightVersion(), this);
         getServer().getPluginManager().registerEvents(new trueDamage(), this);
         getServer().getPluginManager().registerEvents(new telekinesis(), this);
+        getServer().getPluginManager().registerEvents(new damageMe(), this);
 
         // Setup Global Chat
         chatSilenced = getConfig().getBoolean("chat-silenced");
@@ -159,6 +164,13 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
             getLogger().info(ChatColor.YELLOW + "The chat is " + ChatColor.RED + "disabled" + ChatColor.YELLOW + " as it was turned off, prior to reboot.");
         } else {
             getLogger().info(ChatColor.YELLOW + "The chat is " + ChatColor.GREEN + "enabled" + ChatColor.YELLOW + " as it was turned on, prior to reboot.");
+        }
+        // Setup Global PVP
+        globalPVP = getConfig().getBoolean("pvp-enabled");
+        if (globalPVP) {
+            getLogger().info(ChatColor.YELLOW + "PVP is " + ChatColor.GREEN + "enabled" + ChatColor.YELLOW + " as it was turned on, prior to reboot.");
+        } else {
+            getLogger().info(ChatColor.YELLOW + "PVP is " + ChatColor.RED + "disabled" + ChatColor.YELLOW + " as it was turned off, prior to reboot.");
         }
         // Starting the Scoreboard Task
         BukkitTask updateSB = (new updateTablist(this)).runTaskTimerAsynchronously(this, 0L, 60L);

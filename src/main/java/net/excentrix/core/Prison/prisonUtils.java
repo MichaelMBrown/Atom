@@ -121,7 +121,7 @@ public class prisonUtils {
                 rankCost = 820654296;
                 break;
             case "D4":
-                rankCost = 0;
+                rankCost = 1000000000;
                 break;
         }
         return rankCost;

@@ -12,7 +12,7 @@ public class say implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         String message = "";
         Player player = (Player) commandSender;
-        if (!commandSender.hasPermission("clarke.command.say")) {
+        if (!commandSender.hasPermission("atom.command.say")) {
             staffUtils.noPerm(player);
             return true;
         }

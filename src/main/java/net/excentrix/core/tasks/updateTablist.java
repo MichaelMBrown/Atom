@@ -25,7 +25,10 @@ public class updateTablist extends BukkitRunnable {
             //Run Logic
             LuckPerms api = LuckPermsProvider.get();
             for (Player p : Bukkit.getOnlinePlayers()) {
-                group = api.getUserManager().getUser(p.getName()).getPrimaryGroup().toLowerCase();
+                try {
+                    group = api.getUserManager().getUser(p.getName()).getPrimaryGroup().toLowerCase();
+                } catch (NullPointerException ignored) {
+                }
                 if (api.getGroupManager().getGroup(group).getDisplayName() != null) {
                     QueryOptions queryOptions = api.getContextManager().getQueryOptions(p);
                     CachedMetaData metaData = api.getGroupManager().getGroup(group).getCachedData().getMetaData(queryOptions);
@@ -33,6 +36,10 @@ public class updateTablist extends BukkitRunnable {
                         case "owner":
                             p.setPlayerListName(ChatColor.translateAlternateColorCodes('&', metaData.getPrefix() + " " + p.getName()));
                             p.setDisplayName(ChatColor.RED + p.getName());
+                            break;
+                        case "developer":
+                            p.setPlayerListName(ChatColor.translateAlternateColorCodes('&', metaData.getPrefix() + " " + p.getName()));
+                            p.setDisplayName(ChatColor.AQUA + p.getName());
                             break;
                         case "admin":
                             p.setPlayerListName(ChatColor.translateAlternateColorCodes('&', metaData.getPrefix() + " " + p.getName()));

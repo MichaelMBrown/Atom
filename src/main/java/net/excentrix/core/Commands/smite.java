@@ -1,5 +1,6 @@
 package net.excentrix.core.Commands;
 
+import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,7 +18,7 @@ public class smite implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (command.getName().equalsIgnoreCase("smite")) {
-            if (commandSender.hasPermission("clarke.command.smite")) {
+            if (commandSender.hasPermission("atom.command.smite")) {
                 Player sender = (Player) commandSender;
                 if (strings.length == 0) {
                     Block block = sender.getTargetBlock(120);
@@ -29,7 +30,7 @@ public class smite implements CommandExecutor {
                     Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
                     Player target = staffUtils.findPlayer(sender, targetPlayer);
                     if (target != null) {
-                        staffUtils.informativeMessage((Player) commandSender, "You smited &e" + target.getName());
+                        staffUtils.informativeMessage((Player) commandSender, "You smited " + Core.playerColour + target.getName());
                         BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.YELLOW + "smited " + ChatColor.GOLD + target.getName(), false);
                         World world = target.getWorld();
                         world.strikeLightning(target.getLocation());

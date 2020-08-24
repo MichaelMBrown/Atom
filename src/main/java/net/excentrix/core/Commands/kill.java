@@ -12,7 +12,7 @@ public class kill implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("kill")) {
-            if (sender.hasPermission("clarke.command.kill")) {
+            if (sender.hasPermission("atom.command.kill")) {
                 if (args.length == 1) {
                     Player targetPlayer = Bukkit.getPlayerExact(args[0]);
                     Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
@@ -21,7 +21,7 @@ public class kill implements CommandExecutor {
                             staffUtils.actionForbidden((Player) sender);
                         } else {
                             target.setHealth(0);
-                            staffUtils.informativeMessage((Player) sender, "Killed &e" + target.getName());
+                            staffUtils.informativeMessage((Player) sender, "Killed " + Core.playerColour + target.getName());
 //                            staffUtils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
                         }
                     } else staffUtils.playerNotFound((Player) sender);

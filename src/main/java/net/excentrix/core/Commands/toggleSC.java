@@ -9,12 +9,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class toggleSC implements CommandExecutor {
-    private static Plugin plugin = Core.getPlugin(Core.class);
+    private static final Plugin plugin = Core.getPlugin(Core.class);
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player sender = (Player) commandSender;
-        if (!(commandSender.hasPermission("clarke.chat.staffchat"))) {
+        if (!(commandSender.hasPermission("atom.chat.staffchat"))) {
             staffUtils.noPerm((Player) commandSender);
             return true;
         } else {

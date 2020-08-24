@@ -1,23 +1,23 @@
-name: Clarke
-version: "1.6.7"
+name: Atom
+version: ${project.version}
 main: net.excentrix.core.Core
 api-version: 1.14
 softdepend: [LuckPerms]
 #loadbefore: [LiteBans]
 depend: [Vault]
 authors: [qr0]
-description: Clarke Management System.
+description: Atom Core Systems.
 website: excentrix.net
 commands:
   #  sc:
   #    description: Communicate with Staff
   #    usage: /<command>
   #    aliases: staffchat
-  #    permission: clarke.chat.staffchat
+  #    permission: atom.chat.staffchat
   kick:
     description: Remove a player
     usage: /<command>
-    permission: clarke.command.kick
+    permission: atom.command.kick
   report:
     description: Report a player
     default: true
@@ -29,85 +29,84 @@ commands:
   fly:
     description: Enable Flight
     usage: /<command>
-    permission: clarke.command.fly
+    permission: atom.command.fly
   setserver:
     description: [Admin Only]
     usage: /<command>
     aliases: set-server
-    permission: clarke.command.setserver
+    permission: atom.command.setserver
   god:
     description: Make yourself a God
     usage: /<command>
-    permission: clarke.command.god
+    permission: atom.command.god
   heal:
     description: Heals yourself
     usage: /<command>
-    permission: clarke.command.heal
+    permission: atom.command.heal
   gamemode:
     description: Changes gamemode
     usage: /<command>
     aliases: gm
-    permission: clarke.command.gamemode
+    permission: atom.command.gamemode
   tp:
     description: Teleports plaers
     usage: /<command>
     aliases: teleport
-    permission: clarke.command.tp
+    permission: atom.command.tp
   kill:
     description: Kills a Player
     usage: /<command>
-    permission: clarke.command.kill
-  clarke:
-    description: Clarke
+    permission: atom.command.kill
+  atom:
+    description: Atom Management Command
     default: true
     usage: /<command>
   weather:
     description: Changes the weather
     usage: /<command>
-    permission: clarke.command.weather
+    permission: atom.command.weather
   edit:
     description: Does alot
     usage: /<command>
-    permission: clarke.command.edit
+    permission: atom.command.edit
   freeze:
     description: Halts a players actions
     usage: /<command>
-    permission: clarke.command.freeze
+    permission: atom.command.freeze
   smite:
     description: Summons a lightning bold
     usage: /<command>
-    permission: clarke.command.smite
+    permission: atom.command.smite
   enderchest:
     description: Opens the Enderchest
     aliases: [ec,echest]
     usage: /<command>
-    permission: clarke.command.enderchest
-  #  mutechat:
-  #    description: Silences Chat for Non-Staff
-  #    permission: clarke.command.mutechat
-  #    aliases: [hushmode,togglechat,hush]
+    permission: atom.command.enderchest
+  mutelocalchat:
+    description: Silences Chat for Non-Staff
+    permission: atom.command.mutelocalchat
   tphere:
     description: Teleports a player to you
-    permission: clarke.command.tphere
+    permission: atom.command.tphere
   say:
     description: Broadcast to the Server
-    permission: clarke.command.say
+    permission: atom.command.say
   #  grant:
   #    description: Grants a user a Rank
   #    usage: /<command>
-  #    permission: clarke.command.grant
+  #    permission: atom.command.grant
   #  grants:
   #    description: Views a users grants
-  #    permission: clarke.command.grants
+  #    permission: atom.command.grants
   #    usage: /<command>
   give:
     description: Gives a player an Item
     usage: /<command>
-    permission: clarke.command.give
+    permission: atom.command.give
   #  togglesc:
   #    description: Toggles in-game staffchat
   #    usage: /<command>
-  #    permission: clarke.chat.staffchat
+  #    permission: atom.chat.staffchat
   #  whisper:
   #    description: Message a player
   #    aliases: [w,msg,tell,t]
@@ -115,7 +114,7 @@ commands:
   #    default: true
   #  socialspy:
   #    description: Toggles Admin Spying
-  #    permission: clarke.command.socialspy
+  #    permission: atom.command.socialspy
   #  togglepm:
   #    description: Toggles private messaging
   #    usage: /<command>
@@ -124,13 +123,13 @@ commands:
     description: "Nothing to see here :)"
   setspawn:
     description: Sets the Spawn
-    permission: clarke.command.setspawn
+    permission: atom.command.setspawn
   spawn:
     description: Teleports to the Spawnpoint
     default: true
   build:
     description: Toggles Build Mode.
-    permission: clarke.command.build
+    permission: atom.command.build
   balance:
     description: Returns balance
     aliases:
@@ -139,3 +138,6 @@ commands:
     description: "¯\_(ツ)_/¯"
   rankup:
     description: "[Prison] Ranks to the next avail rank."
+  togglepvp:
+    description: Toggles PVP Globally
+    permission: clark.command.togglepvp

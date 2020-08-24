@@ -9,6 +9,7 @@ import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.types.MetaNode;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,7 +23,7 @@ public class rankup implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
         if (Core.isPrison) {
-            if (prisonUtils.rankValue(player) == 0) {
+            if (prisonUtils.getPrisonRank(player).equals(ChatColor.RED + "D4")) {
                 prisonUtils.printMessage(player, "&cYou've reached the max rankup. Congratulations!");
             } else {
                 EconomyResponse canRank = econ.withdrawPlayer(player, prisonUtils.rankValue(player));

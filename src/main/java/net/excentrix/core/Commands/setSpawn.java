@@ -14,7 +14,7 @@ public class setSpawn implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
-        if (sender.hasPermission("clarke.command." + command.getName() + ".set")) {
+        if (sender.hasPermission("atom.command." + command.getName() + ".set")) {
             Location newSpawn = player.getLocation();
             String currentWorld = player.getWorld().getName();
             Bukkit.getWorld(currentWorld).setSpawnLocation(newSpawn);

@@ -1,5 +1,5 @@
 # Enter your server name here.
-# Changes in here require a /clarke reload
+# Changes in here require a /atom reload
 
 # This shows up in the StaffChat, and other Commands.
 server-name: 'undefined'
@@ -17,3 +17,5 @@ doInsomnia: false
 world: 'world'
 # Disables the creation of Nether Portals
 disable-portals: true
+# Enables/Disables Global PVP
+pvp-enabled: true

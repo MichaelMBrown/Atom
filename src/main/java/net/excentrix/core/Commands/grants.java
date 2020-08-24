@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class grants implements CommandExecutor {
-    private static Plugin plugin = Core.getPlugin(Core.class);
+    private static final Plugin plugin = Core.getPlugin(Core.class);
 
 
     @Override
@@ -22,7 +22,7 @@ public class grants implements CommandExecutor {
         player = (Player) commandSender;
         if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
             LuckPerms api = LuckPermsProvider.get();
-            if (!(commandSender.hasPermission("clarke.command.grants"))) {
+            if (!(commandSender.hasPermission("atom.command.grants"))) {
                 staffUtils.noPerm((Player) commandSender);
                 return true;
             } else if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {

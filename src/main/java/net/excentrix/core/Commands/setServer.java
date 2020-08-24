@@ -10,13 +10,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class setServer implements CommandExecutor {
-    private static Plugin plugin = Core.getPlugin(Core.class);
+    private static final Plugin plugin = Core.getPlugin(Core.class);
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             if (command.getName().equalsIgnoreCase("setserver") || command.getName().equalsIgnoreCase("set-server")) {
-                if (sender.hasPermission("clarke.command.setserver")) {
+                if (sender.hasPermission("atom.command.setserver")) {
                     if (args.length == 1) {
                         sender.sendMessage(ChatColor.DARK_GRAY + "Processing request...");
                         plugin.getConfig().set("server-name", args[0]);

@@ -14,7 +14,7 @@ public class weatherCompletion implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> weatherTypes = new ArrayList<>();
         List<String> worldList = new ArrayList<>();
-        if (sender.hasPermission("clarke.command.weather")) {
+        if (sender.hasPermission("atom.command.weather")) {
             if (args.length == 1) {
                 weatherTypes.add("storm");
                 weatherTypes.add("clear");

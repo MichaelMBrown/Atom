@@ -27,7 +27,7 @@ public class kick implements CommandExecutor {
         Plugin plugin = Core.getPlugin(Core.class);
         String reason = "";
         if ((sender instanceof Player)) {
-            if (sender.hasPermission("clarke.command.kick")) {
+            if (sender.hasPermission("atom.command.kick")) {
                 if (command.getName().equalsIgnoreCase("kick")) {
                     if (args.length > 0) {
                         Player target = Bukkit.getPlayerExact(args[0]);

@@ -14,7 +14,7 @@ public class preventionMode implements Listener {
     public void preventBuild(BlockBreakEvent event) {
         if (Core.buildDenied.contains(event.getPlayer())) {
             event.setCancelled(true);
-            if (event.getPlayer().hasPermission("clarke.command.build"))
+            if (event.getPlayer().hasPermission("atom.command.build"))
                 event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou cannot break blocks as your build mode is disabled!"));
         }
     }
@@ -23,7 +23,7 @@ public class preventionMode implements Listener {
     public void preventPlace(BlockPlaceEvent event) {
         if (Core.buildDenied.contains(event.getPlayer())) {
             event.setCancelled(true);
-            if (event.getPlayer().hasPermission("clarke.command.build"))
+            if (event.getPlayer().hasPermission("atom.command.build"))
                 event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou cannot place blocks as your build mode is disabled!"));
         }
     }

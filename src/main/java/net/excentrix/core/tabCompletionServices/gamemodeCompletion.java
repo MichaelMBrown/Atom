@@ -14,7 +14,7 @@ public class gamemodeCompletion implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> possibleGamemodes = new ArrayList<>();
-        if (sender.hasPermission("clarke.command.gamemode")) {
+        if (sender.hasPermission("atom.command.gamemode")) {
             if (args.length == 1) {
                 for (GameMode c : GameMode.values()) {
                     possibleGamemodes.add(c.toString().toLowerCase());

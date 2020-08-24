@@ -20,10 +20,10 @@ public class balance implements CommandExecutor {
                 Player targetPlayer = Bukkit.getPlayerExact(args[0]);
                 Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                 if (target != null) {
-                    staffUtils.informativeMessage((Player) sender, "&e" + target.getName() + "&7 has a balance of &a" + econ.format(econ.getBalance(target)));
+                    staffUtils.informativeMessage((Player) sender, Core.playerColour + target.getName() + "&7 has a balance of &a" + econ.format(econ.getBalance(target)));
                 } else staffUtils.playerNotFound((Player) sender);
             } else {
-                staffUtils.informativeMessage((Player) sender, "&eYou&7 have a balance of &a" + econ.format(econ.getBalance(player)));
+                staffUtils.informativeMessage((Player) sender, Core.playerColour + "You&7 have a balance of &a" + econ.format(econ.getBalance(player)));
             }
         }
         return true;

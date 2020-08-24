@@ -1,5 +1,6 @@
 package net.excentrix.core.Commands;
 
+import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,14 +16,14 @@ public class teleport implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             if (command.getName().equalsIgnoreCase("tp")) {
-                if (sender.hasPermission("clarke.command.tp")) {
+                if (sender.hasPermission("atom.command.tp")) {
                     if (args.length == 1) {
                         Player targetPlayer = Bukkit.getPlayerExact(args[0]);
                         Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
                         if (target != null) {
                             Location targetLoc = target.getLocation();
                             ((Player) sender).teleport(targetLoc);
-                            staffUtils.informativeMessage((Player) sender, "You have teleported to &e" + target.getName());
+                            staffUtils.informativeMessage((Player) sender, "You have teleported to " + Core.playerColour + target.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported to " + ChatColor.GOLD + target.getName(), false);
                         } else {
                             staffUtils.playerNotFound((Player) sender);
@@ -35,7 +36,7 @@ public class teleport implements CommandExecutor {
                         if (target != null && target2 != null) {
                             Location toTarget = target2.getLocation();
                             target.teleport(toTarget);
-                            staffUtils.informativeMessage((Player) sender, "You have teleported to &e" + target.getName() + "&7 to &e" + target2.getName());
+                            staffUtils.informativeMessage((Player) sender, "You have teleported to " + Core.playerColour + target.getName() + "&7 to " + Core.playerColour + target2.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " to " + ChatColor.GOLD + target2.getName(), false);
                         } else {
                             staffUtils.playerNotFound((Player) sender);

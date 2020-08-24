@@ -1,5 +1,6 @@
 package net.excentrix.core.Commands;
 
+import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,7 +17,7 @@ public class teleportHere implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player sender = (Player) commandSender;
         Location toLocation = sender.getLocation();
-        if (!commandSender.hasPermission("clarke.command.tphere")) {
+        if (!commandSender.hasPermission("atom.command.tphere")) {
             staffUtils.noPerm(sender);
             return true;
         }
@@ -25,7 +26,7 @@ public class teleportHere implements CommandExecutor {
             Player target = staffUtils.findPlayer(sender, targetPlayer);
             if (target != null) {
                 target.teleport(toLocation);
-                staffUtils.informativeMessage(sender, "You have teleported &e" + target.getName() + " &7to &eYou");
+                staffUtils.informativeMessage(sender, "You have teleported " + Core.playerColour + target.getName() + " &7to " + Core.playerColour + "You");
                 BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported to " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " to themself.", false);
             } else staffUtils.playerNotFound(sender);
         } else staffUtils.printUsage(sender, "tphere", "<player>");
