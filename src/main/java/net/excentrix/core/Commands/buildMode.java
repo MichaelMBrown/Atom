@@ -14,7 +14,7 @@ public class buildMode implements CommandExecutor {
         if (!(sender.hasPermission("atom.command.build")))
             return true;
         if (Core.buildDenied.contains(player)) {
-            staffUtils.informativeMessage(player, "&aYour build mode has been turned on.");
+            staffUtils.informativeMessage(player, "Your build mode has been turned on.");
             Core.buildDenied.remove(player);
         } else {
             staffUtils.informativeMessage(player, "&cYour build mode has been turned off.");

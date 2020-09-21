@@ -28,19 +28,19 @@ public class atom implements CommandExecutor {
                 String option = args[0].toLowerCase();
                 switch (option) {
                     case "help":
-                        player.sendMessage(ChatColor.AQUA + "==========" + ChatColor.WHITE + " Atom Commands" + ChatColor.AQUA + "==========");
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b* &b/&fhelpop &b&m  &f&r Requests Staff Assistance"));
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b* &b/&freport &b&m  &f&r Reports a Player"));
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b* &b/&fw &b&m  &r&f Message a Player"));
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b* &b/&ftogglepm &b&m  &f&r Toggles Receiving Messages"));
+                        player.sendMessage(ChatColor.GOLD + "---------- " + "Commands for: " + ChatColor.YELLOW + "Atom" + ChatColor.GOLD + " ----------");
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&fhelpop &6&m  &f&r Requests Staff Assistance"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&freport &6&m  &f&r Reports a Player"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&fw &6&m  &r&f Message a Player"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&ftogglepm &6&m  &f&r Toggles Receiving Messages"));
                         atomCommand(player, "fly", "Enables/Disables Flight for a Player");
                         atomCommand(player, "gamemode", "Sets a Players Gamemode");
                         atomCommand(player, "god", "Enables/Disables God for a Player");
                         atomCommand(player, "heal", "Heals a Player");
-                        //atomCommand(player, "kick", "Removes a player from the Network");
+                        atomCommand(player, "kick", "Removes a player from the Network");
                         atomCommand(player, "kill", "Kills a Player");
-                        //clarkeCommand(player, "staffchat", "Communicates in StaffChat");
-                        //clarkeCommand(player, "toggleSC", "Toggles in-game staff chat");
+                        atomCommand(player, "staffchat", "Communicates in StaffChat");
+                        atomCommand(player, "toggleSC", "Toggles in-game staff chat");
                         atomCommand(player, "tp", "Teleport to Players");
                         atomCommand(player, "weather", "Changes the Weather");
                         atomCommand(player, "edit", "Edits in-game configs");
@@ -50,8 +50,8 @@ public class atom implements CommandExecutor {
                         atomCommand(player, "tphere", "Teleports a player to you");
                         atomCommand(player, "say", "Broadcast to the Server");
                         atomCommand(player, "give", "Give a player an Item");
-                        //clarkeCommand(player, "grant", "Grant a user a rank");
-                        //clarkeCommand(player, "grants", "Shows what a User has been Granted");
+                        atomCommand(player, "grant", "Grant a user a rank");
+                        atomCommand(player, "grants", "Shows what a User has been Granted");
                         atomCommand(player, "build", "Toggles Buildmode.");
                         atomCommand(player, "balance", "Views your Balance");
                         atomCommand(player, "setserver", "Sets the internal server name");

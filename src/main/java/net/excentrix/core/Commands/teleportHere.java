@@ -1,6 +1,5 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -23,10 +22,10 @@ public class teleportHere implements CommandExecutor {
         }
         if (strings.length == 1) {
             Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
-            Player target = staffUtils.findPlayer(sender, targetPlayer);
+            Player target = staffUtils.playerLookup(sender, targetPlayer);
             if (target != null) {
                 target.teleport(toLocation);
-                staffUtils.informativeMessage(sender, "You have teleported " + Core.playerColour + target.getName() + " &7to " + Core.playerColour + "You");
+                staffUtils.informativeMessage(sender, "You have teleported " + staffUtils.retrievePlayerColour(target) + target.getName() + " &ato " + staffUtils.retrievePlayerColour(sender) + "You");
                 BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "teleported to " + ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " to themself.", false);
             } else staffUtils.playerNotFound(sender);
         } else staffUtils.printUsage(sender, "tphere", "<player>");

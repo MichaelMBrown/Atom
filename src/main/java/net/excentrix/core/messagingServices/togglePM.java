@@ -18,7 +18,7 @@ public class togglePM implements CommandExecutor {
             staffUtils.informativeMessage((Player) sender, "You will now receive private messages from players.");
         } else {
             Core.pmToggled.add(commandSender);
-            staffUtils.informativeMessage((Player) sender, "You will no longer receive private messages from players.");
+            staffUtils.informativeMessage((Player) sender, "&cYou will no longer receive private messages from players.");
         }
 
         return true;

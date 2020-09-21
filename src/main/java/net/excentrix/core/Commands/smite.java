@@ -1,6 +1,5 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -28,9 +27,9 @@ public class smite implements CommandExecutor {
                     world.strikeLightning(loc);
                 } else if (strings.length == 1) {
                     Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
-                    Player target = staffUtils.findPlayer(sender, targetPlayer);
+                    Player target = staffUtils.playerLookup(sender, targetPlayer);
                     if (target != null) {
-                        staffUtils.informativeMessage((Player) commandSender, "You smited " + Core.playerColour + target.getName());
+                        staffUtils.informativeMessage((Player) commandSender, "You smited " + staffUtils.retrievePlayerColour(target) + target.getName());
                         BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.YELLOW + "smited " + ChatColor.GOLD + target.getName(), false);
                         World world = target.getWorld();
                         world.strikeLightning(target.getLocation());

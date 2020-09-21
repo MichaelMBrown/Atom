@@ -1,6 +1,5 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -16,13 +15,13 @@ public class enderchest implements CommandExecutor {
         if (commandSender.hasPermission("atom.command.enderchest")) {
             if (strings.length == 0) {
                 player.openInventory(player.getEnderChest());
-                staffUtils.informativeMessage(player, "Opening the Enderchest of " + Core.playerColour + commandSender.getName());
+                staffUtils.informativeMessage(player, "Opening the Enderchest of " + staffUtils.retrievePlayerColour((Player) commandSender) + commandSender.getName());
             } else if ((strings.length == 1)) {
                 if (player.hasPermission("atom.command.enderchest.others")) {
                     Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
-                    Player target = staffUtils.findPlayer((Player) commandSender, targetPlayer);
+                    Player target = staffUtils.playerLookup((Player) commandSender, targetPlayer);
                     if (target != null) {
-                        staffUtils.informativeMessage(player, "Opening the Enderchest of " + Core.playerColour + target.getName());
+                        staffUtils.informativeMessage(player, "Opening the Enderchest of " + staffUtils.retrievePlayerColour(target) + target.getName());
                         player.openInventory(target.getEnderChest());
                     } else staffUtils.playerNotFound(player);
                 } else staffUtils.noPerm(player);

@@ -11,8 +11,12 @@ public class spawn implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
-        player.teleport(Core.spawn);
-        staffUtils.informativeMessage(player, "You have been teleported to spawn!");
+        if (!(Core.spawn == null)) {
+            if (!Core.spawn.isChunkLoaded())
+                Core.spawn.getChunk().load();
+            player.teleport(Core.spawn);
+            staffUtils.informativeMessage(player, "You have been teleported to &eSpawn&a!");
+        } else staffUtils.errorMessage(player, "Sorry, the location: &aspawn&c is undefined");
         return true;
     }
 }

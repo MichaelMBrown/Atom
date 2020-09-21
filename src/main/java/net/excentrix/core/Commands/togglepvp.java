@@ -17,14 +17,14 @@ public class togglepvp implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender.hasPermission("atom.command.togglepvp")) {
             if (globalPVP) {
-                staffUtils.broadcastServer("Global PVP has been disabled by " + Core.playerColour + sender.getName());
+                staffUtils.broadcastServer("&c[Alert]&e PVP has been disabled by " + Core.playerColour + sender.getName());
                 globalPVP = false;
                 plugin.getConfig().set("pvp-enabled", globalPVP);
                 plugin.saveConfig();
                 plugin.reloadConfig();
                 //staffUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has muted the chat.");
             } else {
-                staffUtils.broadcastServer("Global PVP has been enabled by " + Core.playerColour + sender.getName());
+                staffUtils.broadcastServer("&c[Alert]&e PVP has been enabled by " + Core.playerColour + sender.getName());
                 globalPVP = true;
                 plugin.getConfig().set("pvp-enabled", globalPVP);
                 plugin.saveConfig();

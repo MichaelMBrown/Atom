@@ -15,13 +15,13 @@ public class kill implements CommandExecutor {
             if (sender.hasPermission("atom.command.kill")) {
                 if (args.length == 1) {
                     Player targetPlayer = Bukkit.getPlayerExact(args[0]);
-                    Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
+                    Player target = staffUtils.playerLookup((Player) sender, targetPlayer);
                     if (target != null) {
                         if (Core.godList.contains(target)) {
                             staffUtils.actionForbidden((Player) sender);
                         } else {
                             target.setHealth(0);
-                            staffUtils.informativeMessage((Player) sender, "Killed " + Core.playerColour + target.getName());
+                            staffUtils.informativeMessage((Player) sender, "Killed " + staffUtils.retrievePlayerColour(target) + target.getName());
 //                            staffUtils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
                         }
                     } else staffUtils.playerNotFound((Player) sender);

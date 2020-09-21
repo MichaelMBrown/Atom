@@ -8,6 +8,7 @@ import net.luckperms.api.cacheddata.CachedMetaData;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.types.MetaNode;
 import net.luckperms.api.query.QueryOptions;
+import org.apache.commons.lang.NullArgumentException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -35,19 +36,24 @@ public class authEvent implements Listener {
                 if (grant == null) {
                     staffUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
                     staffUtils.scNotify("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
+                    Core.freezeList.add(player);
                 } else
                     staffUtils.informativeMessage(player, "&aVerified&7 Applying your " + grant + " &7grant to you now.");
             Core.freezeList.remove(player);
         } else {
             staffUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
             staffUtils.scNotify("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
+            Core.freezeList.add(player);
         }
         QueryOptions queryOptions = api.getContextManager().getQueryOptions(player);
         CachedMetaData metaData = api.getUserManager().getUser(player.getName()).getCachedData().getMetaData(queryOptions);
         if (metaData.getMetaValue("prison_rank") == null || metaData.getMetaValue("prison_rank").equals("A")) {
-            if (metaData.getMetaValue("prison_rank").equals("A")) {
-                User user = api.getUserManager().getUser(player.getUniqueId());
-                user.data().remove(MetaNode.builder("prison_rank", "A").build());
+            try {
+                if (metaData.getMetaValue("prison_rank").equals("A")) {
+                    User user = api.getUserManager().getUser(player.getUniqueId());
+                    user.data().remove(MetaNode.builder("prison_rank", "A").build());
+                }
+            } catch (NullArgumentException | NullPointerException ignored) {
             }
             User user = api.getUserManager().getUser(player.getUniqueId());
             user.data().add(MetaNode.builder("prison_rank", "A1").build());

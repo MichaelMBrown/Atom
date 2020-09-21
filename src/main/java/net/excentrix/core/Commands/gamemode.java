@@ -1,6 +1,5 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -23,8 +22,8 @@ public class gamemode implements CommandExecutor {
         if ((strings.length == 1) && !(sender instanceof ConsoleCommandSender)) {
             try {
                 sender.setGameMode(GameMode.valueOf(strings[0].toUpperCase()));
-                staffUtils.informativeMessage(sender, Core.playerColour + sender.getName() + "&7's game mode is now &f&o" + strings[0].toUpperCase());
-                BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.translateAlternateColorCodes('&', "&7&oset own gamemode to &e&o" + strings[0].toUpperCase()), false);
+                staffUtils.informativeMessage(sender, staffUtils.retrievePlayerColour(sender) + sender.getName() + "&a's game mode is now &e" + strings[0]);
+                BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.translateAlternateColorCodes('&', "&7&oset own gamemode to &e&o" + strings[0]), false);
             } catch (IllegalArgumentException e) {
                 staffUtils.errorMessage(sender, "That gamemode does not exist!");
             }
@@ -35,10 +34,10 @@ public class gamemode implements CommandExecutor {
 
             try {
                 Player targetPlayer = Bukkit.getPlayerExact(strings[1]);
-                Player target = staffUtils.findPlayer(sender, targetPlayer);
+                Player target = staffUtils.playerLookup(sender, targetPlayer);
                 target.setGameMode(GameMode.valueOf(strings[0].toUpperCase()));
-                staffUtils.informativeMessage(sender, Core.playerColour + target.getName() + "&7's game mode is now &f&o" + strings[0].toUpperCase());
-                BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.translateAlternateColorCodes('&', "&7&oset " + target.getName() + "'s gamemode to &e&o" + strings[0].toUpperCase()), false);
+                staffUtils.informativeMessage(sender, staffUtils.retrievePlayerColour(target) + target.getName() + "&a's game mode is now &e" + strings[0]);
+                BukkitCommand.broadcastCommandMessage(commandSender, ChatColor.translateAlternateColorCodes('&', "&7&oset " + target.getName() + "'s gamemode to &e&o" + strings[0]), false);
             } catch (NullPointerException e) {
                 staffUtils.playerNotFound(sender);
             } catch (IllegalArgumentException e) {

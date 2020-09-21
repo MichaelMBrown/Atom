@@ -30,15 +30,15 @@ public class grants implements CommandExecutor {
                     staffUtils.printUsage(player, "grants", "<player>");
                 } else {
                     Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
-                    Player target = staffUtils.findPlayer((Player) commandSender, targetPlayer);
+                    Player target = staffUtils.playerLookup((Player) commandSender, targetPlayer);
                     try {
                         String group = staffUtils.getRank(target.getName());
                         if (target != null) {
                             String grantName = api.getGroupManager().getGroup(group).getDisplayName();
                             if (grantName == null) {
-                                staffUtils.informativeMessage(player, target.getName() + "&7 has the grant: " + api.getGroupManager().getGroup(group).getName() + "&7.");
+                                staffUtils.informativeMessage(player, staffUtils.retrievePlayerColour(target) + target.getName() + "&a has the grant: " + api.getGroupManager().getGroup(group).getName() + "&a.");
                             } else {
-                                staffUtils.informativeMessage(player, target.getName() + "&7 has the grant: " + api.getGroupManager().getGroup(group).getDisplayName() + "&7.");
+                                staffUtils.informativeMessage(player, staffUtils.retrievePlayerColour(target) + target.getName() + "&a has the grant: " + api.getGroupManager().getGroup(group).getDisplayName() + "&a.");
                             }
                         }
                     } catch (NullPointerException e) {

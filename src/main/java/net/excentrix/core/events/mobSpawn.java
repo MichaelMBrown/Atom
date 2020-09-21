@@ -10,15 +10,11 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.Plugin;
 
 public class mobSpawn implements Listener {
-    private static Plugin plugin = Core.getPlugin(Core.class);
+    private static final Plugin plugin = Core.getPlugin(Core.class);
 
     @EventHandler
     public void disableAI(CreatureSpawnEvent event) {
-        if (plugin.getConfig().getBoolean("mobAI")) {
-            event.getEntity().setAI(true);
-        } else {
-            event.getEntity().setAI(false);
-        }
+        event.getEntity().setAI(plugin.getConfig().getBoolean("mobAI"));
     }
 
     @EventHandler

@@ -1,19 +1,19 @@
 name: Atom
 version: ${project.version}
 main: net.excentrix.core.Core
-api-version: 1.14
-softdepend: [LuckPerms]
+api-version: 1.16
+softdepend: [ LuckPerms, PremiumVanish, SuperVanish ]
 #loadbefore: [LiteBans]
-depend: [Vault]
-authors: [qr0]
+depend: [ Vault ]
+authors: [ qr0 ]
 description: Atom Core Systems.
 website: excentrix.net
 commands:
-  #  sc:
-  #    description: Communicate with Staff
-  #    usage: /<command>
-  #    aliases: staffchat
-  #    permission: atom.chat.staffchat
+  sc:
+    description: Communicate with Staff
+    usage: /<command>
+    aliases: staffchat
+    permission: atom.chat.staffchat
   kick:
     description: Remove a player
     usage: /<command>
@@ -79,11 +79,12 @@ commands:
     permission: atom.command.smite
   enderchest:
     description: Opens the Enderchest
-    aliases: [ec,echest]
+    aliases: [ ec, echest ]
     usage: /<command>
     permission: atom.command.enderchest
   mutelocalchat:
     description: Silences Chat for Non-Staff
+    aliases: [ togglechat, mutechat ]
     permission: atom.command.mutelocalchat
   tphere:
     description: Teleports a player to you
@@ -91,34 +92,35 @@ commands:
   say:
     description: Broadcast to the Server
     permission: atom.command.say
-  #  grant:
-  #    description: Grants a user a Rank
-  #    usage: /<command>
-  #    permission: atom.command.grant
-  #  grants:
-  #    description: Views a users grants
-  #    permission: atom.command.grants
-  #    usage: /<command>
+  grant:
+    description: Grants a user a Rank
+    usage: /<command>
+    permission: atom.command.grant
+  grants:
+    description: Views a users grants
+    permission: atom.command.grants
+    usage: /<command>
   give:
     description: Gives a player an Item
     usage: /<command>
     permission: atom.command.give
-  #  togglesc:
-  #    description: Toggles in-game staffchat
-  #    usage: /<command>
-  #    permission: atom.chat.staffchat
-  #  whisper:
-  #    description: Message a player
-  #    aliases: [w,msg,tell,t]
-  #    usage: /<command>
-  #    default: true
-  #  socialspy:
-  #    description: Toggles Admin Spying
-  #    permission: atom.command.socialspy
-  #  togglepm:
-  #    description: Toggles private messaging
-  #    usage: /<command>
-  #    default: true
+  togglesc:
+    description: Toggles in-game staffchat
+    usage: /<command>
+    permission: atom.chat.staffchat
+  whisper:
+    description: Message a player
+    aliases: [ w, msg, tell, t ]
+    usage: /<command>
+    default: true
+  socialspy:
+    description: Toggles Admin Spying
+    permission: atom.command.socialspy
+  togglepm:
+    description: Toggles private messaging
+    aliases: [ togglepm, tpm ]
+    usage: /<command>
+    default: true
   announceToStaff:
     description: "Nothing to see here :)"
   setspawn:

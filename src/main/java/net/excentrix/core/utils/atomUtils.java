@@ -10,7 +10,7 @@ public class atomUtils {
 
     public static void atomCommand(Player player, String command, String usage) {
         if (player.hasPermission("atom.command." + command)) {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b* &b/&f" + command + " &b&m  &f&r " + usage));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&f" + command + " &6&m  &f&r " + usage));
 //            player.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/" + command + ChatColor.YELLOW + " -- " + ChatColor.WHITE + usage + ".");
         }
     }

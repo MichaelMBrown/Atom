@@ -18,18 +18,18 @@ public class freeze implements CommandExecutor {
             if (sender.hasPermission("atom.command.freeze")) {
                 if (args.length == 1) {
                     Player targetPlayer = Bukkit.getPlayerExact(args[0]);
-                    Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
+                    Player target = staffUtils.playerLookup((Player) sender, targetPlayer);
                     if (target != null) {
                         if (!Core.freezeList.contains(target)) {
                             Core.freezeList.add(target);
                             target.setInvulnerable(true);
-                            staffUtils.informativeMessage((Player) sender, "You froze " + Core.playerColour + target.getName());
+                            staffUtils.informativeMessage((Player) sender, "You froze " + staffUtils.retrievePlayerColour(target) + target.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "froze " + ChatColor.YELLOW + target.getName(), false);
                             staffUtils.errorMessage(target, "You have been frozen.");
                         } else {
                             Core.freezeList.remove(target);
                             target.setInvulnerable(false);
-                            staffUtils.informativeMessage((Player) sender, "You unfroze " + Core.playerColour + target.getName());
+                            staffUtils.informativeMessage((Player) sender, "You unfroze " + staffUtils.retrievePlayerColour(target) + target.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "unfroze " + ChatColor.YELLOW + target.getName(), false);
                             staffUtils.informativeMessage(target, "You are no longer frozen.");
                         }

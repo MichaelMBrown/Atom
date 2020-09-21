@@ -24,10 +24,10 @@ public class weather implements CommandExecutor {
                         if (args[0].equalsIgnoreCase("clear")) {
                             Bukkit.getWorld(currentWorld).setStorm(false);
                             staffUtils.informativeMessage((Player) sender, "Set the weather in " + ChatColor.YELLOW + currentWorld + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[0].toUpperCase());
-                            staffUtils.scNotify(p.getName(), "Changing the weather in " + ChatColor.GOLD + currentWorld + ChatColor.GRAY + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
+                            staffUtils.scNotify(p.getName(), "Changing the weather in " + ChatColor.GOLD + currentWorld + ChatColor.WHITE + " to " + ChatColor.GOLD + args[0].toLowerCase());
                         } else if (args[0].equalsIgnoreCase("storm") || args[0].equalsIgnoreCase("rain")) {
                             sender.sendMessage(ChatColor.GREEN + "Set the weather in " + ChatColor.YELLOW + currentWorld + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[0].toUpperCase());
-                            staffUtils.scNotify(p.getName(), "Changing the weather in " + ChatColor.GOLD + currentWorld + ChatColor.GRAY + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
+                            staffUtils.scNotify(p.getName(), "Changing the weather in " + ChatColor.GOLD + currentWorld + ChatColor.WHITE + " to " + ChatColor.GOLD + args[0].toLowerCase());
                             Bukkit.getWorld(currentWorld).setStorm(true);
                         } else sender.sendMessage(ChatColor.RED + "Unknown weather type: " + args[0]);
                     } else if (args.length == 2) {
@@ -36,11 +36,11 @@ public class weather implements CommandExecutor {
                             if (args[0].equalsIgnoreCase("clear")) {
                                 Bukkit.getWorld(targetWorld).setStorm(false);
                                 staffUtils.informativeMessage((Player) sender, "Set the weather in " + ChatColor.YELLOW + targetWorld + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[0].toUpperCase());
-                                staffUtils.scNotify(p.getName(), "Changing the weather in " + ChatColor.GOLD + targetWorld + ChatColor.GRAY + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
+                                staffUtils.scNotify(p.getName(), "Changing the weather in " + ChatColor.GOLD + targetWorld + ChatColor.WHITE + " to " + ChatColor.GOLD + args[0].toLowerCase());
                             } else if (args[0].equalsIgnoreCase("storm")) {
                                 Bukkit.getWorld(targetWorld).setStorm(true);
                                 staffUtils.informativeMessage((Player) sender, "Set the weather in " + ChatColor.YELLOW + targetWorld + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[0].toUpperCase());
-                                staffUtils.scNotify(p.getName(), "Changing the weather in " + ChatColor.GOLD + targetWorld + ChatColor.GRAY + " to " + ChatColor.GOLD + args[0].toLowerCase() + ChatColor.YELLOW);
+                                staffUtils.scNotify(p.getName(), "Changing the weather in " + ChatColor.GOLD + targetWorld + ChatColor.WHITE + " to " + ChatColor.GOLD + args[0].toLowerCase());
                             }
 
                         } else {

@@ -6,6 +6,9 @@ import net.excentrix.core.enchants.telekinesis;
 import net.excentrix.core.enchants.trueDamage;
 import net.excentrix.core.events.*;
 import net.excentrix.core.internalCommands.announceToStaff;
+import net.excentrix.core.messagingServices.socialspy;
+import net.excentrix.core.messagingServices.togglePM;
+import net.excentrix.core.messagingServices.whisper;
 import net.excentrix.core.tabCompletionServices.*;
 import net.excentrix.core.tasks.updateTablist;
 import net.milkbowl.vault.economy.Economy;
@@ -32,7 +35,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
     public static Boolean enchantSupport = false;
     public static Boolean isPrison = false;
     public static Location spawn;
-    public static ChatColor playerColour = ChatColor.AQUA;
+    public static ChatColor playerColour = ChatColor.GRAY;
     // Setup the Economy
     private static Economy econ = null;
 
@@ -54,10 +57,23 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 
     public void onEnable() {
         //Starting Plugin
-        getLogger().info("Enabling" + ChatColor.LIGHT_PURPLE + "Atom" + ChatColor.RESET + "v" + getDescription().getVersion() + " on server " + getConfig().getString("server-name").toLowerCase());
+        getLogger().info("Enabling " + ChatColor.LIGHT_PURPLE + "Atom" + ChatColor.RESET + " v" + getDescription().getVersion() + " on server " + getConfig().getString("server-name").toLowerCase());
         //Setup the custom enchant support
-        enchantSupport = getConfig().getString("server-name").equalsIgnoreCase("skyblock") || getConfig().getString("server-name").equalsIgnoreCase("prison");
-        isPrison = getConfig().getString("server-name").equalsIgnoreCase("prison");
+//        enchantSupport = getConfig().getString("server-name").equalsIgnoreCase("skyblock") || getConfig().getString("server-name").equalsIgnoreCase("prison");
+//        isPrison = getConfig().getString("server-name").equalsIgnoreCase("prison");
+        switch (getConfig().getString("server-name").toLowerCase()) {
+            case "skyblock":
+            case "development":
+                enchantSupport = true;
+                break;
+            case "prison":
+                isPrison = true;
+                enchantSupport = true;
+                break;
+            default:
+                enchantSupport = false;
+                break;
+        }
 
 
         // Setup Economy
@@ -84,7 +100,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         // God Command
         getCommand("god").setExecutor(new God());
         // StaffChat Command
-        //getCommand("sc").setExecutor(new staffchat());
+        getCommand("sc").setExecutor(new staffchat());
         // Heal Command
         getCommand("heal").setExecutor(new heal());
         // Gamemode Command
@@ -113,20 +129,20 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
         // Say Command
         getCommand("say").setExecutor(new say());
         // Grant Command
-        //getCommand("grant").setExecutor(new grant());
-        //getCommand("grant").setTabCompleter(new grantCompletion());
+        getCommand("grant").setExecutor(new grant());
+        getCommand("grant").setTabCompleter(new grantCompletion());
         // Grants Command
-        //getCommand("grants").setExecutor(new grants());
+        getCommand("grants").setExecutor(new grants());
         // Give Command
         getCommand("give").setExecutor(new give());
         // Toggle StaffChat Command
-        //getCommand("togglesc").setExecutor(new toggleSC());
+        getCommand("togglesc").setExecutor(new toggleSC());
         // Whisper Command
-        //getCommand("whisper").setExecutor(new whisper());
+        getCommand("whisper").setExecutor(new whisper());
         // TogglePM Command
-        //getCommand("togglePM").setExecutor(new togglePM());
+        getCommand("togglePM").setExecutor(new togglePM());
         // SocialSpy Command
-        //getCommand("socialspy").setExecutor(new socialspy());
+        getCommand("socialspy").setExecutor(new socialspy());
         // Setspawn Command
         getCommand("setspawn").setExecutor(new setSpawn());
         // Spawn Command
@@ -177,14 +193,20 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 
         // Assigning the Spawn Values
         try {
-            spawn = getServer().getWorld(getConfig().getString("world")).getSpawnLocation();
+//            spawn = getServer().getWorld(getConfig().getObject("world")).getSpawnLocation();
+            spawn = (Location) getConfig().get("world");
         } catch (NullPointerException e) {
             getServer().getLogger().warning("World " + getConfig().getString("world") + " has an invalid Spawn Point.");
+            spawn = null;
+        } catch (ClassCastException e) {
+            getServer().getLogger().warning("World " + getConfig().getString("world") + " has an either a malformed config or it's your first boot.");
+            spawn = getServer().getWorlds().get(0).getSpawnLocation();
         }
     }
 
     public void onDisable() {
-        getLogger().info(ChatColor.YELLOW + "Saving chat state to disk.");
+        getLogger().info(ChatColor.YELLOW + "Saving server states to disk.");
+        getConfig().set("pvp-enabled", globalPVP);
         getConfig().set("chat-silenced", chatSilenced);
         getLogger().info(ChatColor.GREEN + "Success!");
     }

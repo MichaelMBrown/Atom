@@ -18,13 +18,13 @@ public class mutelocalchat implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender.hasPermission("atom.command.mutelocalchat")) {
             if (!chatSilenced) {
-                staffUtils.broadcastServer("Local chat has been disabled by " + playerColour + commandSender.getName());
+                staffUtils.broadcastServer("&c[Alert]&e Server chat has been disabled by " + playerColour + commandSender.getName());
                 chatSilenced = true;
                 plugin.getConfig().set("chat-silenced", chatSilenced);
                 plugin.saveConfig();
                 //staffUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has muted the chat.");
             } else {
-                staffUtils.broadcastServer("Local chat has been enabled by " + playerColour + commandSender.getName());
+                staffUtils.broadcastServer("&c[Alert]&e Server chat has been enabled by " + playerColour + commandSender.getName());
                 chatSilenced = false;
                 plugin.getConfig().set("chat-silenced", chatSilenced);
                 plugin.saveConfig();

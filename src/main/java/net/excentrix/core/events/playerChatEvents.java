@@ -2,6 +2,7 @@ package net.excentrix.core.events;
 
 import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -26,6 +27,9 @@ public class playerChatEvents implements Listener {
         if (event.getMessage().startsWith("# ") && staffUtils.getRankInteger(event.getPlayer().getName()) >= 1) {
             event.setCancelled(true);
             staffUtils.scNotify(event.getPlayer().getName(), event.getMessage().substring(2));
+        }
+        if (staffUtils.getRankInteger(event.getPlayer().getName()) >= 1) {
+            event.setMessage(ChatColor.translateAlternateColorCodes('&', event.getMessage()));
         }
     }
 }

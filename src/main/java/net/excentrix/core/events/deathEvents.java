@@ -1,11 +1,13 @@
 package net.excentrix.core.events;
 
+import com.destroystokyo.paper.event.player.PlayerPostRespawnEvent;
 import net.excentrix.core.Core;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class deathEvents implements Listener {
     public deathEvents() {
@@ -34,6 +36,10 @@ public class deathEvents implements Listener {
             //World world = player.getWorld();
             //world.strikeLightning(player.getLocation());
         }
+    }
 
+    @EventHandler
+    public void respawnEvent(PlayerPostRespawnEvent event) {
+        event.getPlayer().teleport(Core.spawn, PlayerTeleportEvent.TeleportCause.PLUGIN);
     }
 }

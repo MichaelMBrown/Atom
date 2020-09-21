@@ -24,7 +24,7 @@ public class give implements CommandExecutor {
         if (strings.length > 0) {
             int amount;
             Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
-            Player target = staffUtils.findPlayer(sender, targetPlayer);
+            Player target = staffUtils.playerLookup(sender, targetPlayer);
             if (strings[0].equalsIgnoreCase("all")) {
                 if (strings.length > 1) {
                     try {
@@ -41,7 +41,7 @@ public class give implements CommandExecutor {
                         for (Player p : Bukkit.getOnlinePlayers()) {
                             p.getInventory().addItem(item);
                         }
-                        staffUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&7 to " + Core.playerColour + strings[0].toUpperCase());
+                        staffUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&a to " + Core.playerColour + strings[0].toUpperCase());
                     } catch (NullPointerException e) {
                         staffUtils.actionForbidden(sender);
                     }
@@ -60,7 +60,7 @@ public class give implements CommandExecutor {
                     try {
                         ItemStack item = new ItemStack(Objects.requireNonNull(Material.getMaterial(strings[1].toUpperCase())), amount);
                         target.getInventory().addItem(item);
-                        staffUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&7 to " + Core.playerColour + strings[0]);
+                        staffUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&a to " + staffUtils.retrievePlayerColour(target) + strings[0]);
                     } catch (NullPointerException e) {
                         staffUtils.actionForbidden(sender);
                     }

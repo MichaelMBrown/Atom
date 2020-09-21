@@ -1,6 +1,5 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
 import net.excentrix.core.utils.staffUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,9 +18,9 @@ public class heal implements CommandExecutor {
                 if (sender.hasPermission("atom.command.heal")) {
                     if (args.length == 1) {
                         Player targetPlayer = Bukkit.getPlayerExact(args[0]);
-                        Player target = staffUtils.findPlayer((Player) sender, targetPlayer);
+                        Player target = staffUtils.playerLookup((Player) sender, targetPlayer);
                         if (target != null) {
-                            staffUtils.informativeMessage((Player) sender, "You healed " + Core.playerColour + target.getName());
+                            staffUtils.informativeMessage((Player) sender, "You healed " + staffUtils.retrievePlayerColour(target) + target.getName());
                             BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + target.getName(), false);
                             target.setHealth(20);
                             target.setFireTicks(0);
@@ -34,7 +33,7 @@ public class heal implements CommandExecutor {
                             staffUtils.playerNotFound((Player) sender);
                         }
                     } else {
-                        staffUtils.informativeMessage((Player) sender, "You healed " + Core.playerColour + "yourself&7.");
+                        staffUtils.informativeMessage((Player) sender, "You healed " + staffUtils.retrievePlayerColour((Player) sender) + sender.getName());
                         BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + sender.getName(), false);
                         Player commandSender = (Player) sender;
                         commandSender.setHealth(20);

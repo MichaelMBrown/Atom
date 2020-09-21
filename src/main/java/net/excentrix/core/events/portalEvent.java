@@ -10,7 +10,7 @@ import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.plugin.Plugin;
 
 public class portalEvent implements Listener {
-    private static Plugin plugin = Core.getPlugin(Core.class);
+    private static final Plugin plugin = Core.getPlugin(Core.class);
 
     @EventHandler
     public void disablePortals(PortalCreateEvent event) {
