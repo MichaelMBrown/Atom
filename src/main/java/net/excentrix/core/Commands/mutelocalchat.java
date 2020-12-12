@@ -12,25 +12,25 @@ import static net.excentrix.core.Core.chatSilenced;
 import static net.excentrix.core.Core.playerColour;
 
 public class mutelocalchat implements CommandExecutor {
-    private static final Plugin plugin = Core.getPlugin(Core.class);
-
-    @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (commandSender.hasPermission("atom.command.mutelocalchat")) {
-            if (!chatSilenced) {
-                staffUtils.broadcastServer("&c[Alert]&e Server chat has been disabled by " + playerColour + commandSender.getName());
-                chatSilenced = true;
-                plugin.getConfig().set("chat-silenced", chatSilenced);
-                plugin.saveConfig();
-                //staffUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has muted the chat.");
-            } else {
-                staffUtils.broadcastServer("&c[Alert]&e Server chat has been enabled by " + playerColour + commandSender.getName());
-                chatSilenced = false;
-                plugin.getConfig().set("chat-silenced", chatSilenced);
-                plugin.saveConfig();
-                //staffUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has unmuted the chat.");
-            }
-        } else staffUtils.noPerm((Player) commandSender);
-        return true;
-    }
+	private static final Plugin plugin = Core.getPlugin(Core.class);
+	
+	@Override
+	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+		if (commandSender.hasPermission("atom.command.mutelocalchat")) {
+			if (!chatSilenced) {
+				staffUtils.broadcastServer("&c[Alert]&e Server chat has been disabled by " + playerColour + commandSender.getName());
+				chatSilenced = true;
+				plugin.getConfig().set("chat-silenced", chatSilenced);
+				plugin.saveConfig();
+				//staffUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has muted the chat.");
+			} else {
+				staffUtils.broadcastServer("&c[Alert]&e Server chat has been enabled by " + playerColour + commandSender.getName());
+				chatSilenced = false;
+				plugin.getConfig().set("chat-silenced", chatSilenced);
+				plugin.saveConfig();
+				//staffUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has unmuted the chat.");
+			}
+		} else staffUtils.noPerm((Player) commandSender);
+		return true;
+	}
 }

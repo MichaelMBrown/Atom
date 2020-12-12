@@ -12,27 +12,27 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class announceToStaff implements CommandExecutor {
-    private static final Plugin plugin = Core.getPlugin(Core.class);
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof ConsoleCommandSender) {
-            String message = "";
-            if (args.length > 1) {
-                Player target = Bukkit.getPlayerExact(args[0]);
+	private static final Plugin plugin = Core.getPlugin(Core.class);
+	
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (sender instanceof ConsoleCommandSender) {
+			String message = "";
+			if (args.length > 1) {
+				Player target = Bukkit.getPlayerExact(args[0]);
 //                for (int i = 1; i < args.length; ++i) {
 //                    message = message + args[i] + " ";
 //                }
-                message = String.join(" ", args);
-                int substring = args[0].length() + 1;
-                String newMessage = message.substring(substring);
-                if (target != null) {
-                    BukkitCommand.broadcastCommandMessage(target, ChatColor.translateAlternateColorCodes('&', newMessage), false);
-                }// else plugin.getLogger().warning("Unknown Player specified");
-            } else plugin.getLogger().warning("Not enough args supplied");
-        }// else {
+				message = String.join(" ", args);
+				int substring = args[0].length() + 1;
+				String newMessage = message.substring(substring);
+				if (target != null) {
+					BukkitCommand.broadcastCommandMessage(target, ChatColor.translateAlternateColorCodes('&', newMessage), false);
+				}// else plugin.getLogger().warning("Unknown Player specified");
+			} else plugin.getLogger().warning("Not enough args supplied");
+		}// else {
 //            sender.sendMessage("Unknown command. Type \"/help\" for help.");
 //        }
-        return true;
-    }
+		return true;
+	}
 }

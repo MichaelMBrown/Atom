@@ -10,45 +10,46 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.Plugin;
 
 public class mobSpawn implements Listener {
-    private static final Plugin plugin = Core.getPlugin(Core.class);
-
-    @EventHandler
-    public void disableAI(CreatureSpawnEvent event) {
-        event.getEntity().setAI(plugin.getConfig().getBoolean("mobAI"));
-    }
-
-    @EventHandler
-    public void disableSlimes(CreatureSpawnEvent event) {
-        if (plugin.getConfig().getBoolean("slimesDisabled")) {
-            if (event.getEntity() instanceof Slime) {
-                event.getEntity().remove();
-            }
-        }
-    }
-
-    @EventHandler
-    public void disableDrowned(CreatureSpawnEvent event) {
-        if (plugin.getConfig().getBoolean("disableDrowned")) {
-            if (event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.DROWNED) {
-                event.getEntity().remove();
-            }
-        }
-    }
-    @EventHandler
-    public void disableWanderingTrader(CreatureSpawnEvent event) {
-        if (plugin.getServer().getBukkitVersion().contains("1.14")) {
-            if (event.getEntity() instanceof WanderingTrader) {
-                event.setCancelled(true);
-            }
-        }
-    }
-
-    @EventHandler
-    public void disableInsomnia(CreatureSpawnEvent event) {
-        if (!(plugin.getConfig().getBoolean("doInsomnia"))) {
-            if (event.getEntity() instanceof Phantom) {
-                event.setCancelled(true);
-            }
-        }
-    }
+	private static final Plugin plugin = Core.getPlugin(Core.class);
+	
+	@EventHandler
+	public void disableAI(CreatureSpawnEvent event) {
+		event.getEntity().setAI(plugin.getConfig().getBoolean("mobAI"));
+	}
+	
+	@EventHandler
+	public void disableSlimes(CreatureSpawnEvent event) {
+		if (plugin.getConfig().getBoolean("slimesDisabled")) {
+			if (event.getEntity() instanceof Slime) {
+				event.getEntity().remove();
+			}
+		}
+	}
+	
+	@EventHandler
+	public void disableDrowned(CreatureSpawnEvent event) {
+		if (plugin.getConfig().getBoolean("disableDrowned")) {
+			if (event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.DROWNED) {
+				event.getEntity().remove();
+			}
+		}
+	}
+	
+	@EventHandler
+	public void disableWanderingTrader(CreatureSpawnEvent event) {
+		if (plugin.getServer().getBukkitVersion().contains("1.14") || (plugin.getServer().getBukkitVersion().contains("1.16"))) {
+			if (event.getEntity() instanceof WanderingTrader) {
+				event.setCancelled(true);
+			}
+		}
+	}
+	
+	@EventHandler
+	public void disableInsomnia(CreatureSpawnEvent event) {
+		if (!(plugin.getConfig().getBoolean("doInsomnia"))) {
+			if (event.getEntity() instanceof Phantom) {
+				event.setCancelled(true);
+			}
+		}
+	}
 }

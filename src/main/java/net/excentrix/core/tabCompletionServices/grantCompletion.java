@@ -15,25 +15,25 @@ import java.util.Comparator;
 import java.util.List;
 
 public class grantCompletion implements TabCompleter {
-    @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        ArrayList<String> canGrant = new ArrayList<>();
-        if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
-            if (!(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Manager")) && !(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Owner")) && !(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Admin")) && !(staffUtils.getRank(sender.getName())).equalsIgnoreCase("Developer")) {
-            } else {
-                if (args.length == 2) {
-                    LuckPerms lpAPI = LuckPermsProvider.get();
-                    for (Group e : lpAPI.getGroupManager().getLoadedGroups()) {
-                        if (sender.hasPermission("group." + e.getName())) ;
-                        {
-                            canGrant.add(e.getName());
-                        }
-                    }
-                    Collections.sort(canGrant, Comparator.naturalOrder());
-                    return canGrant;
-                }
-            }
-        }
-        return null;
-    }
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		ArrayList<String> canGrant = new ArrayList<>();
+		if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
+			if (!(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Manager")) && !(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Owner")) && !(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Admin")) && !(staffUtils.getRank(sender.getName())).equalsIgnoreCase("Developer")) {
+			} else {
+				if (args.length == 2) {
+					LuckPerms lpAPI = LuckPermsProvider.get();
+					for (Group e : lpAPI.getGroupManager().getLoadedGroups()) {
+						if (sender.hasPermission("group." + e.getName())) ;
+						{
+							canGrant.add(e.getName());
+						}
+					}
+					Collections.sort(canGrant, Comparator.naturalOrder());
+					return canGrant;
+				}
+			}
+		}
+		return null;
+	}
 }

@@ -12,24 +12,24 @@ import org.bukkit.plugin.Plugin;
 
 
 public class setSpawn implements CommandExecutor {
-    private static final Plugin plugin = Core.getPlugin(Core.class);
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player player = (Player) sender;
-        if (sender.hasPermission("atom.command." + command.getName() + ".set")) {
-            Location newSpawn = player.getLocation();
-            String currentWorld = player.getWorld().getName();
-            Bukkit.getWorld(currentWorld).setSpawnLocation(newSpawn);
-            int spawnX = newSpawn.getBlockX();
-            int spawnY = newSpawn.getBlockY();
-            int spawnZ = newSpawn.getBlockZ();
-            staffUtils.informativeMessage((Player) sender, "Set the spawn of &f" + currentWorld + "&7 to &f" + spawnX + "&7,&f " + spawnY + "&7,&f " + spawnZ);
-            Core.spawn = newSpawn;
-            plugin.getConfig().set("world", newSpawn);
-            plugin.saveConfig();
-            plugin.reloadConfig();
-        } else staffUtils.noPerm(player);
-        return true;
-    }
+	private static final Plugin plugin = Core.getPlugin(Core.class);
+	
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		Player player = (Player) sender;
+		if (sender.hasPermission("atom.command." + command.getName() + ".set")) {
+			Location newSpawn = player.getLocation();
+			String currentWorld = player.getWorld().getName();
+			Bukkit.getWorld(currentWorld).setSpawnLocation(newSpawn);
+			int spawnX = newSpawn.getBlockX();
+			int spawnY = newSpawn.getBlockY();
+			int spawnZ = newSpawn.getBlockZ();
+			staffUtils.informativeMessage((Player) sender, "Set the spawn of &f" + currentWorld + net.md_5.bungee.api.ChatColor.of("#2AFC0D") + " to &f" + spawnX + "&7,&f " + spawnY + "&7,&f " + spawnZ);
+			Core.spawn = newSpawn;
+			plugin.getConfig().set("world", newSpawn);
+			plugin.saveConfig();
+			plugin.reloadConfig();
+		} else staffUtils.noPerm(player);
+		return true;
+	}
 }

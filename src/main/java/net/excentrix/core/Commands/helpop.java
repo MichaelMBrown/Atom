@@ -8,25 +8,25 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class helpop implements CommandExecutor {
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String message = "";
-        if (sender instanceof Player) {
-            if (command.getName().equalsIgnoreCase("helpop")) {
-                if (args.length > 0) {
-                    for (int i = 0; i < args.length; ++i) {
-                        message = message + args[i] + " ";
-                    }
-                    staffUtils.informativeMessage((Player) sender, "Your message &f" + message + "&awas send to the staff!");
-                    staffUtils.scNotify("Console", ChatColor.GOLD + (staffUtils.retrievePlayerColour((Player) sender) + sender.getName() + ChatColor.YELLOW + " requested help: " + ChatColor.GRAY + "" + ChatColor.ITALIC + message));
-                } else {
-                    staffUtils.printUsage((Player) sender, "helpop", "<message>");
-                }
-            }
-        } else {
-            sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You need to be a player to execute this command.");
-        }
-        return true;
-    }
+	
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		String message = "";
+		if (sender instanceof Player) {
+			if (command.getName().equalsIgnoreCase("helpop")) {
+				if (args.length > 0) {
+					for (int i = 0; i < args.length; ++i) {
+						message = message + args[i] + " ";
+					}
+					staffUtils.informativeMessage((Player) sender, "Your message &f" + message + "&awas send to the staff!");
+					staffUtils.scNotify("Console", ChatColor.GOLD + (staffUtils.getPlayerColor((Player) sender) + sender.getName() + ChatColor.YELLOW + " requested help: " + ChatColor.GRAY + "" + ChatColor.ITALIC + message));
+				} else {
+					staffUtils.printUsage((Player) sender, "helpop", "<message>");
+				}
+			}
+		} else {
+			sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You need to be a player to execute this command.");
+		}
+		return true;
+	}
 }

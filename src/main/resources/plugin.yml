@@ -3,7 +3,7 @@ version: ${project.version}
 main: net.excentrix.core.Core
 api-version: 1.16
 softdepend: [ LuckPerms, PremiumVanish, SuperVanish ]
-#loadbefore: [LiteBans]
+loadbefore: [ Essentials ]
 depend: [ Vault ]
 authors: [ qr0 ]
 description: Atom Core Systems.
@@ -61,6 +61,7 @@ commands:
     description: Atom Management Command
     default: true
     usage: /<command>
+    aliases: [ help ]
   weather:
     description: Changes the weather
     usage: /<command>
@@ -106,6 +107,7 @@ commands:
     permission: atom.command.give
   togglesc:
     description: Toggles in-game staffchat
+    aliases: [ tsm ]
     usage: /<command>
     permission: atom.chat.staffchat
   whisper:
@@ -142,4 +144,6 @@ commands:
     description: "[Prison] Ranks to the next avail rank."
   togglepvp:
     description: Toggles PVP Globally
-    permission: clark.command.togglepvp
+    permission: atom.command.togglePvP
+  granttoken:
+    description: "Generates a Grant Token for the Specified Player with a Specified Grant"

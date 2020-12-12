@@ -14,128 +14,128 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class edit implements CommandExecutor {
-    private static final Plugin plugin = Core.getPlugin(Core.class);
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player theSender = (Player) sender;
-        if (command.getName().equalsIgnoreCase("edit")) {
-            if (sender.hasPermission("atom.command.edit")) {
-                if (args.length == 3) {
-                    if (args[0].equalsIgnoreCase("boolean") || args[0].equalsIgnoreCase("bool")) {
-                        String value = args[2].toUpperCase();
-                        String configOption = args[1].toUpperCase();
-                        switch (configOption) {
-                            case "MOBAI":
-                                switch (value) {
-                                    case "TRUE":
-                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
-                                        plugin.getConfig().set("mobAI", true);
-                                        plugin.saveConfig();
-                                        plugin.reloadConfig();
-                                        for (World world : Bukkit.getWorlds()) {
-                                            for (Entity entity : world.getEntities()) {
-                                                if (!(entity instanceof Player)) {
-                                                    if (entity instanceof Creature) {
-                                                        ((Creature) entity).setAI(true);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    case "FALSE":
-                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
-                                        plugin.getConfig().set("mobAI", false);
-                                        plugin.saveConfig();
-                                        plugin.reloadConfig();
-                                        for (World world : Bukkit.getWorlds()) {
-                                            for (Entity entity : world.getEntities()) {
-                                                if (!(entity instanceof Player)) {
-                                                    if (entity instanceof Creature) {
-                                                        ((Creature) entity).setAI(false);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    default:
-                                        sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
-                                        break;
-                                }
-                                break;
-                            case "DISABLEDROWNED":
-                                switch (value) {
-                                    case "TRUE":
-                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
-                                        plugin.getConfig().set("disableDrowned", true);
-                                        plugin.saveConfig();
-                                        plugin.reloadConfig();
-                                        break;
-                                    case "FALSE":
-                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
-                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
-                                        plugin.getConfig().set("disableDrowned", false);
-                                        plugin.saveConfig();
-                                        plugin.reloadConfig();
-                                        break;
-                                    default:
-                                        sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
-                                        break;
-                                }
-                                break;
-                            case "DOINSOMNIA":
-                                switch (value) {
-                                    case "TRUE":
-                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
-                                        plugin.getConfig().set("doInsomnia", true);
-                                        plugin.saveConfig();
-                                        plugin.reloadConfig();
-                                        break;
-                                    case "FALSE":
-                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
-                                        plugin.getConfig().set("doInsomnia", false);
-                                        plugin.saveConfig();
-                                        plugin.reloadConfig();
-                                        break;
-                                    default:
-                                        sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
-                                        break;
-                                }
-                                break;
-                            case "DISABLEPORTALS":
-                                switch (value) {
-                                    case "TRUE":
-                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
-                                        plugin.getConfig().set("disable-portals", true);
-                                        plugin.saveConfig();
-                                        plugin.reloadConfig();
-                                        break;
-                                    case "FALSE":
-                                        staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-                                        staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
-                                        plugin.getConfig().set("disable-portals", false);
-                                        plugin.saveConfig();
-                                        plugin.reloadConfig();
-                                        break;
-                                    default:
-                                        sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2]);
-                                        break;
-                                }
-                                break;
-                            default:
-                                staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
-                                break;
-                        }
-                    } else staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
-                }
-            }
-        }
-        return true;
-    }
+	private static final Plugin plugin = Core.getPlugin(Core.class);
+	
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		Player theSender = (Player) sender;
+		if (command.getName().equalsIgnoreCase("edit")) {
+			if (sender.hasPermission("atom.command.edit")) {
+				if (args.length == 3) {
+					if (args[0].equalsIgnoreCase("boolean") || args[0].equalsIgnoreCase("bool")) {
+						String value = args[2].toUpperCase();
+						String configOption = args[1].toUpperCase();
+						switch (configOption) {
+							case "MOBAI":
+								switch (value) {
+									case "TRUE":
+										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										plugin.getConfig().set("mobAI", true);
+										plugin.saveConfig();
+										plugin.reloadConfig();
+										for (World world : Bukkit.getWorlds()) {
+											for (Entity entity : world.getEntities()) {
+												if (!(entity instanceof Player)) {
+													if (entity instanceof Creature) {
+														((Creature) entity).setAI(true);
+													}
+												}
+											}
+										}
+										break;
+									case "FALSE":
+										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										plugin.getConfig().set("mobAI", false);
+										plugin.saveConfig();
+										plugin.reloadConfig();
+										for (World world : Bukkit.getWorlds()) {
+											for (Entity entity : world.getEntities()) {
+												if (!(entity instanceof Player)) {
+													if (entity instanceof Creature) {
+														((Creature) entity).setAI(false);
+													}
+												}
+											}
+										}
+										break;
+									default:
+										sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
+										break;
+								}
+								break;
+							case "DISABLEDROWNED":
+								switch (value) {
+									case "TRUE":
+										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										plugin.getConfig().set("disableDrowned", true);
+										plugin.saveConfig();
+										plugin.reloadConfig();
+										break;
+									case "FALSE":
+										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
+										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										plugin.getConfig().set("disableDrowned", false);
+										plugin.saveConfig();
+										plugin.reloadConfig();
+										break;
+									default:
+										sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
+										break;
+								}
+								break;
+							case "DOINSOMNIA":
+								switch (value) {
+									case "TRUE":
+										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										plugin.getConfig().set("doInsomnia", true);
+										plugin.saveConfig();
+										plugin.reloadConfig();
+										break;
+									case "FALSE":
+										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										plugin.getConfig().set("doInsomnia", false);
+										plugin.saveConfig();
+										plugin.reloadConfig();
+										break;
+									default:
+										sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2].toUpperCase());
+										break;
+								}
+								break;
+							case "DISABLEPORTALS":
+								switch (value) {
+									case "TRUE":
+										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										plugin.getConfig().set("disable-portals", true);
+										plugin.saveConfig();
+										plugin.reloadConfig();
+										break;
+									case "FALSE":
+										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										plugin.getConfig().set("disable-portals", false);
+										plugin.saveConfig();
+										plugin.reloadConfig();
+										break;
+									default:
+										sender.sendMessage(ChatColor.RED + "Unknown data value of: " + args[2]);
+										break;
+								}
+								break;
+							default:
+								staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
+								break;
+						}
+					} else staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
+				}
+			}
+		}
+		return true;
+	}
 }

@@ -8,20 +8,20 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class say implements CommandExecutor {
-    @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        String message = "";
-        Player player = (Player) commandSender;
-        if (!commandSender.hasPermission("atom.command.say")) {
-            staffUtils.noPerm(player);
-            return true;
-        }
-        if (strings.length > 0) {
-            for (int i = 0; i < strings.length; i++) {
-                message = message + strings[i] + " ";
-            }
-            staffUtils.broadcastServer("\n" + ChatColor.LIGHT_PURPLE + "[" + commandSender.getName() + "] " + message + "\n " + ChatColor.WHITE);
-        } else staffUtils.printUsage(player, "say", "<message>");
-        return true;
-    }
+	@Override
+	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+		String message = "";
+		Player player = (Player) commandSender;
+		if (!commandSender.hasPermission("atom.command.say")) {
+			staffUtils.noPerm(player);
+			return true;
+		}
+		if (strings.length > 0) {
+			for (int i = 0; i < strings.length; i++) {
+				message = message + strings[i] + " ";
+			}
+			staffUtils.broadcastServer(ChatColor.LIGHT_PURPLE + "[" + commandSender.getName() + "] " + message + ChatColor.WHITE);
+		} else staffUtils.printUsage(player, "say", "<message>");
+		return true;
+	}
 }

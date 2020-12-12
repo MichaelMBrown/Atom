@@ -8,18 +8,18 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class buildMode implements CommandExecutor {
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player player = (Player) sender;
-        if (!(sender.hasPermission("atom.command.build")))
-            return true;
-        if (Core.buildDenied.contains(player)) {
-            staffUtils.informativeMessage(player, "Your build mode has been turned on.");
-            Core.buildDenied.remove(player);
-        } else {
-            staffUtils.informativeMessage(player, "&cYour build mode has been turned off.");
-            Core.buildDenied.add(player);
-        }
-        return true;
-    }
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		Player player = (Player) sender;
+		if (!(sender.hasPermission("atom.command.build")))
+			return true;
+		if (Core.buildDenied.contains(player)) {
+			staffUtils.informativeMessage(player, "Your build mode has been turned on.");
+			Core.buildDenied.remove(player);
+		} else {
+			staffUtils.informativeMessage(player, "&cYour build mode has been turned off.");
+			Core.buildDenied.add(player);
+		}
+		return true;
+	}
 }

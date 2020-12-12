@@ -7,16 +7,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 public class godEvent implements Listener {
-
-    @EventHandler
-    public void godCheck(EntityDamageEvent event) {
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-            if (Core.godList.contains(player)) {
-                event.setCancelled(true);
-            }
-        }
-    }
+	
+	@EventHandler
+	public void godCheck(EntityDamageEvent event) {
+		if (event.getEntity() instanceof Player) {
+			Player player = (Player) event.getEntity();
+			if (Core.godList.contains(player)) {
+				event.setCancelled(true);
+			}
+		}
+	}
 //
 //    @EventHandler
 //    public void instaKill(EntityDamageByEntityEvent event) {

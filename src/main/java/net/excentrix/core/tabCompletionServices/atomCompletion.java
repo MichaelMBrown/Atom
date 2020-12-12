@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class atomCompletion implements TabCompleter {
-    @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (args.length == 1) {
-            List<String> arguments = new ArrayList<>();
-            arguments.add("reload");
-            arguments.add("help");
-            arguments.add("ver");
-            return arguments;
-        }
-        return null;
-    }
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		if (args.length == 1) {
+			List<String> arguments = new ArrayList<>();
+			arguments.add("reload");
+			arguments.add("help");
+			arguments.add("ver");
+			return arguments;
+		}
+		return null;
+	}
 }

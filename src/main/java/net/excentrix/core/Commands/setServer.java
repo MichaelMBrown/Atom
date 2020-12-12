@@ -10,25 +10,25 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class setServer implements CommandExecutor {
-    private static final Plugin plugin = Core.getPlugin(Core.class);
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player) {
-            if (command.getName().equalsIgnoreCase("setserver") || command.getName().equalsIgnoreCase("set-server")) {
-                if (sender.hasPermission("atom.command.setserver")) {
-                    if (args.length == 1) {
-                        sender.sendMessage(ChatColor.DARK_GRAY + "Processing request...");
-                        plugin.getConfig().set("server-name", args[0]);
-                        staffUtils.informativeMessage((Player) sender, "Done! You've set the server-name to " + ChatColor.YELLOW + args[0]);
-                        plugin.saveConfig();
-                        staffUtils.scNotify(sender.getName(), "Set the server name to " + ChatColor.RED + args[0]);
-                    } else {
-                        staffUtils.printUsage((Player) sender, "setserver", "<new server name>");
-                    }
-                } else staffUtils.noPerm((Player) sender);
-            }
-        }
-        return true;
-    }
+	private static final Plugin plugin = Core.getPlugin(Core.class);
+	
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (sender instanceof Player) {
+			if (command.getName().equalsIgnoreCase("setserver") || command.getName().equalsIgnoreCase("set-server")) {
+				if (sender.hasPermission("atom.command.setserver")) {
+					if (args.length == 1) {
+						sender.sendMessage(ChatColor.DARK_GRAY + "Processing request...");
+						plugin.getConfig().set("server-name", args[0]);
+						staffUtils.informativeMessage((Player) sender, "Done! You've set the server-name to " + ChatColor.YELLOW + args[0]);
+						plugin.saveConfig();
+						staffUtils.scNotify(sender.getName(), "Set the server name to " + ChatColor.RED + args[0]);
+					} else {
+						staffUtils.printUsage((Player) sender, "setserver", "<new server name>");
+					}
+				} else staffUtils.noPerm((Player) sender);
+			}
+		}
+		return true;
+	}
 }
