@@ -8,8 +8,10 @@ import org.bukkit.plugin.Plugin;
 public class atomUtils {
 	private static final Plugin plugin = Core.getPlugin(Core.class);
 	
-	public static void atomShowCommand(Player player, String command, String usage) {
-		if (player.hasPermission("atom.command." + command)) {
+	public static void atomShowCommand(Player player, String command, String usage, String permission) {
+		if (permission.equalsIgnoreCase("none")) {
+			player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&f" + command + " &6&m  &f&r " + usage));
+		} else if (player.hasPermission("atom.command." + permission)) {
 			player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&f" + command + " &6&m  &f&r " + usage));
 //            player.sendMessage(ChatColor.YELLOW + "*" + " " + ChatColor.GOLD + "/" + command + ChatColor.YELLOW + " -- " + ChatColor.WHITE + usage + ".");
 		}
