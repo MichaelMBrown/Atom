@@ -30,34 +30,36 @@ public class atom implements CommandExecutor {
 				switch (option) {
 					case "help":
 						player.sendMessage(ChatColor.GOLD + "---------- " + "Commands for: " + ChatColor.YELLOW + "Atom" + ChatColor.GOLD + " ----------");
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&fhelpop &6&m  &f&r Requests Staff Assistance"));
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&freport &6&m  &f&r Reports a Player"));
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&fw &6&m  &r&f Message a Player"));
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6- /&ftogglepm &6&m  &f&r Toggles Receiving Messages"));
-						atomShowCommand(player, "fly", "Enables/Disables Flight for a Player");
-						atomShowCommand(player, "gamemode", "Sets a Players Gamemode");
-						atomShowCommand(player, "god", "Enables/Disables God for a Player");
-						atomShowCommand(player, "heal", "Heals a Player");
-						atomShowCommand(player, "kick", "Removes a player from the Network");
-						atomShowCommand(player, "kill", "Kills a Player");
-						atomShowCommand(player, "staffchat", "Communicates in StaffChat");
-						atomShowCommand(player, "toggleSC", "Toggles in-game staff chat");
-						atomShowCommand(player, "tp", "Teleport to Players");
-						atomShowCommand(player, "weather", "Changes the Weather");
-						atomShowCommand(player, "edit", "Edits in-game configs");
-						atomShowCommand(player, "freeze", "Halts a players actions");
-						atomShowCommand(player, "smite", "Summons a lightning-bolt");
-						atomShowCommand(player, "enderchest", "Opens the Enderchest");
-						atomShowCommand(player, "tphere", "Teleports a player to you");
-						atomShowCommand(player, "say", "Broadcast to the Server");
-						atomShowCommand(player, "give", "Give a player an Item");
-						atomShowCommand(player, "grant", "Grant a user a rank");
-						atomShowCommand(player, "grants", "Shows what a User has been Granted");
-						atomShowCommand(player, "build", "Toggles Buildmode.");
-						atomShowCommand(player, "balance", "Views your Balance");
-						atomShowCommand(player, "setserver", "Sets the internal server name");
-						atomShowCommand(player, "togglePvP", "Toggles PvP Globally");
-						atomShowCommand(player, "mutelocalchat", "Mutes Server Chat Locally");
+						atomShowCommand(player, "balance", "Views your Balance", "none");
+						atomShowCommand(player, "helpop", "Requests Staff Assistance", "none");
+						atomShowCommand(player, "report", "Reports a Player to Staff", "none");
+						atomShowCommand(player, "msg", "Message a Player", "none");
+						atomShowCommand(player, "spawn", "Teleports to Spawn", "none");
+						atomShowCommand(player, "tsm", "Toggles Receiving Messages", "none");
+						atomShowCommand(player, "fly", "Enables/Disables Flight for a Player", "fly");
+						atomShowCommand(player, "gamemode", "Sets a Players Gamemode", "gamemode");
+						atomShowCommand(player, "god", "Enables/Disables God for a Player", "god");
+						atomShowCommand(player, "heal", "Heals a Player", "heal");
+						atomShowCommand(player, "kick", "Removes a player from the Network", "kick");
+						atomShowCommand(player, "kill", "Kills a Player", "kill");
+						atomShowCommand(player, "sc", "Communicates in StaffChat", "staffchat");
+						atomShowCommand(player, "tsc", "Toggles in-game staff chat", "staffchat");
+						atomShowCommand(player, "tp", "Teleport to Players", "tp");
+						atomShowCommand(player, "weather", "Changes the Weather", "weather");
+						atomShowCommand(player, "edit", "Edits in-game configs", "edit");
+						atomShowCommand(player, "freeze", "Halts a players actions", "freeze");
+						atomShowCommand(player, "smite", "Summons a lightning-bolt", "smite");
+						atomShowCommand(player, "ec | enderchest", "Opens the Enderchest", "enderchest");
+						atomShowCommand(player, "tphere", "Teleports a player to you", "tp");
+						atomShowCommand(player, "say", "Broadcast to the Server", "say");
+						atomShowCommand(player, "give", "Give a player an Item", "give");
+						atomShowCommand(player, "grant", "Grant a user a rank", "grant");
+						atomShowCommand(player, "grants", "Shows what a User has been Granted", "grants");
+						atomShowCommand(player, "build", "Toggles buildmode, allowing you to place anywhere", "build");
+						atomShowCommand(player, "setserver", "Sets the internal server name", "setserver");
+						atomShowCommand(player, "setspawn", "Sets the Server's Spawn", "spawn.set");
+						atomShowCommand(player, "togglepvp", "Toggles PvP Globally", "togglepvp");
+						atomShowCommand(player, "togglechat", "Mutes Server Chat Locally", "mutelocalchat");
 						break;
 					case "reload":
 						if (sender.hasPermission("atom.command.atom.reload")) {
@@ -68,11 +70,13 @@ public class atom implements CommandExecutor {
 						} else staffUtils.noPerm((Player) sender);
 						break;
 					case "debug":
-						if (((Player) sender).getUniqueId().toString().equalsIgnoreCase("5077fab0-9749-4548-aacd-aff52565c55f")) {
+						if (((Player) sender).getUniqueId().toString().equalsIgnoreCase("5077fab0-9749-4548-aacd-aff52565c55f") || ((Player) sender).getUniqueId().toString().equalsIgnoreCase("6c7d3c44-fd94-4150-8045-dbc5da6ce872")) {
 							staffUtils.informativeMessage((Player) sender, "Rank: " + staffUtils.getRankObject(staffUtils.getRank(sender.getName())));
 							staffUtils.informativeMessage((Player) sender, "Prison Rank: " + prisonUtils.getPrisonRank((Player) sender));
 							staffUtils.informativeMessage((Player) sender, "Prison Rank (raw): " + prisonUtils.getRankFromInt((Player) sender, prisonUtils.getPrisonRankInt((Player) sender)));
 							staffUtils.informativeMessage((Player) sender, "Rank Integer: " + staffUtils.getRankInteger(sender.getName()));
+							staffUtils.informativeMessage((Player) sender, "Regular Rank Prefix: " + staffUtils.getRankObject(staffUtils.getRank(sender.getName())) + ".");
+							staffUtils.informativeMessage((Player) sender, "Stripped Rank: " + ChatColor.stripColor(ChatColor.RED+"red") + ".");
 						}
 						break;
 					default:
