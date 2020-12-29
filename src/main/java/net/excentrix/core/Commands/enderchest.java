@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,18 +15,18 @@ public class enderchest implements CommandExecutor {
 		if (commandSender.hasPermission("atom.command.enderchest")) {
 			if (strings.length == 0) {
 				player.openInventory(player.getEnderChest());
-				staffUtils.informativeMessage(player, "Opening the Enderchest of " + staffUtils.getPlayerColor((Player) commandSender) + commandSender.getName());
+				coreUtils.informativeMessage(player, "Opening the Enderchest of " + coreUtils.getPlayerColor((Player) commandSender) + commandSender.getName());
 			} else if ((strings.length == 1)) {
 				if (player.hasPermission("atom.command.enderchest.others")) {
 					Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
-					Player target = staffUtils.playerLookup((Player) commandSender, targetPlayer);
+					Player target = coreUtils.playerLookup((Player) commandSender, targetPlayer);
 					if (target != null) {
-						staffUtils.informativeMessage(player, "Opening the Enderchest of " + staffUtils.getPlayerColor(target) + target.getName());
+						coreUtils.informativeMessage(player, "Opening the Enderchest of " + coreUtils.getPlayerColor(target) + target.getName());
 						player.openInventory(target.getEnderChest());
-					} else staffUtils.playerNotFound(player);
-				} else staffUtils.noPerm(player);
-			} else staffUtils.printUsage(player, "enderchest", "[player]");
-		} else staffUtils.noPerm(player);
+					} else coreUtils.playerNotFound(player);
+				} else coreUtils.noPerm(player);
+			} else coreUtils.printUsage(player, "enderchest", "[player]");
+		} else coreUtils.noPerm(player);
 		return true;
 	}
 }

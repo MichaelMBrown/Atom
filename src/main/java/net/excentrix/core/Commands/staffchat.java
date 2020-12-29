@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class staffchat implements CommandExecutor {
-	private static final Plugin plugin = Core.getPlugin(Core.class);
+	private static final Plugin plugin = Central.getPlugin(Central.class);
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -20,19 +20,19 @@ public class staffchat implements CommandExecutor {
 					if (args.length > 0) {
 						String message = String.join(" ", args);
 						//plugin.getLogger().info(ChatColor.GOLD + ((Player) sender).getDisplayName() + ChatColor.GRAY + ": " + ChatColor.WHITE + message);
-						staffUtils.scNotify(sender.getName(), message);
+						coreUtils.notifyStaff(sender.getName(), message);
 					} else {
-						staffUtils.printUsage((Player) sender, "sc", "<message>");
+						coreUtils.printUsage((Player) sender, "sc", "<message>");
 					}
 				}
-			} else staffUtils.noPerm((Player) sender);
+			} else coreUtils.noPerm((Player) sender);
 		} else if ((sender instanceof ConsoleCommandSender)) {
 			if (command.getName().equalsIgnoreCase("sc")) {
 				if (args.length > 0) {
 					String message = String.join(" ", args);
-					staffUtils.scNotify("Console", message);
+					coreUtils.notifyStaff("Console", message);
 				} else
-					staffUtils.printUsage((Player) sender, "sc", "<message>");
+					coreUtils.printUsage((Player) sender, "sc", "<message>");
 			}
 		}
 		return true;

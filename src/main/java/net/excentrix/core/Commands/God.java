@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
 public class God implements CommandExecutor, Listener {
-	Core plugin;
+	Central plugin;
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -22,37 +22,37 @@ public class God implements CommandExecutor, Listener {
 				if (command.getName().equalsIgnoreCase("god")) {
 					if (args.length > 0 && args.length != 1) {
 						Player targetPlayer = Bukkit.getPlayerExact(args[0]);
-						Player target = staffUtils.playerLookup((Player) sender, targetPlayer);
+						Player target = coreUtils.playerLookup((Player) sender, targetPlayer);
 						if (target != null) {
 							if (args[1].equalsIgnoreCase("on") || args[1].equalsIgnoreCase("true")) {
-								staffUtils.informativeMessage((Player) sender, "You turned on God Mode for " + staffUtils.getPlayerColor(target) + target.getName() + "&a!");
+								coreUtils.informativeMessage((Player) sender, "You turned on God Mode for " + coreUtils.getPlayerColor(target) + target.getName() + "&a!");
 								BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God mode for " + ChatColor.YELLOW + target.getName(), false);
 								target.setInvulnerable(true);
-								Core.godList.add(target);
+								Central.godList.add(target);
 							} else if (args[1].equalsIgnoreCase("off") || args[1].equalsIgnoreCase("false")) {
-								staffUtils.informativeMessage((Player) sender, "You turned off God Mode for " + staffUtils.getPlayerColor(target) + target.getName() + "&a!");
+								coreUtils.informativeMessage((Player) sender, "You turned off God Mode for " + coreUtils.getPlayerColor(target) + target.getName() + "&a!");
 								BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God mode for " + ChatColor.YELLOW + target.getName(), false);
 								target.setInvulnerable(false);
-								Core.godList.remove(target);
+								Central.godList.remove(target);
 							}
-						} else staffUtils.playerNotFound((Player) sender);
+						} else coreUtils.playerNotFound((Player) sender);
 					} else if (args.length == 0) {
-						if (Core.godList.contains(player)) {
-							staffUtils.informativeMessage((Player) sender, "You turned off God Mode for " + staffUtils.getPlayerColor((Player) sender) + sender.getName() + "&a!");
+						if (Central.godList.contains(player)) {
+							coreUtils.informativeMessage((Player) sender, "You turned off God Mode for " + coreUtils.getPlayerColor((Player) sender) + sender.getName() + "&a!");
 							BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "disabled God Mode.", false);
 							((Player) sender).setInvulnerable(false);
-							Core.godList.remove(player);
+							Central.godList.remove(player);
 						} else {
-							staffUtils.informativeMessage((Player) sender, "You turned on God Mode for " + staffUtils.getPlayerColor((Player) sender) + sender.getName() + "&a!");
+							coreUtils.informativeMessage((Player) sender, "You turned on God Mode for " + coreUtils.getPlayerColor((Player) sender) + sender.getName() + "&a!");
 							BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "enabled God Mode.", false);
 							((Player) sender).setInvulnerable(true);
-							Core.godList.add(player);
+							Central.godList.add(player);
 						}
 					} else
-						staffUtils.printUsage((Player) sender, "god", "[player] <mode>");
+						coreUtils.printUsage((Player) sender, "god", "[player] <mode>");
 				}
 			} else
-				staffUtils.noPerm((Player) sender);
+				coreUtils.noPerm((Player) sender);
 		} else {
 			sender.sendMessage(ChatColor.RED + "You " + ChatColor.UNDERLINE + "MUST" + ChatColor.RESET + "" + ChatColor.RED + " be a player to execute this command!");
 		}

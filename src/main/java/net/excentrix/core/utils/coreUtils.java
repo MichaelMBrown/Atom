@@ -1,7 +1,7 @@
 package net.excentrix.core.utils;
 
 import de.myzelyam.api.vanish.VanishAPI;
-import net.excentrix.core.Core;
+import net.excentrix.core.Central;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
@@ -11,27 +11,38 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-public class staffUtils {
-	private static final Plugin plugin = Core.getPlugin(Core.class);
+import java.util.Locale;
+
+public class coreUtils {
+	private static final Plugin plugin = Central.getPlugin(Central.class);
 	static LuckPerms api = LuckPermsProvider.get();
 	
-	public static void scNotify(String sender, String args) {
+	public static void notifyStaff(String sender, String args) {
 		plugin.getLogger().info(ChatColor.GOLD + sender + ChatColor.GRAY + ": " + ChatColor.WHITE + args);
 		String group = null;
 		Player scSender = Bukkit.getPlayer(sender);
 		for (final Player p : Bukkit.getOnlinePlayers()) {
 			if (p.hasPermission("atom.chat.staffchat")) {
-				if (!(Core.scMuted.contains(p))) {
-					if (sender.equalsIgnoreCase("Console")) {
-						p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&o(" + plugin.getConfig().getString("server-name") + "&7&o) " + "&b[STAFF] &4[SYSTEM]&7: ") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
-					} else {
-						try {
-							group = api.getUserManager().getUser(scSender.getName()).getPrimaryGroup().toLowerCase();
-						} catch (NullPointerException ignored) {
-						}
-						QueryOptions queryOptions = api.getContextManager().getQueryOptions(scSender);
-						CachedMetaData metaData = api.getGroupManager().getGroup(group).getCachedData().getMetaData(queryOptions);
-						p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&o(" + plugin.getConfig().getString("server-name") + "&7&o) " + "&b[STAFF] &a" + ChatColor.translateAlternateColorCodes('&', metaData.getPrefix()) + " " + sender + "&f: ") + String.join(" ", args));
+				if (!(Central.scMuted.contains(p))) {
+					switch (sender.toLowerCase()) {
+						case "console":
+							p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&o(" + plugin.getConfig().getString("server-name") + "&7&o) " + "&b[STAFF] &4[SYSTEM]&7: &f") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+							break;
+						case "watchdog":
+							p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&o(" + plugin.getConfig().getString("server-name") + "&7&o) " + "&b[STAFF] &4[WATCHDOG]&7: &7") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+							break;
+						case "none":
+							p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&o(" + plugin.getConfig().getString("server-name") + "&7&o) " + "&b[STAFF] &f") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+							break;
+						default:
+							try {
+								group = api.getUserManager().getUser(scSender.getName()).getPrimaryGroup().toLowerCase();
+							} catch (NullPointerException ignored) {
+							}
+							QueryOptions queryOptions = api.getContextManager().getQueryOptions(scSender);
+							CachedMetaData metaData = api.getGroupManager().getGroup(group).getCachedData().getMetaData(queryOptions);
+							p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&o(" + plugin.getConfig().getString("server-name") + "&7&o) " + "&b[STAFF] &a" + ChatColor.translateAlternateColorCodes('&', metaData.getPrefix()) + " " + sender + "&f: ") + String.join(" ", args));
+							break;
 					}
 				}
 			}
@@ -47,24 +58,36 @@ public class staffUtils {
 		return rank;
 	}
 	
-	public static Integer getRankInteger(String str_Player) {
+	public static Integer getRankInteger(String playerName) {
 		int rankValue = 0;
 		if (!(Bukkit.getPluginManager().isPluginEnabled("LuckPerms"))) {
 			return rankValue;
 		}
-		Player player = Bukkit.getPlayerExact(str_Player);
+		Player player = Bukkit.getPlayerExact(playerName);
 		assert player != null;
-		if (getRank(player.getName()).equalsIgnoreCase("default")) {
-			rankValue = 0;
-		} else if (getRank(player.getName()).contains("mod") || getRank(player.getName()).contains("staff") || getRank(player.getName()).contains("helper")) {
-			rankValue = 1;
-		} else if (getRank(player.getName()).contains("admin")) {
-			rankValue = 2;
-		} else if (getRank(player.getName()).contains("developer")) {
-			rankValue = 3;
-		} else if (getRank(player.getName()).contains("owner")) {
-			rankValue = 4;
-		} else rankValue = 0;
+		switch (getRank(playerName).toLowerCase()) {
+			default:
+				rankValue = 0;
+				break;
+			case "helper":
+				rankValue = 1;
+				break;
+			case "mod":
+			case "staff":
+				rankValue = 2;
+				break;
+			case "admin":
+			case "administrator":
+				rankValue = 3;
+				break;
+			case "developer":
+			case "dev":
+				rankValue = 4;
+				break;
+			case "owner":
+				rankValue = 5;
+				break;
+		}
 		return rankValue;
 	}
 	
@@ -93,25 +116,20 @@ public class staffUtils {
 		return rankObject;
 	}
 	
+	
 	public static void actionForbidden(Player player) {
-		if (plugin.getServer().getVersion().contains("1.16")) {
-			player.sendMessage(net.md_5.bungee.api.ChatColor.of("#DF0B0B") + "You are forbidden to perform this action.");
-		} else
-			player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou are forbidden to perform this action."));
+		player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou are forbidden to perform this action."));
 	}
 	
 	public static void noPerm(Player player) {
-		if (plugin.getServer().getVersion().contains("1.16")) {
-			player.sendMessage(net.md_5.bungee.api.ChatColor.of("#FC0E0E") + "You do not have permission for this command!");
-		} else
-			player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou do not have permission for this command!"));
+		player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou do not have permission for this command!"));
 	}
 	
 	public static void playerNotFound(Player player) {
-		if (plugin.getServer().getVersion().contains("1.16")) {
-			player.sendMessage(net.md_5.bungee.api.ChatColor.of("#DF0B0B") + "There is no player by that name connected to this server!");
-		} else
-			player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cThere is no player by that name connected to this server!"));
+		player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cThere is no player by that name connected to this server!"));
+	}
+	public static void playerDoesntExist(Player player) {
+		player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cThat player does not exist!"));
 	}
 	
 	public static void printUsage(Player player, String command, String args) {

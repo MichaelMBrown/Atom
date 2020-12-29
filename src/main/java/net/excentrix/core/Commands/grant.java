@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.Bukkit;
@@ -17,7 +17,7 @@ import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getServer;
 
 public class grant implements CommandExecutor {
-	private static final Plugin plugin = Core.getPlugin(Core.class);
+	private static final Plugin plugin = Central.getPlugin(Central.class);
 	
 	
 	@Override
@@ -30,7 +30,7 @@ public class grant implements CommandExecutor {
 					if (api.getGroupManager().getGroup(args[1]) != null) {
 						getServer().dispatchCommand(getServer().getConsoleSender(), "lp user " + target.getName() + " parent set " + args[1]);
 						getLogger().info(ChatColor.DARK_RED + "User " + target.getName() + " was granted " + ChatColor.translateAlternateColorCodes('&', api.getGroupManager().getGroup(args[1]).getDisplayName()) + ChatColor.DARK_RED + " by " + ChatColor.RED + "Console");
-						//staffUtils.scNotif(commandSender.getName(), ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " has been granted " + api.getGroupManager().getGroup(args[1]).getDisplayName() + ChatColor.YELLOW + " by " + ChatColor.GOLD + commandSender.getName());
+						//coreUtils.scNotif(commandSender.getName(), ChatColor.GOLD + target.getName() + ChatColor.YELLOW + " has been granted " + api.getGroupManager().getGroup(args[1]).getDisplayName() + ChatColor.YELLOW + " by " + ChatColor.GOLD + commandSender.getName());
 					} else {
 						getLogger().info(ChatColor.RED + "You cannot grant " + args[1].toUpperCase() + " as it does not exist.");
 					}
@@ -38,14 +38,14 @@ public class grant implements CommandExecutor {
 				return true;
 			}
 			Player commandSender = (Player) sender;
-			if (!(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Manager")) && !(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Owner")) && !(staffUtils.getRank(sender.getName()).equalsIgnoreCase("Admin")) && !(staffUtils.getRank(sender.getName())).equalsIgnoreCase("Developer")) {
-				staffUtils.actionForbidden(commandSender);
+			if (!(coreUtils.getRank(sender.getName()).equalsIgnoreCase("Manager")) && !(coreUtils.getRank(sender.getName()).equalsIgnoreCase("Owner")) && !(coreUtils.getRank(sender.getName()).equalsIgnoreCase("Admin")) && !(coreUtils.getRank(sender.getName())).equalsIgnoreCase("Developer")) {
+				coreUtils.actionForbidden(commandSender);
 				return true;
 			} else if (args.length != 2) {
-				staffUtils.printUsage(commandSender, "grant", "<user> <grant>");
+				coreUtils.printUsage(commandSender, "grant", "<user> <grant>");
 			} else {
 				Player targetPlayer = Bukkit.getPlayerExact(args[0]);
-				Player target = staffUtils.playerLookup((Player) sender, targetPlayer);
+				Player target = coreUtils.playerLookup((Player) sender, targetPlayer);
 				if (target != null) {
 					if (api.getGroupManager().getGroup(args[1]) != null) {
 						if (commandSender.hasPermission("group." + args[1])) {
@@ -54,23 +54,23 @@ public class grant implements CommandExecutor {
 							if (grantName != null) {
 								getLogger().info(ChatColor.translateAlternateColorCodes('&', "&6&lUser &7" + target.getName() + "&6&l was granted: &f'" + api.getGroupManager().getGroup(args[1]).getDisplayName() + "&f'&6&l by &c&l" + sender.getName()));
 								
-								staffUtils.informativeMessage(commandSender, staffUtils.getPlayerColor(target) + target.getName() + "&a's grant was updated to " + grantName + "&a!");
-								staffUtils.informativeMessage(target, "You are now granted " + grantName + "&a.");
+								coreUtils.informativeMessage(commandSender, coreUtils.getPlayerColor(target) + target.getName() + "&a's grant was updated to " + grantName + "&a!");
+								coreUtils.informativeMessage(target, "You are now " + grantName + "&a.");
 							} else {
-								staffUtils.informativeMessage(commandSender, staffUtils.getPlayerColor(target) + target.getName() + "&a's grant was updated to " + api.getGroupManager().getGroup(args[1]).getName() + "&a!");
-								staffUtils.informativeMessage(target, "You are now granted " + api.getGroupManager().getGroup(args[1]).getName() + "&a.");
+								coreUtils.informativeMessage(commandSender, coreUtils.getPlayerColor(target) + target.getName() + "&a's grant was updated to " + api.getGroupManager().getGroup(args[1]).getName() + "&a!");
+								coreUtils.informativeMessage(target, "You are now " + api.getGroupManager().getGroup(args[1]).getName() + "&a.");
 								getLogger().info(ChatColor.translateAlternateColorCodes('&', "&6&lUser &7" + target.getName() + "&6&l was granted: &f'" + api.getGroupManager().getGroup(args[1]).getName() + "&f'&6&l by &c&l" + sender.getName()));
 							}
 						} else {
-							staffUtils.actionForbidden(commandSender);
+							coreUtils.actionForbidden(commandSender);
 						}
 					} else {
-						staffUtils.errorMessage(commandSender, "You cannot grant " + args[1].toLowerCase() + "&c as it doesn't exist.");
+						coreUtils.errorMessage(commandSender, "You cannot grant " + args[1].toLowerCase() + "&c as it doesn't exist.");
 					}
-				} else staffUtils.playerNotFound(commandSender);
+				} else coreUtils.playerNotFound(commandSender);
 			}
 		} else {
-			staffUtils.errorMessage((Player) sender, "Cannot execute any grant commands because I'm missing the Dependency! (&aLuckPerms&c)");
+			coreUtils.errorMessage((Player) sender, "Cannot execute any grant commands because I'm missing the Dependency! (&aLuckPerms&c)");
 		}
 		return true;
 	}

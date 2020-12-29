@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class balance implements CommandExecutor {
-	Economy econ = Core.getEcon();
+	Economy econ = Central.getEcon();
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -19,15 +19,15 @@ public class balance implements CommandExecutor {
 			try {
 				if (args.length == 1) {
 					Player targetPlayer = Bukkit.getPlayerExact(args[0]);
-					Player target = staffUtils.playerLookup((Player) sender, targetPlayer);
+					Player target = coreUtils.playerLookup((Player) sender, targetPlayer);
 					if (target != null) {
-						staffUtils.informativeMessage((Player) sender, staffUtils.getPlayerColor(target) + target.getName() + "&a has a balance of &e" + econ.format(econ.getBalance(target)));
-					} else staffUtils.playerNotFound((Player) sender);
+						coreUtils.informativeMessage((Player) sender, coreUtils.getPlayerColor(target) + target.getName() + "&a has a balance of &e" + econ.format(econ.getBalance(target)));
+					} else coreUtils.playerNotFound((Player) sender);
 				} else {
-					staffUtils.informativeMessage((Player) sender, "&aYou have a balance of &e" + econ.format(econ.getBalance(player)));
+					coreUtils.informativeMessage((Player) sender, "&aYou have a balance of &e" + econ.format(econ.getBalance(player)));
 				}
 			} catch (NullPointerException e) {
-				staffUtils.errorMessage((Player) sender, "An error occurred whilst processing this command, please contact an administrator to resolve this issue.");
+				coreUtils.errorMessage((Player) sender, "An error occurred whilst processing this command, please contact an administrator to resolve this issue.");
 			}
 		}
 		return true;

@@ -1,9 +1,9 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
+import net.excentrix.core.Central;
 import net.excentrix.core.Prison.prisonUtils;
 import net.excentrix.core.utils.atomUtils;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.utils.coreUtils;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.ChatColor;
@@ -17,7 +17,7 @@ import org.bukkit.plugin.Plugin;
 import static net.excentrix.core.utils.atomUtils.atomShowCommand;
 
 public class atom implements CommandExecutor {
-	private static final Plugin plugin = Core.getPlugin(Core.class);
+	private static final Plugin plugin = Central.getPlugin(Central.class);
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -36,6 +36,8 @@ public class atom implements CommandExecutor {
 						atomShowCommand(player, "msg", "Message a Player", "none");
 						atomShowCommand(player, "spawn", "Teleports to Spawn", "none");
 						atomShowCommand(player, "tsm", "Toggles Receiving Messages", "none");
+						atomShowCommand(player, "ban", "Bans a Player from the Network", "mod+");
+						atomShowCommand(player, "pardon", "Pardons a Player from the Network", "SA");
 						atomShowCommand(player, "fly", "Enables/Disables Flight for a Player", "fly");
 						atomShowCommand(player, "gamemode", "Sets a Players Gamemode", "gamemode");
 						atomShowCommand(player, "god", "Enables/Disables God for a Player", "god");
@@ -57,6 +59,7 @@ public class atom implements CommandExecutor {
 						atomShowCommand(player, "grants", "Shows what a User has been Granted", "grants");
 						atomShowCommand(player, "build", "Toggles buildmode, allowing you to place anywhere", "build");
 						atomShowCommand(player, "setserver", "Sets the internal server name", "setserver");
+						atomShowCommand(player, "packets", "Weirds things out", "SA");
 						atomShowCommand(player, "setspawn", "Sets the Server's Spawn", "spawn.set");
 						atomShowCommand(player, "togglepvp", "Toggles PvP Globally", "togglepvp");
 						atomShowCommand(player, "togglechat", "Mutes Server Chat Locally", "mutelocalchat");
@@ -65,27 +68,26 @@ public class atom implements CommandExecutor {
 						if (sender.hasPermission("atom.command.atom.reload")) {
 							plugin.reloadConfig();
 							atomUtils.pluginSetup();
-							staffUtils.informativeMessage((Player) sender, "Reloaded the config.");
+							coreUtils.informativeMessage((Player) sender, "Reloaded the config.");
 							BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "reloaded the Config.", false);
-						} else staffUtils.noPerm((Player) sender);
+						} else coreUtils.noPerm((Player) sender);
 						break;
 					case "debug":
 						if (((Player) sender).getUniqueId().toString().equalsIgnoreCase("5077fab0-9749-4548-aacd-aff52565c55f") || ((Player) sender).getUniqueId().toString().equalsIgnoreCase("6c7d3c44-fd94-4150-8045-dbc5da6ce872")) {
-							staffUtils.informativeMessage((Player) sender, "Rank: " + staffUtils.getRankObject(staffUtils.getRank(sender.getName())));
-							staffUtils.informativeMessage((Player) sender, "Prison Rank: " + prisonUtils.getPrisonRank((Player) sender));
-							staffUtils.informativeMessage((Player) sender, "Prison Rank (raw): " + prisonUtils.getRankFromInt((Player) sender, prisonUtils.getPrisonRankInt((Player) sender)));
-							staffUtils.informativeMessage((Player) sender, "Rank Integer: " + staffUtils.getRankInteger(sender.getName()));
-							staffUtils.informativeMessage((Player) sender, "Regular Rank Prefix: " + staffUtils.getRankObject(staffUtils.getRank(sender.getName())) + ".");
-							staffUtils.informativeMessage((Player) sender, "Stripped Rank: " + ChatColor.stripColor(ChatColor.RED+"red") + ".");
+							coreUtils.informativeMessage((Player) sender, "Rank: " + coreUtils.getRankObject(coreUtils.getRank(sender.getName())));
+							coreUtils.informativeMessage((Player) sender, "Prison Rank: " + prisonUtils.getPrisonRank((Player) sender));
+							coreUtils.informativeMessage((Player) sender, "Prison Rank (raw): " + prisonUtils.getRankFromInt((Player) sender, prisonUtils.getPrisonRankInt((Player) sender)));
+							coreUtils.informativeMessage((Player) sender, "Rank Integer: " + coreUtils.getRankInteger(sender.getName()));
+							coreUtils.informativeMessage((Player) sender, "Regular Rank Prefix: " + coreUtils.getRankObject(coreUtils.getRank(sender.getName())) + ".");
 						}
 						break;
 					default:
-						staffUtils.informativeMessage((Player) sender, "This server is running &b&lAtom &fv" + plugin.getDescription().getVersion());
-						staffUtils.informativeMessage((Player) sender, "Developed by &b&lqr0");
+						coreUtils.informativeMessage((Player) sender, "This server is running &b&lAtom &fv" + plugin.getDescription().getVersion());
+						coreUtils.informativeMessage((Player) sender, "Developed by &b&lqr0");
 						break;
 				}
 			} else
-				staffUtils.printUsage((Player) sender, "atom", "<help/reload/version>");
+				coreUtils.printUsage((Player) sender, "atom", "<help/reload/version>");
 		}
 		return true;
 	}

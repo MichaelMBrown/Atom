@@ -1,37 +1,37 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import static net.excentrix.core.Core.globalPVP;
+import static net.excentrix.core.Central.globalPVP;
 
 public class togglePvP implements CommandExecutor {
-	private static final Plugin plugin = Core.getPlugin(Core.class);
+	private static final Plugin plugin = Central.getPlugin(Central.class);
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (sender.hasPermission("atom.command.togglePvP")) {
 			if (globalPVP) {
-				staffUtils.broadcastServer("&c[Alert]&e PVP has been disabled by " + Core.playerColour + sender.getName());
+				coreUtils.broadcastServer("&c[Alert]&e PVP has been disabled by " + Central.playerColour + sender.getName());
 				globalPVP = false;
 				plugin.getConfig().set("pvp-enabled", globalPVP);
 				plugin.saveConfig();
 				plugin.reloadConfig();
-				//staffUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has muted the chat.");
+				//coreUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has muted the chat.");
 			} else {
-				staffUtils.broadcastServer("&c[Alert]&e PVP has been enabled by " + Core.playerColour + sender.getName());
+				coreUtils.broadcastServer("&c[Alert]&e PVP has been enabled by " + Central.playerColour + sender.getName());
 				globalPVP = true;
 				plugin.getConfig().set("pvp-enabled", globalPVP);
 				plugin.saveConfig();
 				plugin.reloadConfig();
-				//staffUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has unmuted the chat.");
+				//coreUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has unmuted the chat.");
 			}
-		} else staffUtils.noPerm((Player) sender);
+		} else coreUtils.noPerm((Player) sender);
 		return true;
 	}
 }

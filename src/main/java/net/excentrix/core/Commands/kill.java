@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,21 +15,21 @@ public class kill implements CommandExecutor {
 			if (sender.hasPermission("atom.command.kill")) {
 				if (args.length == 1) {
 					Player targetPlayer = Bukkit.getPlayerExact(args[0]);
-					Player target = staffUtils.playerLookup((Player) sender, targetPlayer);
+					Player target = coreUtils.playerLookup((Player) sender, targetPlayer);
 					if (target != null) {
-						if (Core.godList.contains(target)) {
-							staffUtils.actionForbidden((Player) sender);
+						if (Central.godList.contains(target)) {
+							coreUtils.actionForbidden((Player) sender);
 						} else {
 							target.setHealth(0);
-							staffUtils.informativeMessage((Player) sender, "Killed " + staffUtils.getPlayerColor(target) + target.getName());
-//                            staffUtils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
+							coreUtils.informativeMessage((Player) sender, "Killed " + coreUtils.getPlayerColor(target) + target.getName());
+//                            coreUtils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
 						}
-					} else staffUtils.playerNotFound((Player) sender);
+					} else coreUtils.playerNotFound((Player) sender);
 				} else {
-					staffUtils.printUsage((Player) sender, "kill", "<player>");
+					coreUtils.printUsage((Player) sender, "kill", "<player>");
 				}
 			} else {
-				staffUtils.noPerm((Player) sender);
+				coreUtils.noPerm((Player) sender);
 			}
 		}
 		return true;

@@ -1,8 +1,8 @@
 package net.excentrix.core.Prison.Commands;
 
-import net.excentrix.core.Core;
+import net.excentrix.core.Central;
 import net.excentrix.core.Prison.prisonUtils;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.utils.coreUtils;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
@@ -16,13 +16,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class rankup implements CommandExecutor {
-	Economy econ = Core.getEcon();
+	Economy econ = Central.getEcon();
 	LuckPerms api = LuckPermsProvider.get();
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		Player player = (Player) sender;
-		if (Core.isPrison) {
+		if (Central.isPrison) {
 			if (prisonUtils.getPrisonRank(player).equals(ChatColor.RED + "D4")) {
 				prisonUtils.printMessage(player, "&cYou've reached the max rankup. Congratulations!");
 			} else {
@@ -42,7 +42,7 @@ public class rankup implements CommandExecutor {
 					prisonUtils.printMessage(player, "You still need &c" + econ.format(prisonUtils.rankValue(player) - econ.getBalance(player)));
 				}
 			}
-		} else staffUtils.errorMessage(player, "This command is not available on this server!");
+		} else coreUtils.errorMessage(player, "This command is not available on this server!");
 		return true;
 	}
 }

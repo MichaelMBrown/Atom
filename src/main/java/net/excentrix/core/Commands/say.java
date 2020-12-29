@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,15 +13,15 @@ public class say implements CommandExecutor {
 		String message = "";
 		Player player = (Player) commandSender;
 		if (!commandSender.hasPermission("atom.command.say")) {
-			staffUtils.noPerm(player);
+			coreUtils.noPerm(player);
 			return true;
 		}
 		if (strings.length > 0) {
 			for (int i = 0; i < strings.length; i++) {
 				message = message + strings[i] + " ";
 			}
-			staffUtils.broadcastServer(ChatColor.LIGHT_PURPLE + "[" + commandSender.getName() + "] " + message + ChatColor.WHITE);
-		} else staffUtils.printUsage(player, "say", "<message>");
+			coreUtils.broadcastServer(ChatColor.LIGHT_PURPLE + "[" + commandSender.getName() + "] " + message + ChatColor.WHITE);
+		} else coreUtils.printUsage(player, "say", "<message>");
 		return true;
 	}
 }

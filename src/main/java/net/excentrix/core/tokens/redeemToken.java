@@ -1,6 +1,6 @@
 package net.excentrix.core.tokens;
 
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,7 +21,7 @@ public class redeemToken implements Listener {
 				Matcher matcher = p.matcher(itemName);
 				while (matcher.find()) {
 					for (int i = 1; i <= matcher.groupCount(); i++) {
-						staffUtils.informativeMessage(event.getPlayer(), "It worked, I think: " + matcher.group(0));
+						coreUtils.informativeMessage(event.getPlayer(), "It worked, I think: " + matcher.group(0));
 					}
 				}
 			}

@@ -1,7 +1,7 @@
 package net.excentrix.core.events;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
@@ -20,7 +20,7 @@ import org.bukkit.plugin.Plugin;
 
 public class authEvent implements Listener {
 	
-	private static final Plugin plugin = Core.getPlugin(Core.class);
+	private static final Plugin plugin = Central.getPlugin(Central.class);
 	LuckPerms api = LuckPermsProvider.get();
 	
 	@EventHandler
@@ -31,20 +31,20 @@ public class authEvent implements Listener {
 			String group = api.getUserManager().getUser(player.getName()).getPrimaryGroup();
 			String grant = api.getGroupManager().getGroup(group).getDisplayName();
 			if (plugin.getConfig().getString("server-name").equalsIgnoreCase("hub"))
-				staffUtils.informativeMessage(player, "Please hold while I verify your grants...");
-			Core.freezeList.add(player);
+				coreUtils.informativeMessage(player, "Please hold while I verify your grants...");
+			Central.freezeList.add(player);
 			if (plugin.getConfig().getString("server-name").equalsIgnoreCase("hub"))
 				if (grant == null) {
-					staffUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
-					staffUtils.scNotify("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
-					Core.freezeList.add(player);
+					coreUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
+					coreUtils.notifyStaff("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
+					Central.freezeList.add(player);
 				} else
-					staffUtils.informativeMessage(player, "&aVerified&7 Applying your " + grant + " &7grant to you now.");
-			Core.freezeList.remove(player);
+					coreUtils.informativeMessage(player, "&aVerified&7 Applying your " + grant + " &7grant to you now.");
+			Central.freezeList.remove(player);
 		} else {
-			staffUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
-			staffUtils.scNotify("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
-			Core.freezeList.add(player);
+			coreUtils.errorMessage(player, "WARN: Something went wrong in identifying your grants, playing it safe and locking you.");
+			coreUtils.notifyStaff("console", "&c&lWARN: &7" + player.getName() + "&c&l has an invalid grant setup, please notify the System Administrator immediately.");
+			Central.freezeList.add(player);
 		}
 		QueryOptions queryOptions = api.getContextManager().getQueryOptions(player);
 		CachedMetaData metaData = api.getUserManager().getUser(player.getName()).getCachedData().getMetaData(queryOptions);
@@ -65,9 +65,10 @@ public class authEvent implements Listener {
 	
 	@EventHandler()
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		if (staffUtils.getRankInteger(event.getPlayer().getName()) >= 1) {
+		if (coreUtils.getRankInteger(event.getPlayer().getName()) >= 1) {
 			event.setJoinMessage("");
 		} else event.setJoinMessage(ChatColor.DARK_GRAY + "Join> " + ChatColor.GRAY + event.getPlayer().getName());
+		event.getPlayer().setCollidable(false);
 	}
 	
 	@EventHandler
@@ -77,16 +78,16 @@ public class authEvent implements Listener {
 			case "skyblock":
 			case "creative":
 			case "prison":
-				Core.buildDenied.remove(player);
+				Central.buildDenied.remove(player);
 				break;
 			default:
-				Core.buildDenied.add(player);
+				Central.buildDenied.add(player);
 		}
 	}
 	
 	@EventHandler
 	public void leaveEvent(PlayerQuitEvent event) {
-		if (staffUtils.getRankInteger(event.getPlayer().getName()) >= 1) {
+		if (coreUtils.getRankInteger(event.getPlayer().getName()) >= 1) {
 			event.setQuitMessage("");
 		} else event.setQuitMessage(ChatColor.DARK_GRAY + "Quit> " + ChatColor.GRAY + event.getPlayer().getName());
 	}

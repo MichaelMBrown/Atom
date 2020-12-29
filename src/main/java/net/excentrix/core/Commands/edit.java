@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class edit implements CommandExecutor {
-	private static final Plugin plugin = Core.getPlugin(Core.class);
+	private static final Plugin plugin = Central.getPlugin(Central.class);
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -29,8 +29,8 @@ public class edit implements CommandExecutor {
 							case "MOBAI":
 								switch (value) {
 									case "TRUE":
-										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.notifyStaff(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
 										plugin.getConfig().set("mobAI", true);
 										plugin.saveConfig();
 										plugin.reloadConfig();
@@ -45,8 +45,8 @@ public class edit implements CommandExecutor {
 										}
 										break;
 									case "FALSE":
-										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.notifyStaff(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
 										plugin.getConfig().set("mobAI", false);
 										plugin.saveConfig();
 										plugin.reloadConfig();
@@ -68,15 +68,15 @@ public class edit implements CommandExecutor {
 							case "DISABLEDROWNED":
 								switch (value) {
 									case "TRUE":
-										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.notifyStaff(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
 										plugin.getConfig().set("disableDrowned", true);
 										plugin.saveConfig();
 										plugin.reloadConfig();
 										break;
 									case "FALSE":
-										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
-										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.notifyStaff(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.GRAY + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
 										plugin.getConfig().set("disableDrowned", false);
 										plugin.saveConfig();
 										plugin.reloadConfig();
@@ -89,15 +89,15 @@ public class edit implements CommandExecutor {
 							case "DOINSOMNIA":
 								switch (value) {
 									case "TRUE":
-										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.notifyStaff(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
 										plugin.getConfig().set("doInsomnia", true);
 										plugin.saveConfig();
 										plugin.reloadConfig();
 										break;
 									case "FALSE":
-										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.notifyStaff(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
 										plugin.getConfig().set("doInsomnia", false);
 										plugin.saveConfig();
 										plugin.reloadConfig();
@@ -110,15 +110,15 @@ public class edit implements CommandExecutor {
 							case "DISABLEPORTALS":
 								switch (value) {
 									case "TRUE":
-										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.notifyStaff(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
 										plugin.getConfig().set("disable-portals", true);
 										plugin.saveConfig();
 										plugin.reloadConfig();
 										break;
 									case "FALSE":
-										staffUtils.scNotify(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
-										staffUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.notifyStaff(theSender.getName(), "Set the value of " + ChatColor.GOLD + args[1] + ChatColor.WHITE + " to " + ChatColor.YELLOW + args[2]);
+										coreUtils.informativeMessage((Player) sender, "Updated the value of " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " to " + ChatColor.YELLOW + args[2]);
 										plugin.getConfig().set("disable-portals", false);
 										plugin.saveConfig();
 										plugin.reloadConfig();
@@ -129,10 +129,10 @@ public class edit implements CommandExecutor {
 								}
 								break;
 							default:
-								staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
+								coreUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
 								break;
 						}
-					} else staffUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
+					} else coreUtils.printUsage((Player) sender, "edit", "<type> <data> <value>");
 				}
 			}
 		}

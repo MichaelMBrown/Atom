@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -18,9 +18,9 @@ public class heal implements CommandExecutor {
 				if (sender.hasPermission("atom.command.heal")) {
 					if (args.length == 1) {
 						Player targetPlayer = Bukkit.getPlayerExact(args[0]);
-						Player target = staffUtils.playerLookup((Player) sender, targetPlayer);
+						Player target = coreUtils.playerLookup((Player) sender, targetPlayer);
 						if (target != null) {
-							staffUtils.informativeMessage((Player) sender, "You healed " + staffUtils.getPlayerColor(target) + target.getName());
+							coreUtils.informativeMessage((Player) sender, "You healed " + coreUtils.getPlayerColor(target) + target.getName());
 							BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + target.getName(), false);
 							target.setHealth(20);
 							target.setFireTicks(0);
@@ -30,10 +30,10 @@ public class heal implements CommandExecutor {
 								target.removePotionEffect(effect.getType());
 							}
 						} else {
-							staffUtils.playerNotFound((Player) sender);
+							coreUtils.playerNotFound((Player) sender);
 						}
 					} else {
-						staffUtils.informativeMessage((Player) sender, "You healed " + staffUtils.getPlayerColor((Player) sender) + sender.getName());
+						coreUtils.informativeMessage((Player) sender, "You healed " + coreUtils.getPlayerColor((Player) sender) + sender.getName());
 						BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "healed " + sender.getName(), false);
 						Player commandSender = (Player) sender;
 						commandSender.setHealth(20);
@@ -45,7 +45,7 @@ public class heal implements CommandExecutor {
 						}
 					}
 				} else {
-					staffUtils.noPerm((Player) sender);
+					coreUtils.noPerm((Player) sender);
 				}
 			}
 		}

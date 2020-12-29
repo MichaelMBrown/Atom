@@ -1,12 +1,12 @@
 name: Atom
 version: ${project.version}
-main: net.excentrix.core.Core
+main: net.excentrix.core.Central
 api-version: 1.16
 softdepend: [ LuckPerms, PremiumVanish, SuperVanish ]
 loadbefore: [ Essentials ]
 depend: [ Vault ]
 authors: [ qr0 ]
-description: Atom Core Systems.
+description: Atom Central Systems.
 website: excentrix.net
 commands:
   sc:
@@ -89,7 +89,7 @@ commands:
     permission: atom.command.mutelocalchat
   tphere:
     description: Teleports a player to you
-    permission: atom.command.tphere
+    permission: atom.command.tp
   say:
     description: Broadcast to the Server
     permission: atom.command.say
@@ -147,3 +147,10 @@ commands:
     permission: atom.command.togglePvP
   granttoken:
     description: "Generates a Grant Token for the Specified Player with a Specified Grant"
+  weird:
+    description: Weirds things out
+  ban:
+    description: Bans a Player
+  pardon:
+    description: Unbans a Player
+  loop:

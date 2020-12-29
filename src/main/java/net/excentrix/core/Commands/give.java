@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -18,13 +18,13 @@ public class give implements CommandExecutor {
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 		Player sender = (Player) commandSender;
 		if (!(commandSender.hasPermission("atom.command.give"))) {
-			staffUtils.noPerm(sender);
+			coreUtils.noPerm(sender);
 			return true;
 		}
 		if (strings.length > 0) {
 			int amount;
 			Player targetPlayer = Bukkit.getPlayerExact(strings[0]);
-			Player target = staffUtils.playerLookup(sender, targetPlayer);
+			Player target = coreUtils.playerLookup(sender, targetPlayer);
 			if (strings[0].equalsIgnoreCase("all")) {
 				if (strings.length > 1) {
 					try {
@@ -41,11 +41,11 @@ public class give implements CommandExecutor {
 						for (Player p : Bukkit.getOnlinePlayers()) {
 							p.getInventory().addItem(item);
 						}
-						staffUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&a to " + Core.playerColour + strings[0].toUpperCase());
+						coreUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&a to " + Central.playerColour + strings[0].toUpperCase());
 					} catch (NullPointerException e) {
-						staffUtils.actionForbidden(sender);
+						coreUtils.actionForbidden(sender);
 					}
-				} else staffUtils.printUsage(sender, "give", "<player> <item> [count]");
+				} else coreUtils.printUsage(sender, "give", "<player> <item> [count]");
 			} else if (target != null) {
 				if (strings.length > 1) {
 					try {
@@ -60,13 +60,13 @@ public class give implements CommandExecutor {
 					try {
 						ItemStack item = new ItemStack(Objects.requireNonNull(Material.getMaterial(strings[1].toUpperCase())), amount);
 						target.getInventory().addItem(item);
-						staffUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&a to " + staffUtils.getPlayerColor(target) + strings[0]);
+						coreUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&a to " + coreUtils.getPlayerColor(target) + strings[0]);
 					} catch (NullPointerException e) {
-						staffUtils.actionForbidden(sender);
+						coreUtils.actionForbidden(sender);
 					}
-				} else staffUtils.printUsage(sender, "give", "<player> <item> [count]");
-			} else staffUtils.playerNotFound(sender);
-		} else staffUtils.printUsage(sender, "give", "<player> <item> [count]");
+				} else coreUtils.printUsage(sender, "give", "<player> <item> [count]");
+			} else coreUtils.playerNotFound(sender);
+		} else coreUtils.printUsage(sender, "give", "<player> <item> [count]");
 		return true;
 	}
 }

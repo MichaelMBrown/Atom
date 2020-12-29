@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -18,7 +18,7 @@ public class report implements CommandExecutor {
 			if (command.getName().equalsIgnoreCase("report")) {
 				if ((args.length == 2)) {
 					Player targetPlayer = Bukkit.getPlayerExact(args[0]);
-					Player target = staffUtils.playerLookup((Player) sender, targetPlayer);
+					Player target = coreUtils.playerLookup((Player) sender, targetPlayer);
 					if (target != null) {
 						if (args[1].equalsIgnoreCase("KillAura") || args[1].equalsIgnoreCase("ka")) {
 							sender.sendMessage(ChatColor.GREEN + "Thanks for reporting " + ChatColor.YELLOW + target.getName() + ChatColor.GREEN + " for " + ChatColor.RED + "KillAura" + ChatColor.GREEN + "!");
@@ -48,10 +48,10 @@ public class report implements CommandExecutor {
 							sender.sendMessage(ChatColor.RED + "Valid Hacks: (KILLAURA, AIMBOT, FLIGHT, ANTIKNOCKBACK, CRITICALS, BHOP, SPEED, SPAM)");
 						}
 					} else {
-						staffUtils.playerNotFound((Player) sender);
+						coreUtils.playerNotFound((Player) sender);
 					}
 				} else {
-					staffUtils.printUsage((Player) sender, "report", "<player> <hacks>");
+					coreUtils.printUsage((Player) sender, "report", "<player> <hacks>");
 				}
 			}
 		}
@@ -60,8 +60,8 @@ public class report implements CommandExecutor {
 	
 	public void notifyStaff(Player sender, Player target, String[] args) {
 		if (args[1].equalsIgnoreCase("KA")) {
-			staffUtils.scNotify("Console", staffUtils.getPlayerColor(sender) + sender.getName() + ChatColor.YELLOW + " has reported " + staffUtils.getPlayerColor(target) + target.getName() + ChatColor.YELLOW + " for " + ChatColor.RED + "KillAura" + ChatColor.YELLOW + ".");
+			coreUtils.notifyStaff("watchdog", coreUtils.getPlayerColor(sender) + sender.getName() + ChatColor.YELLOW + " has reported " + coreUtils.getPlayerColor(target) + target.getName() + ChatColor.YELLOW + " for " + ChatColor.RED + "KillAura" + ChatColor.YELLOW + ".");
 		} else
-			staffUtils.scNotify("Console", staffUtils.getPlayerColor(sender) + sender.getName() + ChatColor.YELLOW + " has reported " + staffUtils.getPlayerColor(target) + target.getName() + ChatColor.YELLOW + " for " + ChatColor.RED + args[1].toLowerCase() + ChatColor.YELLOW + ".");
+			coreUtils.notifyStaff("watchdog", coreUtils.getPlayerColor(sender) + sender.getName() + ChatColor.YELLOW + " has reported " + coreUtils.getPlayerColor(target) + target.getName() + ChatColor.YELLOW + " for " + ChatColor.RED + args[1].toLowerCase() + ChatColor.YELLOW + ".");
 	}
 }

@@ -1,7 +1,7 @@
 package net.excentrix.core.events;
 
 import com.destroystokyo.paper.event.player.PlayerPostRespawnEvent;
-import net.excentrix.core.Core;
+import net.excentrix.core.Central;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,7 +16,7 @@ public class deathEvents implements Listener {
 	@EventHandler
 	public void godDeath(PlayerDeathEvent event) {
 		Player player = event.getEntity();
-		if (Core.godList.contains(player)) {
+		if (Central.godList.contains(player)) {
 			event.setCancelled(true);
 		}
 		
@@ -40,6 +40,6 @@ public class deathEvents implements Listener {
 	
 	@EventHandler
 	public void respawnEvent(PlayerPostRespawnEvent event) {
-		event.getPlayer().teleport(Core.spawn, PlayerTeleportEvent.TeleportCause.PLUGIN);
+		event.getPlayer().teleport(Central.spawn, PlayerTeleportEvent.TeleportCause.PLUGIN);
 	}
 }

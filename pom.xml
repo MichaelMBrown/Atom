@@ -6,7 +6,7 @@
 
     <groupId>net.excentrix</groupId>
     <artifactId>Atom</artifactId>
-    <version>1.7.8a</version>
+    <version>1.7.9a</version>
     <packaging>jar</packaging>
 
     <name>Atom</name>
@@ -58,6 +58,10 @@
 
     <repositories>
         <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
             <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
@@ -66,16 +70,21 @@
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
             <id>cubekrowd-repo</id>
             <url>https://mavenrepo.cubekrowd.net/artifactory/repo/</url>
+        </repository>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>https://repo.dmulloy2.net/nexus/repository/public/</url>
         </repository>
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.5.0</version>
+        </dependency>
         <dependency>
             <groupId>com.destroystokyo.paper</groupId>
             <artifactId>paper-api</artifactId>
@@ -96,9 +105,9 @@
         </dependency>
         <!-- SuperVanish -->
         <dependency>
-            <groupId>de.myzelyam</groupId>
+            <groupId>com.github.MyzelYam</groupId>
             <artifactId>SuperVanish</artifactId>
-            <version>6.1.0</version>
+            <version>6.1.8</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

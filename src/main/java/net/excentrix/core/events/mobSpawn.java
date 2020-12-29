@@ -1,6 +1,6 @@
 package net.excentrix.core.events;
 
-import net.excentrix.core.Core;
+import net.excentrix.core.Central;
 import org.bukkit.entity.Phantom;
 import org.bukkit.entity.Slime;
 import org.bukkit.entity.WanderingTrader;
@@ -10,7 +10,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.Plugin;
 
 public class mobSpawn implements Listener {
-	private static final Plugin plugin = Core.getPlugin(Core.class);
+	private static final Plugin plugin = Central.getPlugin(Central.class);
 	
 	@EventHandler
 	public void disableAI(CreatureSpawnEvent event) {

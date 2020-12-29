@@ -1,7 +1,13 @@
 package net.excentrix.core;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import net.excentrix.core.Commands.*;
 import net.excentrix.core.Prison.Commands.rankup;
+import net.excentrix.core.WatchDog.watchDogKick;
+import net.excentrix.core.WatchDog.watchDogBan;
+import net.excentrix.core.WatchDog.watchDogNotification;
+import net.excentrix.core.WatchDog.watchDogUnban;
 import net.excentrix.core.enchants.telekinesis;
 import net.excentrix.core.enchants.trueDamage;
 import net.excentrix.core.events.*;
@@ -26,7 +32,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
 
-public final class Core extends JavaPlugin implements Listener, TabCompleter {
+public final class Central extends JavaPlugin implements Listener, TabCompleter {
 	public static ArrayList<Player> godList = new ArrayList();
 	public static ArrayList<Player> freezeList = new ArrayList();
 	public static ArrayList<Player> scMuted = new ArrayList();
@@ -42,7 +48,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 	// Setup the Economy
 	private static Economy econ = null;
 	
-	public Core() {
+	public Central() {
 	}
 	
 	public static Economy getEcon() {
@@ -68,13 +74,17 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 		getConfig().options().copyDefaults();
 		saveDefaultConfig();
 		
+		//Handle Packets
+		ProtocolManager protocolManager;
+		protocolManager = ProtocolLibrary.getProtocolManager();
+		
 		
 		// Register Commands
 		// Atom Command
 		getCommand("atom").setExecutor(new atom());
 		getCommand("atom").setTabCompleter(new atomCompletion());
 		// Kick Command
-		getCommand("kick").setExecutor(new kick());
+		getCommand("kick").setExecutor(new watchDogKick());
 		// Report Command
 		getCommand("report").setExecutor(new report());
 		getCommand("report").setTabCompleter(new reportCompletion());
@@ -146,9 +156,17 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 		getCommand("togglePvP").setExecutor(new togglePvP());
 		//RankToken Command
 		getCommand("granttoken").setExecutor(new grantToken());
+		//Packet
+		getCommand("weird").setExecutor(new weird());
+		//Ban
+		getCommand("ban").setExecutor(new watchDogBan());
+		//Pardon
+		getCommand("pardon").setExecutor(new watchDogUnban());
+		//Loop
+		getCommand("loop").setExecutor(new loop());
 		
 		
-		// Internals :)
+		// Register Events
 		getCommand("announceToStaff").setExecutor(new announceToStaff());
 		getServer().getPluginManager().registerEvents(new godEvent(), this);
 		getServer().getPluginManager().registerEvents(new mobSpawn(), this);
@@ -164,6 +182,7 @@ public final class Core extends JavaPlugin implements Listener, TabCompleter {
 		getServer().getPluginManager().registerEvents(new damageEvents(), this);
 		//getServer().getPluginManager().registerEvents(new preventPlace(), this);
 		getServer().getPluginManager().registerEvents(new redeemToken(), this);
+		getServer().getPluginManager().registerEvents(new watchDogNotification(),this);
 		
 		// Setup Global Chat
 		chatSilenced = getConfig().getBoolean("chat-silenced");

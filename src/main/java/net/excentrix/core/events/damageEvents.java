@@ -1,7 +1,7 @@
 package net.excentrix.core.events;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +15,7 @@ public class damageEvents implements Listener {
 				if (entityDamageByEntityEvent.getEntity().getName().equals("qr0")) {
 					((Player) entityDamageByEntityEvent.getDamager()).setHealth(0);
 					entityDamageByEntityEvent.setCancelled(true);
-					staffUtils.actionForbidden((Player) entityDamageByEntityEvent.getDamager());
+					coreUtils.actionForbidden((Player) entityDamageByEntityEvent.getDamager());
 				}
 			}
 		}
@@ -25,7 +25,7 @@ public class damageEvents implements Listener {
 	public void PlayerDamagePlayer(EntityDamageByEntityEvent event) {
 		if (event.getDamager() instanceof Player) {
 			if (event.getEntity() instanceof Player) {
-				if (!Core.globalPVP) {
+				if (!Central.globalPVP) {
 					event.setCancelled(true);
 				}
 			}

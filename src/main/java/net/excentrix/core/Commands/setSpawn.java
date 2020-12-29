@@ -1,7 +1,7 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Core;
-import net.excentrix.core.utils.staffUtils;
+import net.excentrix.core.Central;
+import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -12,7 +12,7 @@ import org.bukkit.plugin.Plugin;
 
 
 public class setSpawn implements CommandExecutor {
-	private static final Plugin plugin = Core.getPlugin(Core.class);
+	private static final Plugin plugin = Central.getPlugin(Central.class);
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -24,12 +24,12 @@ public class setSpawn implements CommandExecutor {
 			int spawnX = newSpawn.getBlockX();
 			int spawnY = newSpawn.getBlockY();
 			int spawnZ = newSpawn.getBlockZ();
-			staffUtils.informativeMessage((Player) sender, "Set the spawn of &f" + currentWorld + net.md_5.bungee.api.ChatColor.of("#2AFC0D") + " to &f" + spawnX + "&7,&f " + spawnY + "&7,&f " + spawnZ);
-			Core.spawn = newSpawn;
+			coreUtils.informativeMessage((Player) sender, "Set the spawn of &f" + currentWorld + net.md_5.bungee.api.ChatColor.of("#2AFC0D") + " to &f" + spawnX + "&7,&f " + spawnY + "&7,&f " + spawnZ);
+			Central.spawn = newSpawn;
 			plugin.getConfig().set("world", newSpawn);
 			plugin.saveConfig();
 			plugin.reloadConfig();
-		} else staffUtils.noPerm(player);
+		} else coreUtils.noPerm(player);
 		return true;
 	}
 }
