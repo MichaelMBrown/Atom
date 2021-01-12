@@ -128,6 +128,7 @@ public class prisonUtils {
 	}
 	
 	public static double getPrisonRankInt(Player player) {
+		// hash table
 		{
 			QueryOptions queryOptions = api.getContextManager().getQueryOptions(player);
 			CachedMetaData metaData = api.getUserManager().getUser(player.getName()).getCachedData().getMetaData(queryOptions);

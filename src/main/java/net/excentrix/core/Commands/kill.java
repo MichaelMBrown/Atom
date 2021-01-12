@@ -22,7 +22,6 @@ public class kill implements CommandExecutor {
 						} else {
 							target.setHealth(0);
 							coreUtils.informativeMessage((Player) sender, "Killed " + coreUtils.getPlayerColor(target) + target.getName());
-//                            coreUtils.scNotif(sender.getName(), "Killed player " + ChatColor.GOLD + target.getName());
 						}
 					} else coreUtils.playerNotFound((Player) sender);
 				} else {

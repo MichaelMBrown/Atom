@@ -22,13 +22,11 @@ public class mutelocalchat implements CommandExecutor {
 				chatSilenced = true;
 				plugin.getConfig().set("chat-silenced", chatSilenced);
 				plugin.saveConfig();
-				//coreUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has muted the chat.");
 			} else {
 				coreUtils.broadcastServer("&c[Alert]&e Server chat has been enabled by " + playerColour + commandSender.getName());
 				chatSilenced = false;
 				plugin.getConfig().set("chat-silenced", chatSilenced);
 				plugin.saveConfig();
-				//coreUtils.scNotify("console", ChatColor.YELLOW + commandSender.getName() + ChatColor.GRAY + " has unmuted the chat.");
 			}
 		} else coreUtils.noPerm((Player) commandSender);
 		return true;
