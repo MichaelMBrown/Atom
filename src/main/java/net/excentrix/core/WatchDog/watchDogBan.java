@@ -25,11 +25,16 @@ public class watchDogBan implements CommandExecutor {
 					targetPlayer = Bukkit.getOfflinePlayer(offlinePlayer.getUniqueId());
 				} else targetPlayer = null;
 				if (targetPlayer != null) {
-					targetPlayer.banPlayer(reason, null, commandSender.getName(), true);
-					if (commandSender instanceof ConsoleCommandSender)
-						coreUtils.notifyStaff("watchdog", "banned player " + targetPlayer.getName() + " for " + reason + ".");
-					else
-						coreUtils.notifyStaff("none", commandSender.getName() + " banned player " + targetPlayer.getName() + " for " + reason + ".");
+					if (targetPlayer.isBanned()){
+						BanList banList = Bukkit.getBanList(BanList.Type.NAME);
+						coreUtils.errorMessage((Player) commandSender,"This player is already banned, they were banned by "+banList.getBanEntry(targetPlayer.getName()).getSource()+" with reason: "+banList.getBanEntry(targetPlayer.getName()).getReason());
+					}else{
+						targetPlayer.banPlayer(reason, null, commandSender.getName(), true);
+						if (commandSender instanceof ConsoleCommandSender)
+							coreUtils.notifyStaff("watchdog", "banned player " + targetPlayer.getName() + " for " + reason + ".");
+						else
+							coreUtils.notifyStaff("none", commandSender.getName() + " banned player " + targetPlayer.getName() + " for " + reason + ".");
+					}
 				} else {
 					coreUtils.playerDoesntExist((Player) commandSender);
 				}

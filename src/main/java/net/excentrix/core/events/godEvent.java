@@ -1,6 +1,6 @@
 package net.excentrix.core.events;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,7 +12,7 @@ public class godEvent implements Listener {
 	public void godCheck(EntityDamageEvent event) {
 		if (event.getEntity() instanceof Player) {
 			Player player = (Player) event.getEntity();
-			if (Central.godList.contains(player)) {
+			if (CentralHandler.godList.contains(player)) {
 				event.setCancelled(true);
 			}
 		}

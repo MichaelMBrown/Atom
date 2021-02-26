@@ -1,6 +1,6 @@
 package net.excentrix.core.tasks;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
@@ -12,10 +12,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class updateTablist extends BukkitRunnable {
 	
-	Central plugin;
+	CentralHandler plugin;
 	String group;
 	
-	public updateTablist(Central plugin) {
+	public updateTablist(CentralHandler plugin) {
 		this.plugin = plugin;
 	}
 	

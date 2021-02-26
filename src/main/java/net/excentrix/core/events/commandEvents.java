@@ -1,6 +1,6 @@
 package net.excentrix.core.events;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,7 +20,7 @@ public class commandEvents implements Listener {
 	
 	@EventHandler(ignoreCancelled = true)
 	public void commandFreeze(PlayerCommandPreprocessEvent event) {
-		if (Central.freezeList.contains(event.getPlayer())){
+		if (CentralHandler.freezeList.contains(event.getPlayer())){
 			event.setCancelled(true);
 			coreUtils.errorMessage(event.getPlayer(),"You are not permitted to send commands whilst you're frozen.");
 		}

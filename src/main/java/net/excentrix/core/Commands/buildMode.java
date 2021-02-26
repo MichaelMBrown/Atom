@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,12 +13,12 @@ public class buildMode implements CommandExecutor {
 		Player player = (Player) sender;
 		if (!(sender.hasPermission("atom.command.build")))
 			return true;
-		if (Central.buildDenied.contains(player)) {
+		if (CentralHandler.buildDenied.contains(player)) {
 			coreUtils.informativeMessage(player, "Your build mode has been turned on.");
-			Central.buildDenied.remove(player);
+			CentralHandler.buildDenied.remove(player);
 		} else {
 			coreUtils.informativeMessage(player, "&cYour build mode has been turned off.");
-			Central.buildDenied.add(player);
+			CentralHandler.buildDenied.add(player);
 		}
 		return true;
 	}

@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,14 +20,14 @@ public class freeze implements CommandExecutor {
 					Player targetPlayer = Bukkit.getPlayerExact(args[0]);
 					Player target = coreUtils.playerLookup((Player) sender, targetPlayer);
 					if (target != null) {
-						if (!Central.freezeList.contains(target)) {
-							Central.freezeList.add(target);
+						if (!CentralHandler.freezeList.contains(target)) {
+							CentralHandler.freezeList.add(target);
 							target.setInvulnerable(true);
 							coreUtils.informativeMessage((Player) sender, "You froze " + coreUtils.getPlayerColor(target) + target.getName());
 							BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "froze " + ChatColor.YELLOW + target.getName(), false);
 							coreUtils.errorMessage(target, "You have been frozen.");
 						} else {
-							Central.freezeList.remove(target);
+							CentralHandler.freezeList.remove(target);
 							target.setInvulnerable(false);
 							coreUtils.informativeMessage((Player) sender, "You unfroze " + coreUtils.getPlayerColor(target) + target.getName());
 							BukkitCommand.broadcastCommandMessage(sender, ChatColor.YELLOW + "unfroze " + ChatColor.YELLOW + target.getName(), false);

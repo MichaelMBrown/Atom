@@ -18,7 +18,7 @@ public class helpop implements CommandExecutor {
 					for (int i = 0; i < args.length; ++i) {
 						message = message + args[i] + " ";
 					}
-					coreUtils.informativeMessage((Player) sender, "Your message &f" + message + "&awas send to the staff!");
+					coreUtils.informativeMessage((Player) sender, "Your message &f&o" + message + "&awas send to the staff!");
 					coreUtils.notifyStaff("Console", ChatColor.GOLD + (coreUtils.getPlayerColor((Player) sender) + sender.getName() + ChatColor.YELLOW + " requested help: " + ChatColor.GRAY + "" + ChatColor.ITALIC + message));
 				} else {
 					coreUtils.printUsage((Player) sender, "helpop", "<message>");
