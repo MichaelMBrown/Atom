@@ -1,7 +1,7 @@
 package net.excentrix.core.utils;
 
 import de.myzelyam.api.vanish.VanishAPI;
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
@@ -11,10 +11,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import java.util.Locale;
-
 public class coreUtils {
-	private static final Plugin plugin = Central.getPlugin(Central.class);
+	private static final Plugin plugin = CentralHandler.getPlugin(CentralHandler.class);
 	static LuckPerms api = LuckPermsProvider.get();
 	
 	public static void notifyStaff(String sender, String args) {
@@ -23,7 +21,7 @@ public class coreUtils {
 		Player scSender = Bukkit.getPlayer(sender);
 		for (final Player p : Bukkit.getOnlinePlayers()) {
 			if (p.hasPermission("atom.chat.staffchat")) {
-				if (!(Central.scMuted.contains(p))) {
+				if (!(CentralHandler.scMuted.contains(p))) {
 					switch (sender.toLowerCase()) {
 						case "console":
 							p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&o(" + plugin.getConfig().getString("server-name") + "&7&o) " + "&b[STAFF] &4[SYSTEM]&7: &f") + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
@@ -58,14 +56,14 @@ public class coreUtils {
 		return rank;
 	}
 	
-	public static Integer getRankInteger(String playerName) {
+	public static Integer getRankInteger(String PlayerName) {
 		int rankValue = 0;
 		if (!(Bukkit.getPluginManager().isPluginEnabled("LuckPerms"))) {
 			return rankValue;
 		}
-		Player player = Bukkit.getPlayerExact(playerName);
+		Player player = Bukkit.getPlayerExact(PlayerName);
 		assert player != null;
-		switch (getRank(playerName).toLowerCase()) {
+		switch (getRank(PlayerName).toLowerCase()) {
 			default:
 				rankValue = 0;
 				break;
@@ -141,6 +139,9 @@ public class coreUtils {
 		switch (getRank(player.getName()).toLowerCase()) {
 			case "mod":
 				return ChatColor.DARK_GREEN;
+			case "dev":
+			case "developer":
+				return ChatColor.AQUA;
 			case "admin":
 			case "owner":
 				return ChatColor.RED;

@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -17,7 +17,7 @@ public class kill implements CommandExecutor {
 					Player targetPlayer = Bukkit.getPlayerExact(args[0]);
 					Player target = coreUtils.playerLookup((Player) sender, targetPlayer);
 					if (target != null) {
-						if (Central.godList.contains(target)) {
+						if (CentralHandler.godList.contains(target)) {
 							coreUtils.actionForbidden((Player) sender);
 						} else {
 							target.setHealth(0);

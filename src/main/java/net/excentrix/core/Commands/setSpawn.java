@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -12,7 +12,7 @@ import org.bukkit.plugin.Plugin;
 
 
 public class setSpawn implements CommandExecutor {
-	private static final Plugin plugin = Central.getPlugin(Central.class);
+	private static final Plugin plugin = CentralHandler.getPlugin(CentralHandler.class);
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -25,7 +25,7 @@ public class setSpawn implements CommandExecutor {
 			int spawnY = newSpawn.getBlockY();
 			int spawnZ = newSpawn.getBlockZ();
 			coreUtils.informativeMessage((Player) sender, "Set the spawn of &f" + currentWorld + net.md_5.bungee.api.ChatColor.of("#2AFC0D") + " to &f" + spawnX + "&7,&f " + spawnY + "&7,&f " + spawnZ);
-			Central.spawn = newSpawn;
+			CentralHandler.spawn = newSpawn;
 			plugin.getConfig().set("world", newSpawn);
 			plugin.saveConfig();
 			plugin.reloadConfig();

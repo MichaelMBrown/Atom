@@ -1,12 +1,12 @@
 package net.excentrix.core.utils;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class atomUtils {
-	private static final Plugin plugin = Central.getPlugin(Central.class);
+	private static final Plugin plugin = CentralHandler.getPlugin(CentralHandler.class);
 	
 	public static void atomShowCommand(Player player, String command, String usage, String permission) {
 		if (permission.equalsIgnoreCase("none")) {
@@ -29,14 +29,14 @@ public class atomUtils {
 		switch (plugin.getConfig().getString("server-name").toLowerCase()) {
 			case "skyblock":
 			case "development":
-				Central.enchantSupport = true;
+				CentralHandler.enchantSupport = true;
 				break;
 			case "prison":
-				Central.isPrison = true;
-				Central.enchantSupport = true;
+				CentralHandler.isPrison = true;
+				CentralHandler.enchantSupport = true;
 				break;
 			default:
-				Central.enchantSupport = false;
+				CentralHandler.enchantSupport = false;
 				break;
 		}
 	}

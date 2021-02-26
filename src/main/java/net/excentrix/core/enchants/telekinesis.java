@@ -1,6 +1,6 @@
 package net.excentrix.core.enchants;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,9 +12,9 @@ import org.bukkit.inventory.ItemStack;
 public class telekinesis implements Listener {
 	@EventHandler(ignoreCancelled = false, priority = EventPriority.HIGHEST)
 	public void breakEvent(BlockBreakEvent event) {
-		if (Central.enchantSupport) {
+		if (CentralHandler.enchantSupport) {
 			Player player = event.getPlayer();
-			if (!Central.buildDenied.contains(player))
+			if (!CentralHandler.buildDenied.contains(player))
 				if (!player.getGameMode().equals(GameMode.CREATIVE)) {
 					try {
 						if (player.getEquipment().getItemInMainHand().getLore().toString().contains("Telekinesis")) {

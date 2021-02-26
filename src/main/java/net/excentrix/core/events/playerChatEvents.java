@@ -1,6 +1,6 @@
 package net.excentrix.core.events;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -8,18 +8,17 @@ import net.luckperms.api.cacheddata.CachedMetaData;
 import net.luckperms.api.query.QueryOptions;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.Plugin;
 
 public class playerChatEvents implements Listener {
-	private static final Plugin plugin = Central.getPlugin(Central.class);
+	private static final Plugin plugin = CentralHandler.getPlugin(CentralHandler.class);
 	static LuckPerms api = LuckPermsProvider.get();
 	
 	@EventHandler
 	public void talkEvent(AsyncPlayerChatEvent event) {
-		if (Central.chatSilenced && !event.getPlayer().hasPermission("atom.staff")) {
+		if (CentralHandler.chatSilenced && !event.getPlayer().hasPermission("atom.staff")) {
 			event.setCancelled(true);
 			coreUtils.errorMessage(event.getPlayer(), "You cannot right now, as global chat is currently muted.");
 		}

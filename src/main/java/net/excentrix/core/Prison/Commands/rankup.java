@@ -1,6 +1,6 @@
 package net.excentrix.core.Prison.Commands;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.Prison.prisonUtils;
 import net.excentrix.core.utils.coreUtils;
 import net.luckperms.api.LuckPerms;
@@ -16,13 +16,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class rankup implements CommandExecutor {
-	Economy econ = Central.getEcon();
+	Economy econ = CentralHandler.getEcon();
 	LuckPerms api = LuckPermsProvider.get();
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		Player player = (Player) sender;
-		if (Central.isPrison) {
+		if (CentralHandler.isPrison) {
 			if (prisonUtils.getPrisonRank(player).equals(ChatColor.RED + "D4")) {
 				prisonUtils.printMessage(player, "&cYou've reached the max rankup. Congratulations!");
 			} else {

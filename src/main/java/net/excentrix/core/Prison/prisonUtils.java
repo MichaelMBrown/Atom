@@ -1,6 +1,6 @@
 package net.excentrix.core.Prison;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class prisonUtils {
 	static LuckPerms api = LuckPermsProvider.get();
-	Economy econ = Central.getEcon();
+	Economy econ = CentralHandler.getEcon();
 	
 	public static String getPrisonRank(Player player) {
 		QueryOptions queryOptions = api.getContextManager().getQueryOptions(player);

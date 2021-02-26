@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class balance implements CommandExecutor {
-	Economy econ = Central.getEcon();
+	Economy econ = CentralHandler.getEcon();
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

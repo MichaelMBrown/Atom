@@ -1,6 +1,6 @@
 package net.excentrix.core.enchants;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,7 +13,7 @@ public class trueDamage implements Listener {
 	@EventHandler
 	public void playerHit(EntityDamageByEntityEvent event) {
 		if (event.getDamager() instanceof Player) {
-			if (Central.enchantSupport = true) {
+			if (CentralHandler.enchantSupport = true) {
 				Player player = (Player) event.getDamager();
 				try {
 					if (player.getEquipment().getItemInMainHand().getLore().toString().contains("True Damage")) {

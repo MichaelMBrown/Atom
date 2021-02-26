@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -17,7 +17,7 @@ import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getServer;
 
 public class grant implements CommandExecutor {
-	private static final Plugin plugin = Central.getPlugin(Central.class);
+	private static final Plugin plugin = CentralHandler.getPlugin(CentralHandler.class);
 	
 	
 	@Override

@@ -1,6 +1,6 @@
 package net.excentrix.core.messagingServices;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,7 +14,7 @@ public class whisper implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		Player commandSender = (Player) sender;
 		String message = "";
-		if (Central.freezeList.contains(sender)) {
+		if (CentralHandler.freezeList.contains(sender)) {
 			coreUtils.actionForbidden(commandSender);
 			return true;
 		} else {

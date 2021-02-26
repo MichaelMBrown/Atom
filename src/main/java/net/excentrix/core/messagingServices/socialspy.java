@@ -1,6 +1,6 @@
 package net.excentrix.core.messagingServices;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,11 +14,11 @@ public class socialspy implements CommandExecutor {
 			coreUtils.noPerm(commandSender);
 			return true;
 		} else {
-			if (Central.nowSpying.contains(commandSender)) {
-				Central.nowSpying.remove(commandSender);
+			if (CentralHandler.nowSpying.contains(commandSender)) {
+				CentralHandler.nowSpying.remove(commandSender);
 				coreUtils.informativeMessage(commandSender, "You have disabled admin spying.");
 			} else {
-				Central.nowSpying.add(commandSender);
+				CentralHandler.nowSpying.add(commandSender);
 				coreUtils.informativeMessage(commandSender, "You have enabled admin spying.");
 			}
 			

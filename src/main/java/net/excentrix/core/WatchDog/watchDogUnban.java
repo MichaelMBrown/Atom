@@ -22,11 +22,14 @@ public class watchDogUnban implements CommandExecutor {
 				} else targetPlayer = null;
 				if (targetPlayer != null) {
 					BanList banList = Bukkit.getBanList(BanList.Type.NAME);
-					if (commandSender instanceof ConsoleCommandSender)
-						coreUtils.notifyStaff("watchdog", "unbanned " + targetPlayer.getName() + ", they were originally banned by " + banList.getBanEntry(targetPlayer.getName()).getSource());
-					else
-						coreUtils.notifyStaff("none", commandSender.getName() + " unbanned " + targetPlayer.getName() + ", they were originally banned by " + banList.getBanEntry(targetPlayer.getName()).getSource());
-					banList.pardon(targetPlayer.getName());
+					if (targetPlayer.isBanned()){
+						if (commandSender instanceof ConsoleCommandSender)
+							coreUtils.notifyStaff("watchdog", "unbanned " + targetPlayer.getName() + ", they were originally banned by " + banList.getBanEntry(targetPlayer.getName()).getSource());
+						else
+							coreUtils.notifyStaff("none", commandSender.getName() + " unbanned " + targetPlayer.getName() + ", they were originally banned by " + banList.getBanEntry(targetPlayer.getName()).getSource());
+						banList.pardon(targetPlayer.getName());
+						
+					}else coreUtils.errorMessage((Player) commandSender,"That ban does not exist in the System.");
 				} else coreUtils.errorMessage((Player) commandSender, "That ban does not exist in the System.");
 			} else coreUtils.printUsage((Player) commandSender, "pardon", "<player>");
 		} else coreUtils.errorMessage((Player) commandSender, "You must be Admin or higher to use this command!");

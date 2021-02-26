@@ -32,7 +32,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
 
-public final class Central extends JavaPlugin implements Listener, TabCompleter {
+public final class CentralHandler extends JavaPlugin implements Listener, TabCompleter {
 	public static ArrayList<Player> godList = new ArrayList();
 	public static ArrayList<Player> freezeList = new ArrayList();
 	public static ArrayList<Player> scMuted = new ArrayList();
@@ -48,7 +48,7 @@ public final class Central extends JavaPlugin implements Listener, TabCompleter 
 	// Setup the Economy
 	private static Economy econ = null;
 	
-	public Central() {
+	public CentralHandler() {
 	}
 	
 	public static Economy getEcon() {
@@ -118,7 +118,7 @@ public final class Central extends JavaPlugin implements Listener, TabCompleter 
 		// Smite Command
 		getCommand("smite").setExecutor(new smite());
 		// Mutechat Commmand
-		getCommand("mutelocalchat").setExecutor(new mutelocalchat());
+		getCommand("mutelocalchat").setExecutor(new toggleChat());
 		// Enderchest Command
 		getCommand("enderchest").setExecutor(new enderchest());
 		// TPHere Command
@@ -164,6 +164,8 @@ public final class Central extends JavaPlugin implements Listener, TabCompleter 
 		getCommand("pardon").setExecutor(new watchDogUnban());
 		//Loop
 		getCommand("loop").setExecutor(new loop());
+		//GiveCustomItem
+		getCommand("givecustomitem").setExecutor(new giveCustomItem());
 		
 		
 		// Register Events

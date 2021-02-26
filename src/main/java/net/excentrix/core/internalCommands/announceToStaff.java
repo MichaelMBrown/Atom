@@ -1,6 +1,6 @@
 package net.excentrix.core.internalCommands;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class announceToStaff implements CommandExecutor {
-	private static final Plugin plugin = Central.getPlugin(Central.class);
+	private static final Plugin plugin = CentralHandler.getPlugin(CentralHandler.class);
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

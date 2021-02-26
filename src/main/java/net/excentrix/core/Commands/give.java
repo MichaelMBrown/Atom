@@ -1,6 +1,6 @@
 package net.excentrix.core.Commands;
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -41,9 +41,9 @@ public class give implements CommandExecutor {
 						for (Player p : Bukkit.getOnlinePlayers()) {
 							p.getInventory().addItem(item);
 						}
-						coreUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&a to " + Central.playerColour + strings[0].toUpperCase());
+						coreUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&a to " + CentralHandler.playerColour + strings[0].toUpperCase());
 					} catch (NullPointerException e) {
-						coreUtils.actionForbidden(sender);
+						coreUtils.errorMessage(sender,"That item doesn't exist!");
 					}
 				} else coreUtils.printUsage(sender, "give", "<player> <item> [count]");
 			} else if (target != null) {
@@ -62,7 +62,7 @@ public class give implements CommandExecutor {
 						target.getInventory().addItem(item);
 						coreUtils.informativeMessage(sender, "You gave &e" + amount + " " + item.getI18NDisplayName() + "&a to " + coreUtils.getPlayerColor(target) + strings[0]);
 					} catch (NullPointerException e) {
-						coreUtils.actionForbidden(sender);
+						coreUtils.errorMessage(sender,"That item doesn't exist!");
 					}
 				} else coreUtils.printUsage(sender, "give", "<player> <item> [count]");
 			} else coreUtils.playerNotFound(sender);

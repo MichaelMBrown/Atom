@@ -1,7 +1,7 @@
 package net.excentrix.core.events;
 
 import com.destroystokyo.paper.event.player.PlayerPostRespawnEvent;
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,7 +16,7 @@ public class deathEvents implements Listener {
 	@EventHandler
 	public void godDeath(PlayerDeathEvent event) {
 		Player player = event.getEntity();
-		if (Central.godList.contains(player)) {
+		if (CentralHandler.godList.contains(player)) {
 			event.setCancelled(true);
 		}
 		
@@ -26,12 +26,12 @@ public class deathEvents implements Listener {
 	public void deathReformat(PlayerDeathEvent event) {
 		Player player = event.getEntity();
 		if (event.getEntity().getKiller() != null) {
-			event.setDeathMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + player.getName() + ChatColor.GRAY + " was killed by " + ChatColor.RED + event.getEntity().getKiller().getName());
+			event.setDeathMessage(ChatColor.RED + "" + ChatColor.BOLD + "☠ " + ChatColor.GRAY + player.getName() + " was killed by " + event.getEntity().getKiller().getName());
 			//event.setDeathMessage("");
 			//World world = player.getWorld();
 			//world.strikeLightning(player.getLocation());
 		} else {
-			event.setDeathMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + player.getName() + ChatColor.GRAY + " has died.");
+			event.setDeathMessage(ChatColor.RED + "" + ChatColor.BOLD + "☠ " + ChatColor.GRAY + player.getName() + " has died.");
 			//event.setDeathMessage("");
 			//World world = player.getWorld();
 			//world.strikeLightning(player.getLocation());
@@ -40,6 +40,6 @@ public class deathEvents implements Listener {
 	
 	@EventHandler
 	public void respawnEvent(PlayerPostRespawnEvent event) {
-		event.getPlayer().teleport(Central.spawn, PlayerTeleportEvent.TeleportCause.PLUGIN);
+		event.getPlayer().teleport(CentralHandler.spawn, PlayerTeleportEvent.TeleportCause.PLUGIN);
 	}
 }

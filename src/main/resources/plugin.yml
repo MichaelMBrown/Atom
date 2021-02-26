@@ -1,6 +1,6 @@
 name: Atom
 version: ${project.version}
-main: net.excentrix.core.Central
+main: net.excentrix.core.CentralHandler
 api-version: 1.16
 softdepend: [ LuckPerms, PremiumVanish, SuperVanish ]
 loadbefore: [ Essentials ]
@@ -154,3 +154,6 @@ commands:
   pardon:
     description: Unbans a Player
   loop:
+    description: loop-de-loop
+  givecustomitem:
+    description: Creates custom items.

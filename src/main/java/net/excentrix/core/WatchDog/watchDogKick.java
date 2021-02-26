@@ -1,7 +1,7 @@
 package net.excentrix.core.WatchDog;
 
 
-import net.excentrix.core.Central;
+import net.excentrix.core.CentralHandler;
 import net.excentrix.core.utils.coreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,13 +16,13 @@ import java.lang.reflect.Array;
 
 @SuppressWarnings("DuplicatedCode")
 public class watchDogKick implements CommandExecutor {
-	Plugin plugin = Central.getPlugin(Central.class);
+	Plugin plugin = CentralHandler.getPlugin(CentralHandler.class);
 	private CommandSender sender;
 	private Command command;
 	private String[] args;
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		Plugin plugin = Central.getPlugin(Central.class);
+		Plugin plugin = CentralHandler.getPlugin(CentralHandler.class);
 		String reason = "";
 		if ((sender instanceof Player)) {
 			if (sender.hasPermission("atom.command.kick")) {
