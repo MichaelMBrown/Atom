@@ -4,8 +4,8 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import net.excentrix.core.Commands.*;
 import net.excentrix.core.Prison.Commands.rankup;
-import net.excentrix.core.WatchDog.watchDogKick;
 import net.excentrix.core.WatchDog.watchDogBan;
+import net.excentrix.core.WatchDog.watchDogKick;
 import net.excentrix.core.WatchDog.watchDogNotification;
 import net.excentrix.core.WatchDog.watchDogUnban;
 import net.excentrix.core.enchants.telekinesis;
@@ -33,11 +33,11 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.ArrayList;
 
 public final class CentralHandler extends JavaPlugin implements Listener, TabCompleter {
-	public static ArrayList<Player> godList = new ArrayList();
-	public static ArrayList<Player> freezeList = new ArrayList();
-	public static ArrayList<Player> scMuted = new ArrayList();
-	public static ArrayList<Player> pmToggled = new ArrayList();
-	public static ArrayList<Player> nowSpying = new ArrayList();
+	public static ArrayList<Player> godList = new ArrayList<>();
+	public static ArrayList<Player> freezeList = new ArrayList<>();
+	public static ArrayList<Player> scMuted = new ArrayList<>();
+	public static ArrayList<Player> pmToggled = new ArrayList<>();
+	public static ArrayList<Player> nowSpying = new ArrayList<>();
 	public static ArrayList<Player> buildDenied = new ArrayList<>();
 	public static Boolean chatSilenced;
 	public static Boolean globalPVP;
@@ -60,7 +60,6 @@ public final class CentralHandler extends JavaPlugin implements Listener, TabCom
 		if (economyProvider != null) {
 			econ = economyProvider.getProvider();
 		}
-		
 		return (econ != null);
 	}
 	
@@ -104,7 +103,7 @@ public final class CentralHandler extends JavaPlugin implements Listener, TabCom
 		getCommand("gamemode").setExecutor(new gamemode());
 		getCommand("gamemode").setTabCompleter(new gamemodeCompletion());
 		// TP Command
-		getCommand("tp").setExecutor(new teleport());
+		getCommand("tp").setExecutor(new TeleportCommand());
 		// Kill Command
 		getCommand("kill").setExecutor(new kill());
 		// Weather Command
@@ -166,6 +165,8 @@ public final class CentralHandler extends JavaPlugin implements Listener, TabCom
 		getCommand("loop").setExecutor(new loop());
 		//GiveCustomItem
 		getCommand("givecustomitem").setExecutor(new giveCustomItem());
+		// List Command
+		getCommand("list").setExecutor(new list());
 		
 		
 		// Register Events

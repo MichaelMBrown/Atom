@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 
-public class teleport implements CommandExecutor {
+public class TeleportCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (sender instanceof Player) {
@@ -40,8 +40,20 @@ public class teleport implements CommandExecutor {
 						} else {
 							coreUtils.playerNotFound((Player) sender);
 						}
+					} else if (args.length == 3) {
+						double x, y, z;
+						try {
+							x = Integer.parseInt(args[0]) + .5;
+							y = Integer.parseInt(args[1]);
+							z = Integer.parseInt(args[2]) + .5;
+							Location targetLoc = new Location(((Player) sender).getWorld(), x, y, z, ((Player) sender).getLocation().getYaw(), ((Player) sender).getLocation().getPitch());
+							((Player) sender).teleport(targetLoc);
+							coreUtils.informativeMessage((Player) sender, "You have teleported to coordinates: &e" + x + "&a, &e" + y + "&a, &e" + z);
+						} catch (NumberFormatException exception) {
+							coreUtils.errorMessage((Player) sender, "Invalid coordinates provided.");
+						}
 					} else {
-						coreUtils.printUsage((Player) sender, "tp", "<player> [player]");
+						coreUtils.printUsage((Player) sender, "tp", "<player> [player] OR <x> <y> <z>");
 					}
 				} else {
 					coreUtils.noPerm((Player) sender);
@@ -51,3 +63,4 @@ public class teleport implements CommandExecutor {
 		return true;
 	}
 }
+

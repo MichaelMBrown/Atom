@@ -19,17 +19,22 @@ public class loop implements CommandExecutor {
 				try {
 					int iterations = Integer.parseInt(strings[0]);
 					for (int i = 2; i < strings.length; i++) {
-						if (i == strings.length-1) command = command + strings[i];
+						if (i == strings.length - 1) command = command + strings[i];
 						else
 							command = command + strings[i] + " ";
 					}
 					long delay = Long.parseLong(strings[1]);
 					coreUtils.informativeMessage((Player) commandSender, "Looping '/" + command + "' " + iterations + " times.");
-					for (int i = 0; i < iterations; ++i) {
+
+					// Run the first command instantly
+					Bukkit.dispatchCommand(commandSender, command);
+
+					// Run the remaining commands after the delay
+					for (int i = 1; i < iterations; ++i) {
 						String finalCommand = command;
 						Bukkit.getScheduler().runTaskLater(plugin, () -> {
 							Bukkit.dispatchCommand(commandSender, finalCommand);
-						}, delay);
+						}, delay * (i + 1)); // Delay increases for each iteration
 					}
 				} catch (NumberFormatException exception) {
 					coreUtils.errorMessage((Player) commandSender, "Cannot process that request, retry that command again.");
@@ -38,4 +43,5 @@ public class loop implements CommandExecutor {
 		} else coreUtils.errorMessage((Player) commandSender, "You must be Admin or higher to use this command!");
 		return true;
 	}
+
 }

@@ -27,7 +27,7 @@ public class balance implements CommandExecutor {
 					coreUtils.informativeMessage((Player) sender, "&aYou have a balance of &e" + econ.format(econ.getBalance(player)));
 				}
 			} catch (NullPointerException e) {
-				coreUtils.errorMessage((Player) sender, "An error occurred whilst processing this command, please contact an administrator to resolve this issue.");
+                coreUtils.errorMessage((Player) sender, "An error occurred whilst processing this command, likely a Economy Plugin is not installed, and thus no economy is present.");
 			}
 		}
 		return true;

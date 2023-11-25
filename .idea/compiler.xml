@@ -9,8 +9,5 @@
         <module name="Atom" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Atom" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

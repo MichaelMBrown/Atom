@@ -10,15 +10,15 @@ import org.bukkit.entity.Player;
 public class say implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-		String message = "";
+		StringBuilder message = new StringBuilder();
 		Player player = (Player) commandSender;
 		if (!commandSender.hasPermission("atom.command.say")) {
 			coreUtils.noPerm(player);
 			return true;
 		}
 		if (strings.length > 0) {
-			for (int i = 0; i < strings.length; i++) {
-				message = message + strings[i] + " ";
+			for (String string : strings) {
+				message.append(string).append(" ");
 			}
 			coreUtils.broadcastServer(ChatColor.LIGHT_PURPLE + "[" + commandSender.getName() + "] " + message + ChatColor.WHITE);
 		} else coreUtils.printUsage(player, "say", "<message>");

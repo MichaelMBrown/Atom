@@ -43,7 +43,7 @@ public class playerChatEvents implements Listener {
 		CachedMetaData metaData = api.getGroupManager().getGroup(group).getCachedData().getMetaData(queryOptions);
 		if (coreUtils.getRankInteger(event.getPlayer().getName()) >= 1) {
 			event.setFormat(ChatColor.translateAlternateColorCodes('&', metaData.getPrefix()) + " " + event.getPlayer().getName() + ChatColor.WHITE + ": " + ChatColor.translateAlternateColorCodes('&',event.getMessage()));
-		}else
-		event.setFormat(ChatColor.translateAlternateColorCodes('&', metaData.getPrefix()) + " " + event.getPlayer().getName() + ChatColor.WHITE + ": " + event.getMessage());
+        } else
+            event.setFormat(ChatColor.translateAlternateColorCodes('&', metaData.getPrefix()) + " " + event.getPlayer().getName() + ChatColor.WHITE + ": " + event.getMessage());
 	}
 }

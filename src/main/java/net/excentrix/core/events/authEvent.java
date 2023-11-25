@@ -59,7 +59,12 @@ public class authEvent implements Listener {
 			User user = api.getUserManager().getUser(player.getUniqueId());
 			user.data().add(MetaNode.builder("prison_rank", "A1").build());
 			api.getUserManager().saveUser(user);
-			
+
+		}
+		// Check if the version of the plugin contains "ALPHA"
+		if (plugin.getDescription().getVersion().contains("ALPHA")) {
+			coreUtils.informativeMessage(player, "You are running an " + ChatColor.RED + "ALPHA" + ChatColor.GRAY + " version of " + ChatColor.LIGHT_PURPLE + "Atom" + ChatColor.GRAY + "!");
+			coreUtils.informativeMessage(player, "Please report any bugs to the System Administrator immediately!");
 		}
 	}
 	

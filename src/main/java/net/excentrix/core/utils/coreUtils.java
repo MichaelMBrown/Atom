@@ -159,4 +159,20 @@ public class coreUtils {
 			return null;
 		}
 	}
+
+	public static boolean playerCanSee(Player sender, Player target) {
+		try {
+            return VanishAPI.canSee(sender, target);
+		} catch (NullPointerException e) {
+			return false;
+		}
+	}
+
+	public static boolean isVanished(Player player) {
+		try {
+			return VanishAPI.isInvisible(player);
+		} catch (NullPointerException e) {
+			return false;
+		}
+	}
 }

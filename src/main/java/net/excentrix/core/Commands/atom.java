@@ -75,7 +75,7 @@ public class atom implements CommandExecutor {
 						break;
 					case "debug":
 						if (((Player) sender).getUniqueId().toString().equalsIgnoreCase("5077fab0-9749-4548-aacd-aff52565c55f") || ((Player) sender).getUniqueId().toString().equalsIgnoreCase("6c7d3c44-fd94-4150-8045-dbc5da6ce872")) {
-							coreUtils.informativeMessage((Player) sender, "Rank: " + coreUtils.getRankObject(coreUtils.getRank(sender.getName())));
+							coreUtils.informativeMessage((Player) sender, "Rank: " + coreUtils.getRank(sender.getName()));
 							coreUtils.informativeMessage((Player) sender, "Prison Rank: " + prisonUtils.getPrisonRank((Player) sender));
 							coreUtils.informativeMessage((Player) sender, "Prison Rank (raw): " + prisonUtils.getRankFromInt((Player) sender, prisonUtils.getPrisonRankInt((Player) sender)));
 							coreUtils.informativeMessage((Player) sender, "Rank Integer: " + coreUtils.getRankInteger(sender.getName()));

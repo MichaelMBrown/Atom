@@ -1,7 +1,7 @@
 name: Atom
 version: ${project.version}
 main: net.excentrix.core.CentralHandler
-api-version: 1.16
+api-version: 1.20
 softdepend: [ LuckPerms, PremiumVanish, SuperVanish ]
 loadbefore: [ Essentials ]
 depend: [ Vault ]
@@ -157,3 +157,5 @@ commands:
     description: loop-de-loop
   givecustomitem:
     description: Creates custom items.
+  list:
+    description: Lists all online players
